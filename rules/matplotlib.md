@@ -68,6 +68,13 @@ TUFTE_RC = {
 plt.rcParams.update(TUFTE_RC)
 ```
 
+## Accessibility
+
+matplotlib output is a static image, so there is no animation to manage. Two things still apply (rule 16):
+
+- **Alt text that states the finding.** Wherever the image is embedded, describe what it shows, not what kind of chart it is: `![Revenue beat target every month, rising from $42k to $82k](revenue.png)` or `<img alt="...">`.
+- **Don't rely on color alone.** Pair color with line style or marker so series survive grayscale printing and color-vision deficiency: `ax.plot(x, a, color="#666", linestyle="--")`, `ax.scatter(x, y, marker="s")`.
+
 ## Tufte helper functions
 
 ### Range-frame axes

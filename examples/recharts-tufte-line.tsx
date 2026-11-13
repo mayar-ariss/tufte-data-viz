@@ -92,103 +92,107 @@ export function RevenueChart() {
         Monthly revenue vs. target, Jan–Jun (USD)
       </p>
 
-      <ResponsiveContainer width="100%" aspect={1.5}>
-        <LineChart
-          data={data}
-          margin={{ top: 8, right: 100, bottom: 8, left: 8 }}
-        >
-          <CartesianGrid stroke="none" />
+      <div role="img" aria-label="Revenue beat target every month, rising from 4,200 in January to 6,200 in June">
+        <ResponsiveContainer width="100%" aspect={1.5}>
+          <LineChart
+            data={data}
+            margin={{ top: 8, right: 100, bottom: 8, left: 8 }}
+          >
+            <CartesianGrid stroke="none" />
 
-          <XAxis
-            dataKey="month"
-            tickLine={false}
-            axisLine={{ stroke: TUFTE.axis, strokeWidth: 0.5 }}
-            tick={{
-              fontSize: 12,
-              fill: TUFTE.textTertiary,
-              fontFamily: TUFTE.fontSans,
-            }}
-          />
+            <XAxis
+              dataKey="month"
+              tickLine={false}
+              axisLine={{ stroke: TUFTE.axis, strokeWidth: 0.5 }}
+              tick={{
+                fontSize: 12,
+                fill: TUFTE.textTertiary,
+                fontFamily: TUFTE.fontSans,
+              }}
+            />
 
-          <YAxis
-            tickLine={false}
-            axisLine={false}
-            tick={{
-              fontSize: 12,
-              fill: TUFTE.textTertiary,
-              fontFamily: TUFTE.fontSans,
-            }}
-            domain={['dataMin - 200', 'dataMax + 400']}
-          />
+            <YAxis
+              tickLine={false}
+              axisLine={false}
+              tick={{
+                fontSize: 12,
+                fill: TUFTE.textTertiary,
+                fontFamily: TUFTE.fontSans,
+              }}
+              domain={['dataMin - 200', 'dataMax + 400']}
+            />
 
-          <Tooltip
-            content={<TufteTooltip />}
-            cursor={{ stroke: TUFTE.axis, strokeWidth: 0.5 }}
-          />
+            <Tooltip
+              content={<TufteTooltip />}
+              cursor={{ stroke: TUFTE.axis, strokeWidth: 0.5 }}
+            />
 
-          {/* Target line: gray dashed */}
-          <Line
-            type="monotone"
-            dataKey="target"
-            stroke={TUFTE.seriesDefault}
-            strokeWidth={1}
-            strokeDasharray="4 3"
-            dot={false}
-            name="Target"
-          />
+            {/* Target line: gray dashed */}
+            <Line
+              type="monotone"
+              dataKey="target"
+              stroke={TUFTE.seriesDefault}
+              strokeWidth={1}
+              strokeDasharray="4 3"
+              dot={false}
+              isAnimationActive={false}
+              name="Target"
+            />
 
-          {/* Revenue line: highlighted */}
-          <Line
-            type="monotone"
-            dataKey="revenue"
-            stroke={TUFTE.highlight}
-            strokeWidth={2}
-            dot={false}
-            name="Revenue"
-          />
+            {/* Revenue line: highlighted */}
+            <Line
+              type="monotone"
+              dataKey="revenue"
+              stroke={TUFTE.highlight}
+              strokeWidth={2}
+              dot={false}
+              isAnimationActive={false}
+              name="Revenue"
+            />
 
-          {/* Direct labels at right edge (no Legend component) */}
-          <ReferenceLine
-            y={data[data.length - 1].revenue}
-            stroke="none"
-            label={{
-              value: `Revenue: $${data[data.length - 1].revenue.toLocaleString()}`,
-              position: 'right',
-              fill: TUFTE.highlight,
-              fontSize: 13,
-              fontFamily: TUFTE.font,
-            }}
-          />
-          <ReferenceLine
-            y={data[data.length - 1].target}
-            stroke="none"
-            label={{
-              value: `Target: $${data[data.length - 1].target.toLocaleString()}`,
-              position: 'right',
-              fill: TUFTE.textSecondary,
-              fontSize: 13,
-              fontFamily: TUFTE.font,
-            }}
-          />
+            {/* Direct labels at right edge (no Legend component) */}
+            <ReferenceLine
+              y={data[data.length - 1].revenue}
+              stroke="none"
+              label={{
+                value: `Revenue: $${data[data.length - 1].revenue.toLocaleString()}`,
+                position: 'right',
+                fill: TUFTE.highlight,
+                fontSize: 13,
+                fontFamily: TUFTE.font,
+              }}
+            />
+            <ReferenceLine
+              y={data[data.length - 1].target}
+              stroke="none"
+              label={{
+                value: `Target: $${data[data.length - 1].target.toLocaleString()}`,
+                position: 'right',
+                fill: TUFTE.textSecondary,
+                fontSize: 13,
+                fontFamily: TUFTE.font,
+              }}
+            />
 
-          {/* Annotate the peak */}
-          <ReferenceDot
-            x={data[peakIdx].month}
-            y={data[peakIdx].revenue}
-            r={3}
-            fill={TUFTE.highlight}
-            stroke="none"
-            label={{
-              value: `Peak: $${data[peakIdx].revenue.toLocaleString()}`,
-              position: 'top',
-              fill: TUFTE.text,
-              fontSize: 12,
-              fontFamily: TUFTE.font,
-              offset: 12,
-            }}
-          />
-        </LineChart>
-      </ResponsiveContainer>
+            {/* Annotate the peak */}
+            <ReferenceDot
+              x={data[peakIdx].month}
+              y={data[peakIdx].revenue}
+              r={3}
+              fill={TUFTE.highlight}
+              stroke="none"
+              label={{
+                value: `Peak: $${data[peakIdx].revenue.toLocaleString()}`,
+                position: 'top',
+                fill: TUFTE.text,
+                fontSize: 12,
+                fontFamily: TUFTE.font,
+                offset: 12,
+              }}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 }

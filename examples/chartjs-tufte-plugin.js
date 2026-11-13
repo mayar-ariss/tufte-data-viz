@@ -87,6 +87,9 @@ export function applyTufteDefaults(Chart) {
  * Example: create a Tufte line chart.
  *
  * Requires: chart.js/auto, chartjs-plugin-datalabels
+ *
+ * Give the canvas a text alternative (rule 16):
+ *   <canvas role="img" aria-label="Revenue beat target every month, rising from 4,200 in January to 6,200 in June"></canvas>
  */
 export function createTufteLineChart(ctx) {
   // Assumes Chart and ChartDataLabels are already registered
@@ -134,6 +137,7 @@ export function createTufteLineChart(ctx) {
       ],
     },
     options: {
+      animation: false, // no entrance animation (rule 18)
       responsive: true,
       aspectRatio: 1.5,
       scales: {

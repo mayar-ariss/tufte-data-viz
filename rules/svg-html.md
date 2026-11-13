@@ -6,8 +6,12 @@ Load this file when generating raw SVG charts, D3.js visualizations, or HTML dat
 
 ```html
 <svg viewBox="0 0 750 500" xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-labelledby="chart-title chart-desc"
      style="font-family: 'ET Book', 'Palatino Linotype', Palatino, Georgia, serif;
             background: #fffff8;">
+  <!-- Text alternative (rule 16): state the finding, not the chart type -->
+  <title id="chart-title">Revenue beat target every month</title>
+  <desc id="chart-desc">Revenue rose from 4,200 in January to 6,200 in June; target rose from 4,000 to 5,000.</desc>
   <!-- Chart area: leave margins for labels -->
   <g transform="translate(60, 40)">
     <!-- Data goes here -->
@@ -86,6 +90,15 @@ Load this file when generating raw SVG charts, D3.js visualizations, or HTML dat
   stroke-width: 0.5;
   stroke-dasharray: 4 3;
 }
+```
+
+### Motion
+
+Draw the chart in its final state; don't animate it in (rule 18). For data updates, gate D3 transitions on the reader's preference:
+
+```javascript
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+bars.transition().duration(reduceMotion ? 0 : 300).attr('width', (d) => x(d.value));
 ```
 
 ## D3.js axis configuration

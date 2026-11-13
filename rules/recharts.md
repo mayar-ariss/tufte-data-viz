@@ -20,6 +20,25 @@ const TUFTE = {
 };
 ```
 
+## Accessibility and motion
+
+Recharts animates every series when it first renders. Rule 18 treats entrance animation as decoration, so set `isAnimationActive={false}` on each `<Line>`, `<Bar>` and `<Area>`. If you do animate data changes, skip them for readers who ask for reduced motion:
+
+```tsx
+const reduceMotion =
+  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+<Line dataKey="value" isAnimationActive={!reduceMotion} animationDuration={300} />
+```
+
+Give every chart a text alternative that states the finding (rule 16) by wrapping it:
+
+```tsx
+<div role="img" aria-label="Revenue beat target every month, rising from 4,200 in January to 6,200 in June">
+  <ResponsiveContainer>...</ResponsiveContainer>
+</div>
+```
+
 ## Component-by-component configuration
 
 ### CartesianGrid
@@ -123,6 +142,7 @@ Never use `<Legend />`. Instead, label each line at its last data point with an 
   strokeWidth={1.5}
   dot={false}
   activeDot={{ r: 3, fill: TUFTE.text, stroke: 'none' }}
+  isAnimationActive={false}
 />
 ```
 
@@ -135,13 +155,14 @@ For highlighted series:
   stroke={TUFTE.highlight}
   strokeWidth={2}
   dot={false}
+  isAnimationActive={false}
 />
 ```
 
 ### Bar
 
 ```tsx
-<Bar dataKey="value" fill={TUFTE.seriesDefault} radius={[2, 2, 0, 0]}>
+<Bar dataKey="value" fill={TUFTE.seriesDefault} radius={[2, 2, 0, 0]} isAnimationActive={false}>
   <LabelList
     dataKey="value"
     position="top"
@@ -165,6 +186,7 @@ If area fill is needed, keep opacity extremely low:
   strokeWidth={1.5}
   fill={TUFTE.seriesDefault}
   fillOpacity={0.05}
+  isAnimationActive={false}
 />
 ```
 
@@ -229,41 +251,43 @@ export function RevenueChart() {
       }}>
         Monthly revenue vs. target, Jan–Jun (USD)
       </p>
-      <ResponsiveContainer width="100%" height={400} aspect={1.5}>
-        <LineChart data={data} margin={{ top: 8, right: 80, bottom: 8, left: 8 }}>
-          <CartesianGrid stroke="none" />
-          <XAxis
-            dataKey="month"
-            tickLine={false}
-            axisLine={{ stroke: TUFTE.axis, strokeWidth: 0.5 }}
-            tick={{ fontSize: 12, fill: TUFTE.textTertiary, fontFamily: TUFTE.fontSans }}
-          />
-          <YAxis
-            tickLine={false}
-            axisLine={false}
-            tick={{ fontSize: 12, fill: TUFTE.textTertiary, fontFamily: TUFTE.fontSans }}
-            domain={['dataMin - 200', 'dataMax + 200']}
-          />
-          <Tooltip content={<TufteTooltip />} />
-          <Line
-            type="monotone" dataKey="target" stroke={TUFTE.seriesDefault}
-            strokeWidth={1} strokeDasharray="4 3" dot={false}
-          />
-          <Line
-            type="monotone" dataKey="revenue" stroke={TUFTE.highlight}
-            strokeWidth={2} dot={false}
-          />
-          {/* Direct labels at right edge */}
-          <ReferenceLine y={data[data.length - 1].revenue} stroke="none" label={{
-            value: `Revenue: ${data[data.length - 1].revenue.toLocaleString()}`,
-            position: 'right', fill: TUFTE.highlight, fontSize: 13, fontFamily: TUFTE.font,
-          }} />
-          <ReferenceLine y={data[data.length - 1].target} stroke="none" label={{
-            value: `Target: ${data[data.length - 1].target.toLocaleString()}`,
-            position: 'right', fill: TUFTE.textSecondary, fontSize: 13, fontFamily: TUFTE.font,
-          }} />
-        </LineChart>
-      </ResponsiveContainer>
+      <div role="img" aria-label="Revenue beat target every month, rising from 4,200 in January to 6,200 in June">
+        <ResponsiveContainer width="100%" height={400} aspect={1.5}>
+          <LineChart data={data} margin={{ top: 8, right: 80, bottom: 8, left: 8 }}>
+            <CartesianGrid stroke="none" />
+            <XAxis
+              dataKey="month"
+              tickLine={false}
+              axisLine={{ stroke: TUFTE.axis, strokeWidth: 0.5 }}
+              tick={{ fontSize: 12, fill: TUFTE.textTertiary, fontFamily: TUFTE.fontSans }}
+            />
+            <YAxis
+              tickLine={false}
+              axisLine={false}
+              tick={{ fontSize: 12, fill: TUFTE.textTertiary, fontFamily: TUFTE.fontSans }}
+              domain={['dataMin - 200', 'dataMax + 200']}
+            />
+            <Tooltip content={<TufteTooltip />} />
+            <Line
+              type="monotone" dataKey="target" stroke={TUFTE.seriesDefault}
+              strokeWidth={1} strokeDasharray="4 3" dot={false} isAnimationActive={false}
+            />
+            <Line
+              type="monotone" dataKey="revenue" stroke={TUFTE.highlight}
+              strokeWidth={2} dot={false} isAnimationActive={false}
+            />
+            {/* Direct labels at right edge */}
+            <ReferenceLine y={data[data.length - 1].revenue} stroke="none" label={{
+              value: `Revenue: ${data[data.length - 1].revenue.toLocaleString()}`,
+              position: 'right', fill: TUFTE.highlight, fontSize: 13, fontFamily: TUFTE.font,
+            }} />
+            <ReferenceLine y={data[data.length - 1].target} stroke="none" label={{
+              value: `Target: ${data[data.length - 1].target.toLocaleString()}`,
+              position: 'right', fill: TUFTE.textSecondary, fontSize: 13, fontFamily: TUFTE.font,
+            }} />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 }
@@ -294,23 +318,25 @@ export function ProductChart() {
       <p style={{ fontFamily: TUFTE.font, fontSize: 13, color: TUFTE.textSecondary, margin: '0 0 16px 0' }}>
         Revenue by product, USD
       </p>
-      <ResponsiveContainer width="100%" height={data.length * 48 + 32}>
-        <BarChart data={data} layout="vertical" margin={{ top: 0, right: 80, bottom: 0, left: 0 }}>
-          <XAxis type="number" hide />
-          <YAxis
-            type="category" dataKey="name" width={90}
-            tickLine={false} axisLine={false}
-            tick={{ fontSize: 13, fill: TUFTE.text, fontFamily: TUFTE.font }}
-          />
-          <Bar dataKey="value" fill={TUFTE.seriesDefault} barSize={20} radius={[0, 2, 2, 0]}>
-            <LabelList
-              dataKey="value" position="right"
-              fill={TUFTE.textSecondary} fontSize={13} fontFamily={TUFTE.font}
-              formatter={(v: number) => `$${(v / 1000).toFixed(0)}k`}
+      <div role="img" aria-label="Product A leads revenue at 42,000, followed by B at 38,000, C at 27,000, D at 19,000 and E at 12,000">
+        <ResponsiveContainer width="100%" height={data.length * 48 + 32}>
+          <BarChart data={data} layout="vertical" margin={{ top: 0, right: 80, bottom: 0, left: 0 }}>
+            <XAxis type="number" hide />
+            <YAxis
+              type="category" dataKey="name" width={90}
+              tickLine={false} axisLine={false}
+              tick={{ fontSize: 13, fill: TUFTE.text, fontFamily: TUFTE.font }}
             />
-          </Bar>
-        </BarChart>
-      </ResponsiveContainer>
+            <Bar dataKey="value" fill={TUFTE.seriesDefault} barSize={20} radius={[0, 2, 2, 0]} isAnimationActive={false}>
+              <LabelList
+                dataKey="value" position="right"
+                fill={TUFTE.textSecondary} fontSize={13} fontFamily={TUFTE.font}
+                formatter={(v: number) => `$${(v / 1000).toFixed(0)}k`}
+              />
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 }
@@ -338,7 +364,7 @@ const metrics = ['revenue', 'users', 'conversion'];
           <CartesianGrid stroke="none" />
           <XAxis dataKey="month" tickLine={false} axisLine={false} tick={{ fontSize: 10 }} />
           <YAxis tickLine={false} axisLine={false} tick={{ fontSize: 10 }} width={35} />
-          <Line dataKey={metric} stroke={TUFTE.seriesDefault} strokeWidth={1.5} dot={false} />
+          <Line dataKey={metric} stroke={TUFTE.seriesDefault} strokeWidth={1.5} dot={false} isAnimationActive={false} />
         </LineChart>
       </ResponsiveContainer>
     </div>

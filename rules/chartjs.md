@@ -49,6 +49,24 @@ Chart.defaults.elements.point.hoverBackgroundColor = '#111';
 Chart.defaults.elements.bar.borderWidth = 0;
 ```
 
+## Accessibility and motion
+
+Chart.js animates every chart on load. Turn that off per chart with `options.animation: false` (rule 18). If you animate data updates instead, skip them for readers who ask for reduced motion:
+
+```javascript
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// options: { animation: reduceMotion ? false : { duration: 300 } }
+```
+
+A `<canvas>` is invisible to screen readers. Give it `role="img"`, an `aria-label` that states the finding (rule 16), and fallback content:
+
+```html
+<canvas id="revenue-chart" role="img"
+        aria-label="Revenue beat target every month, rising from 4,200 in January to 6,200 in June">
+  <p>Revenue beat target every month, rising from 4,200 in January to 6,200 in June.</p>
+</canvas>
+```
+
 ## Tufte plugin
 
 A plugin that applies Tufte styling to the canvas:
@@ -256,6 +274,7 @@ new Chart(ctx, {
     ],
   },
   options: {
+    animation: false,
     responsive: true,
     aspectRatio: 1.5,
     scales: {
@@ -315,6 +334,7 @@ new Chart(ctx, {
     }],
   },
   options: {
+    animation: false,
     indexAxis: 'y',
     responsive: true,
     aspectRatio: 1.8,

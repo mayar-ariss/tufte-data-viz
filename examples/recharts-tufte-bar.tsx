@@ -58,45 +58,48 @@ export function ProductChart() {
         Revenue by product, USD
       </p>
 
-      <ResponsiveContainer width="100%" height={data.length * 48 + 32}>
-        <BarChart
-          data={data}
-          layout="vertical"
-          margin={{ top: 0, right: 80, bottom: 0, left: 0 }}
-        >
-          {/* Hidden — values are directly on bars */}
-          <XAxis type="number" hide />
-
-          <YAxis
-            type="category"
-            dataKey="name"
-            width={90}
-            tickLine={false}
-            axisLine={false}
-            tick={{
-              fontSize: 13,
-              fill: TUFTE.text,
-              fontFamily: TUFTE.font,
-            }}
-          />
-
-          <Bar
-            dataKey="value"
-            fill={TUFTE.seriesDefault}
-            barSize={20}
-            radius={[0, 2, 2, 0]}
+      <div role="img" aria-label="Product A leads revenue at 42,000, followed by B at 38,000, C at 27,000, D at 19,000 and E at 12,000">
+        <ResponsiveContainer width="100%" height={data.length * 48 + 32}>
+          <BarChart
+            data={data}
+            layout="vertical"
+            margin={{ top: 0, right: 80, bottom: 0, left: 0 }}
           >
-            <LabelList
-              dataKey="value"
-              position="right"
-              fill={TUFTE.textSecondary}
-              fontSize={13}
-              fontFamily={TUFTE.font}
-              formatter={(v: number) => `$${(v / 1000).toFixed(0)}k`}
+            {/* Hidden — values are directly on bars */}
+            <XAxis type="number" hide />
+
+            <YAxis
+              type="category"
+              dataKey="name"
+              width={90}
+              tickLine={false}
+              axisLine={false}
+              tick={{
+                fontSize: 13,
+                fill: TUFTE.text,
+                fontFamily: TUFTE.font,
+              }}
             />
-          </Bar>
-        </BarChart>
-      </ResponsiveContainer>
+
+            <Bar
+              dataKey="value"
+              fill={TUFTE.seriesDefault}
+              barSize={20}
+              radius={[0, 2, 2, 0]}
+              isAnimationActive={false}
+            >
+              <LabelList
+                dataKey="value"
+                position="right"
+                fill={TUFTE.textSecondary}
+                fontSize={13}
+                fontFamily={TUFTE.font}
+                formatter={(v: number) => `$${(v / 1000).toFixed(0)}k`}
+              />
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 }

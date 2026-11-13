@@ -58,6 +58,16 @@ pio.templates["tufte"] = tufte_template
 pio.templates.default = "tufte"
 ```
 
+## Accessibility and motion
+
+Plotly draws charts without an entrance animation. If you add `layout.transition` or animation frames, set the duration to 0 for readers who prefer reduced motion.
+
+A Plotly chart has no built-in text alternative. Put the finding next to it (rule 16):
+
+- **Plotly.js:** `<div id="chart" role="img" aria-label="Revenue beat target every month, rising from 4,200 in January to 6,200 in June"></div>`
+- **Python in HTML** (`fig.to_html(full_html=False)`): wrap the output in a `<figure>` with a `<figcaption>` stating the finding.
+- **Static export** (`fig.write_image`): use descriptive alt text where the image is embedded.
+
 ## Color constants
 
 ```python

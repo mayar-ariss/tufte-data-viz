@@ -95,6 +95,8 @@ For inline use without theme registration:
 ```typescript
 const tufteBaseOption: echarts.EChartsOption = {
   backgroundColor: '#fffff8',
+  animation: false, // no entrance animation (rule 18); see "Accessibility and motion"
+  aria: { enabled: true }, // generates a screen-reader description; add your own per chart
   textStyle: {
     fontFamily: '"ET Book", "Palatino Linotype", Palatino, Georgia, serif',
     color: '#111',
@@ -123,6 +125,26 @@ const tufteBaseOption: echarts.EChartsOption = {
     splitLine: { show: false },
   },
 };
+```
+
+## Accessibility and motion
+
+ECharts animates series on load. The base option above turns that off with `animation: false`. If you animate data updates instead, respect reduced motion:
+
+```typescript
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+chart.setOption({ animation: !reduceMotion, animationDurationUpdate: 300 });
+```
+
+`aria: { enabled: true }` makes ECharts generate a text description of the chart. Replace it with the finding (rule 16):
+
+```typescript
+chart.setOption({
+  aria: {
+    enabled: true,
+    label: { description: 'Revenue beat target every month, rising from 4,200 in January to 6,200 in June.' },
+  },
+});
 ```
 
 ## Direct labeling
@@ -221,6 +243,7 @@ yAxis: {
 ```typescript
 const option: echarts.EChartsOption = {
   ...tufteBaseOption,
+  aria: { enabled: true, label: { description: 'Revenue beat target every month, rising from 4,200 in January to 6,200 in June.' } },
   title: {
     text: 'Revenue Beat Target Every Month, Accelerating in Q2',
     subtext: 'Monthly revenue vs. target, Jan–Jun (USD)',
@@ -287,6 +310,7 @@ const option: echarts.EChartsOption = {
 ```typescript
 const barOption: echarts.EChartsOption = {
   ...tufteBaseOption,
+  aria: { enabled: true, label: { description: 'Product A leads revenue at 42,000, followed by B at 38,000, C at 27,000, D at 19,000 and E at 12,000.' } },
   title: { text: 'Products A and B Bring In 58% of Revenue', subtext: 'Revenue by product, USD', left: 'left' },
   grid: { show: false, left: 100, right: 80, top: 50, bottom: 20 },
   xAxis: { type: 'value', show: false },

@@ -84,6 +84,8 @@ export const tufteTheme = {
  * Example: line chart option using the Tufte theme.
  */
 export const exampleLineOption: EChartsOption = {
+  animation: false, // no entrance animation (rule 18)
+  aria: { enabled: true, label: { description: 'Revenue beat target every month, rising from 4,200 in January to 6,200 in June.' } },
   title: {
     text: 'Revenue Beat Target Every Month, Accelerating in Q2',
     subtext: 'Monthly revenue vs. target, Jan–Jun (USD)',
@@ -152,6 +154,8 @@ export const exampleLineOption: EChartsOption = {
  * Example: horizontal bar chart option.
  */
 export const exampleBarOption: EChartsOption = {
+  animation: false,
+  aria: { enabled: true, label: { description: 'Product A leads revenue at 42,000, followed by B at 38,000, C at 27,000, D at 19,000 and E at 12,000.' } },
   title: {
     text: 'Products A and B Bring In 58% of Revenue',
     subtext: 'Revenue by product, USD',
