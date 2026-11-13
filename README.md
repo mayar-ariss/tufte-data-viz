@@ -2,6 +2,15 @@
 
 An agent skill that applies [Edward Tufte's](https://www.edwardtufte.com/) data visualization principles when generating charts, plots, and graphs. Produces clean, honest, high-data-ink-ratio visualizations across multiple charting libraries — extended with modern screen-first standards for accessibility, responsiveness, and interactivity.
 
+> **About this fork.** This is an enhanced fork of [caylent/tufte-data-viz](https://github.com/caylent/tufte-data-viz), maintained by [@mayar-ariss](https://github.com/mayar-ariss). All credit for the original skill goes to its authors. The improvements are being offered back upstream ([PR #1](https://github.com/caylent/tufte-data-viz/pull/1), [issue #2](https://github.com/caylent/tufte-data-viz/issues/2)). What's different here:
+>
+> - **Bug fixes:** Chart.js elements no longer render invisible, sparkline examples are no longer upside down, deprecated ECharts options are replaced, and broken seaborn and Recharts snippets are fixed.
+> - **Accessible palette:** every text and data color now meets the skill's own contrast rule (4.5:1 text, 3:1 data), with a dark-mode categorical palette and a checker script (`scripts/check_contrast.py`).
+> - **Accessibility and motion in every library guide:** text alternatives and no load-in animation by default, so charts follow rules 16 and 18 out of the box.
+> - **Titles that state the finding** in every example (rule 20), plus a few accuracy corrections.
+>
+> The before/after images and the live demo below still show the original palette.
+
 ## Fair warning
 
 This skill is **opinionated by design**. It will remove your gridlines, delete your legends, reject your pie charts, and insist on serif fonts. It enforces a specific visual philosophy — Tufte's — not a neutral one. If you want total creative freedom over your chart styling, this is not the skill for you. If you want every chart to come out clean, honest, and readable without thinking about it, read on.
@@ -9,8 +18,10 @@ This skill is **opinionated by design**. It will remove your gridlines, delete y
 ## Install
 
 ```bash
-npx skills add caylent/tufte-data-viz
+npx skills add mayar-ariss/tufte-data-viz
 ```
+
+This installs the enhanced version from this fork. The original is still available with `npx skills add caylent/tufte-data-viz`.
 
 ## Before & After
 
@@ -103,6 +114,7 @@ See it happen live — gridlines fade, legends become direct labels, chartjunk d
 - `rules/typography-and-color.md` — font stacks, palettes, hex values
 - `rules/anti-patterns.md` — common violations and one-liner fixes
 - `rules/small-multiples-sparklines.md` — small multiples, sparklines, slopegraphs
+- `scripts/check_contrast.py` — checks the documented palette against the contrast minimums (run `python3 scripts/check_contrast.py`)
 
 ## Based on
 
@@ -113,4 +125,4 @@ See it happen live — gridlines fade, legends become direct labels, chartjunk d
 
 ## License
 
-MIT
+MIT. Original work © 2026 Caylent; see [LICENSE](LICENSE). Fork changes are released under the same license.
