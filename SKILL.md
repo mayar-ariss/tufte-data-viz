@@ -2,7 +2,7 @@
 name: tufte-data-viz
 description: >-
   Use when creating, reviewing, or styling charts, graphs, dashboards,
-  sparklines, or any data visualization. Applies to Recharts, ECharts,
+  sparklines, flowcharts, diagrams, or any data visualization. Applies to Recharts, ECharts,
   Chart.js, matplotlib, Plotly, seaborn, D3.js, and SVG. Enforces Tufte
   principles (data-ink ratio, direct labeling, range-frame axes) plus
   modern screen-first standards (accessibility, responsive, dark mode).
@@ -11,7 +11,9 @@ allowed-tools: Read, Glob, Grep
 
 # Tufte Data Visualization
 
-Apply Edward Tufte's principles whenever generating or reviewing code that renders data visually. This skill covers chart generation, not slide/presentation design.
+Apply Edward Tufte's principles whenever generating or reviewing code that renders data visually. This skill covers charts of data, and flowcharts and other box-and-arrow diagrams; it does not cover slide/presentation design.
+
+**Flowcharts and diagrams:** read `rules/diagrams-flowcharts.md` instead of applying the chart rules below. Rules about axes, baselines, range frames, aspect ratio and the lie factor concern quantities on scales and do not apply to diagrams.
 
 ## Workflow
 
@@ -111,7 +113,7 @@ Charts should be approximately 50% wider than tall. Standard sizes: 600x400, 750
 
 ### 8. Gray first, highlight selectively
 
-*Source: Tufte — muted fields with strong color only in small areas (after Imhof), EI ch. 5; the smallest effective difference, VE ch. 3. The four-color limit, the palette types and the hex values are this skill's defaults (convention).*
+*Source: Tufte — muted fields with strong color only in small areas (after Imhof), EI ch. 5; the smallest effective difference, VE ch. 4. The four-color limit, the palette types and the hex values are this skill's defaults (convention).*
 
 The default data series color is medium gray (`#666`). Use a single accent color to highlight the most important series or data point. Never use more than 4 distinct colors. Choose the right palette type: **categorical** (4-color muted) for unordered groups, **sequential** (single-hue ramp) for ordered magnitude, **diverging** (two-hue from center) for deviation from a midpoint. See `rules/typography-and-color.md` for hex values.
 
@@ -307,5 +309,6 @@ Before presenting any chart, verify:
 - `rules/typography-and-color.md` — font loading, full palette tables, old-style figures
 - `rules/anti-patterns.md` — per-library detection heuristics and fixes
 - `rules/small-multiples-sparklines.md` — layout patterns for small multiples, sparklines, slopegraphs
+- `rules/diagrams-flowcharts.md` — flowcharts, process maps, org charts and networks, from Tufte's writing on connectors and layering
 
 **Working examples** in `examples/` — one per library, plus an inline SVG sparkline.

@@ -168,6 +168,6 @@ It reads the tables above and exits non-zero if any text or data color misses it
 2. **Maximum 4 categorical colors.** *(Convention)*
 3. **Ghosting**: De-emphasize secondary data by setting opacity to 0.2–0.3. The primary series stays at full opacity. *(Convention)*
 4. **No rainbow/spectral palettes.** They have no natural ordering, create false boundaries, and are inaccessible to colorblind readers. *(Convention)*
-5. **Smallest effective difference.** If you need to distinguish two things, make the difference as small as will still read clearly. Dark gray vs. medium gray, not red vs. blue. *(Tufte — VE ch. 3)*
+5. **Smallest effective difference.** If you need to distinguish two things, make the difference as small as will still read clearly. Dark gray vs. medium gray, not red vs. blue. *(Tufte — VE ch. 4)*
 6. **Grayscale test.** The chart should be fully readable when printed in grayscale. If two series become indistinguishable, add direct labels (which you should have anyway). *(Convention)*
 7. **No loud colors over large areas.** Use muted tones for large areas; keep strong color for small areas of emphasis. *(Tufte — after Imhof, EI ch. 5)*

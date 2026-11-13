@@ -29,6 +29,7 @@ Once installed, ask your agent for a chart the way you normally would. The skill
 - *"Build a Recharts bar chart of signups by channel, sorted."*
 - *"Review this ECharts config and remove the chartjunk."*
 - *"Make a dark-mode version of this Plotly dashboard."*
+- *"Draw a flowchart of our order process in Mermaid."*
 
 ## Fair warning
 
@@ -104,6 +105,8 @@ Then 22 universal rules, in three tiers:
 - Numbers formatted for humans ($1.2M, thousand separators, matched precision)
 - Don't chart what a sentence or table can say better (Tufte: a sentence is poor for more than two numbers; tables suit many small data sets)
 
+**Flowcharts and diagrams** — guidance drawn only from Tufte: connectors that state their meaning (*Beautiful Evidence* ch. 3), type instead of boxes, layering and separation (*Envisioning Information* ch. 3), and the smallest effective difference (*Visual Explanations* ch. 4). Where Tufte gives no rule (shapes, swimlanes, layout direction), none is added. Includes Mermaid and Graphviz notes.
+
 ## Supported libraries
 
 | Library | Rule file | Language |
@@ -125,6 +128,7 @@ Then 22 universal rules, in three tiers:
 | `rules/typography-and-color.md` | Font stacks, palettes and hex values; the source of truth for colors |
 | `rules/anti-patterns.md` | Common violations, per-library detection patterns and one-line fixes |
 | `rules/small-multiples-sparklines.md` | Small multiples, sparklines, slopegraphs, rug plots |
+| `rules/diagrams-flowcharts.md` | Flowcharts, process maps, org charts and networks, drawn only from Tufte's writing on connectors, layering and explanation |
 | `examples/` | Runnable reference implementations, one per library |
 | `scripts/check_contrast.py` | Checks the documented palette against the contrast minimums |
 | `_docs/` | Showcase figures and the script that generates them |
