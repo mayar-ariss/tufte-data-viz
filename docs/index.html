@@ -40,7 +40,7 @@
   --bg-card: #fffff8;
   --text-1: #111111;
   --text-2: #666666;
-  --text-3: #999999;
+  --text-3: #767676; /* 4.5:1 on #fffff8 */
   --axis: #cccccc;
   --grid: #eeeeee;
   --series-default: #666666;
@@ -58,7 +58,7 @@
   --bg-card: #1a1a1a;
   --text-1: #dddddd;
   --text-2: #999999;
-  --text-3: #666666;
+  --text-3: #808080; /* 4.5:1 on #151515 */
   --axis: #444444;
   --grid: #333333;
   --series-default: #999999;
@@ -518,8 +518,8 @@ body {
       <div>
         <h1 class="site-title">tufte-data-viz</h1>
         <p class="site-subtitle">Edward Tufte's data visualization principles, applied across every major charting library.</p>
-        <code class="install-cmd" role="button" tabindex="0" aria-label="Copy install command: npx skills add caylent/tufte-data-viz" onclick="copyInstall(this)" onkeydown="if(event.key==='Enter')copyInstall(this)">
-          npx skills add caylent/tufte-data-viz
+        <code class="install-cmd" role="button" tabindex="0" aria-label="Copy install command: npx skills add mayar-ariss/tufte-data-viz" onclick="copyInstall(this)" onkeydown="if(event.key==='Enter')copyInstall(this)">
+          npx skills add mayar-ariss/tufte-data-viz
           <span class="copy-hint">Click to copy</span>
         </code>
       </div>
@@ -645,7 +645,7 @@ body {
        ============================================================ -->
   <footer class="site-footer">
     <span>Built with Tufte's principles. No chartjunk was harmed.</span>
-    <a href="https://github.com/caylent/tufte-data-viz" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+    <a href="https://github.com/mayar-ariss/tufte-data-viz" target="_blank" rel="noopener noreferrer">View on GitHub</a> · enhanced fork of <a href="https://github.com/caylent/tufte-data-viz" target="_blank" rel="noopener noreferrer">caylent/tufte-data-viz</a>
   </footer>
 
 </div><!-- /.page-wrapper -->
@@ -679,15 +679,16 @@ function colors() {
     bgCard:   dark ? '#1a1a1a' : '#fffff8',
     text1:    dark ? '#dddddd' : '#111111',
     text2:    dark ? '#999999' : '#666666',
-    text3:    dark ? '#666666' : '#999999',
+    text3:    dark ? '#808080' : '#767676', // 4.5:1 text contrast in both themes
     axis:     dark ? '#444444' : '#cccccc',
     grid:     dark ? '#333333' : '#eeeeee',
     series:   dark ? '#999999' : '#666666',
     highlight:dark ? '#fc8d62' : '#e41a1c',
-    steel:    '#4e79a7',
-    tangerine:'#f28e2b',
-    coral:    '#e15759',
-    sage:     '#76b7b2',
+    // Categorical palette: each color reaches 3:1 on its background (rule 16)
+    steel:    dark ? '#6a9fd8' : '#4e79a7',
+    tangerine:dark ? '#f2a860' : '#db730d',
+    coral:    dark ? '#e87a7c' : '#e15759',
+    sage:     dark ? '#8accc7' : '#539e73',
   };
 }
 
@@ -702,7 +703,7 @@ const baState = { echarts: false, chartjs: false, plotly: false, d3: false };
 
 /* Copy install command */
 function copyInstall(el) {
-  navigator.clipboard.writeText('npx skills add caylent/tufte-data-viz').then(() => {
+  navigator.clipboard.writeText('npx skills add mayar-ariss/tufte-data-viz').then(() => {
     el.querySelector('.copy-hint').textContent = 'Copied!';
     el.classList.add('copied');
     setTimeout(() => {

@@ -69,7 +69,7 @@ Gridlines fade, legends become direct labels, chartjunk dissolves:
 
 <img src="_docs/before-after-animated.gif" width="640" alt="Animated transition from default chart styling to Tufte principles">
 
-**[Try the live demo](https://caylent.github.io/tufte-data-viz/)** — toggle between default and Tufte styling across ECharts, Chart.js, Plotly, and D3.js, in light and dark mode. (Hosted by Caylent; it shows the original palette.)
+**[Try the live demo](https://mayar-ariss.github.io/tufte-data-viz/)** — toggle between default and Tufte styling across ECharts, Chart.js, Plotly, and D3.js, in light and dark mode. ([Caylent's original demo](https://caylent.github.io/tufte-data-viz/) uses the earlier palette.)
 
 ## What it does
 
