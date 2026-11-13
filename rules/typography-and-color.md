@@ -78,7 +78,7 @@ For tabular data with numbers, use old-style figures. These have descenders (3, 
 }
 ```
 
-In matplotlib: Palatino and Georgia include old-style figure variants by default.
+In matplotlib: OpenType features such as `onum` can't be switched on. Georgia draws old-style figures by default, so put it first in `font.serif` when you want hanging figures; Palatino draws lining figures by default.
 
 ## Color palettes
 

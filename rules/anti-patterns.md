@@ -7,7 +7,7 @@
 | **Pie chart** | Humans are poor at comparing angles and areas. Two slices of 28% and 32% look identical. | Horizontal bar chart, sorted by value descending. |
 | **3D effects** | Perspective distorts relative sizes. Back bars appear smaller than front bars of equal value. | Remove all 3D. Flat 2D only. |
 | **Dual y-axes** | Implies correlation between two series that may not exist. Scale manipulation can make any two lines appear correlated. | Two stacked charts sharing the same x-axis (small multiples). |
-| **Legend box** | Forces eyes to shuttle between the legend and the data. Increases cognitive load by ~40%. | Direct labels at the endpoint or on the data element itself. |
+| **Legend box** | Forces eyes to shuttle between the legend and the data, holding color-to-name mappings in memory. | Direct labels at the endpoint or on the data element itself. |
 | **Heavy gridlines** | Compete with data for visual attention. Create a "cage" that imprisons the data. | Remove entirely, or horizontal-only at opacity 0.08–0.12. |
 | **Rainbow palette** | No natural ordering. Creates false category boundaries. Inaccessible to 8% of males (colorblind). | Gray default + single accent, or 4-color muted palette. |
 | **Gauge/speedometer** | Uses enormous screen area for a single number. No trend, no context, no comparison. | Single large number + sparkline + comparison text. |

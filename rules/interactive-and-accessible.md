@@ -83,7 +83,8 @@ For matplotlib/static output: use descriptive alt text on `<img>` or `![alt](pat
 
 ### Touch targets
 
-- Minimum: **44 x 44px**, **8px** spacing between targets (WCAG 2.5.5)
+- Aim for **44 x 44px** (WCAG 2.5.5, level AAA); never smaller than **24 x 24px** (WCAG 2.5.8, level AA)
+- Keep **8px** spacing between adjacent targets
 - **No hover-only information** — every hover must have tap/click/focus alternative
 
 ### Test breakpoints
