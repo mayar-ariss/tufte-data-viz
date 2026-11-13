@@ -1,6 +1,6 @@
 # tufte-data-viz
 
-An agent skill that applies [Edward Tufte's](https://www.edwardtufte.com/) data visualization principles when generating charts, plots, and graphs. Produces clean, honest, high-data-ink-ratio visualizations across six charting libraries — extended with modern screen-first standards for accessibility, responsiveness, and interactivity.
+An agent skill that applies [Edward Tufte's](https://www.edwardtufte.com/) data visualization principles when generating charts, plots, and graphs. Produces clean, honest, high-data-ink-ratio visualizations across the main charting libraries for JavaScript, Python and R — extended with modern screen-first standards for accessibility, responsiveness, and interactivity.
 
 ![The same data twice: a default chart with gridlines, a legend and markers on every point, and the Tufte version with direct labels and no chartjunk](_docs/before-after.png)
 
@@ -116,6 +116,9 @@ Then 22 universal rules, in three tiers:
 | [Chart.js](https://www.chartjs.org/) | `rules/chartjs.md` | JavaScript |
 | [matplotlib](https://matplotlib.org/) (and seaborn) | `rules/matplotlib.md` | Python |
 | [Plotly](https://plotly.com/) | `rules/plotly.md` | Python/JS |
+| [ggplot2](https://ggplot2.tidyverse.org/) and [plotnine](https://plotnine.org/) | `rules/ggplot2-plotnine.md` | R / Python |
+| [Vega-Lite](https://vega.github.io/vega-lite/) and [Altair](https://altair-viz.github.io/) | `rules/vega-lite-altair.md` | JSON / Python |
+| [Observable Plot](https://observablehq.com/plot/) | `rules/observable-plot.md` | JavaScript |
 | D3.js / SVG / HTML | `rules/svg-html.md` | Web |
 
 ## How it's organized
@@ -123,13 +126,13 @@ Then 22 universal rules, in three tiers:
 | Path | What it holds |
 |------|---------------|
 | `SKILL.md` | The 22 rules, chart-type guidance, color tokens and a validation checklist. The agent always reads this. |
-| `rules/<library>.md` | Full configuration and complete examples for one library. The agent reads only the one it needs. |
+| `rules/<library>.md` | Full configuration and complete examples for one library, with the version it was written for. The agent reads only the one it needs. |
 | `rules/interactive-and-accessible.md` | Progressive disclosure, accessibility, responsive layout, animation, dark mode |
 | `rules/typography-and-color.md` | Font stacks, palettes and hex values; the source of truth for colors |
 | `rules/anti-patterns.md` | Common violations, per-library detection patterns and one-line fixes |
 | `rules/small-multiples-sparklines.md` | Small multiples, sparklines, slopegraphs, rug plots |
 | `rules/diagrams-flowcharts.md` | Flowcharts, process maps, org charts and networks, drawn only from Tufte's writing on connectors, layering and explanation |
-| `examples/` | Runnable reference implementations, one per library |
+| `examples/` | Runnable reference implementations for Recharts, ECharts, Chart.js, matplotlib, Plotly and SVG |
 | `scripts/check_contrast.py` | Checks the documented palette against the contrast minimums |
 | `_docs/` | Showcase figures and the script that generates them |
 

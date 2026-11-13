@@ -3,7 +3,8 @@ name: tufte-data-viz
 description: >-
   Use when creating, reviewing, or styling charts, graphs, dashboards,
   sparklines, flowcharts, diagrams, or any data visualization. Applies to Recharts, ECharts,
-  Chart.js, matplotlib, Plotly, seaborn, D3.js, and SVG. Enforces Tufte
+  Chart.js, matplotlib, seaborn, Plotly, ggplot2, plotnine, Vega-Lite, Altair,
+  Observable Plot, D3.js, and SVG. Enforces Tufte
   principles (data-ink ratio, direct labeling, range-frame axes) plus
   modern screen-first standards (accessibility, responsive, dark mode).
 allowed-tools: Read, Glob, Grep
@@ -209,11 +210,14 @@ The universal rules above are sufficient for most charts. For complete code exam
 
 | Library | Rule file to read | Essential config (apply even without reading the file) |
 |---------|-------------------|--------------------------------------------------------|
-| Recharts | `rules/recharts.md` | `<CartesianGrid stroke="none" />`, remove `<Legend />`, `<YAxis axisLine={false} tickLine={false} />`, `<Line dot={false} strokeWidth={1.5} isAnimationActive={false} />`, wrapper `role="img"` + `aria-label` |
+| Recharts | `rules/recharts.md` | `<CartesianGrid stroke="none" />`, remove `<Legend />`, `<YAxis axisLine={false} tickLine={false} />`, `<Line dot={false} strokeWidth={1.5} isAnimationActive={false} />`, wrapper `<figure aria-label="…">` (not `role="img"`, which hides Recharts 3's keyboard layer) |
 | ECharts | `rules/echarts.md` | `splitLine: { show: false }`, `legend: { show: false }`, `grid: { show: false }`, use `endLabel` on series, `animation: false`, `aria: { enabled: true }` |
 | Chart.js | `rules/chartjs.md` | `grid: { display: false }`, `border: { display: false }`, `plugins.legend.display: false`, use `chartjs-plugin-datalabels`, `options.animation: false`, `<canvas role="img" aria-label="…">` |
 | matplotlib | `rules/matplotlib.md` | `spines['top'].set_visible(False)`, `spines['right'].set_visible(False)`, `spines['bottom'].set_bounds(min, max)`, `font.family: serif` |
 | Plotly | `rules/plotly.md` | `showgrid=False`, `showlegend=False`, `plot_bgcolor='#fffff8'`, `zeroline=False` |
+| ggplot2 / plotnine | `rules/ggplot2-plotnine.md` | `theme_minimal()` + `panel.grid = element_blank()`, `legend.position = "none"`, `annotate("text", …)` at the last point, `labs(alt = "…")` |
+| Vega-Lite / Altair | `rules/vega-lite-altair.md` | config `view.stroke: null`, `axis.grid: false`, `legend.disable: true`, `background: "#fffff8"`; `scale.zero: false` for time series; top-level `description` |
+| Observable Plot | `rules/observable-plot.md` | `style: { background: "#fffff8", fontFamily: serif }`, `Plot.text(…, Plot.selectLast(…))` for direct labels, `Plot.frame({ anchor })` for range frames, `ariaLabel` |
 | D3/SVG/HTML | `rules/svg-html.md` | `.domain { display: none }`, no `<rect>` backgrounds, `stroke-opacity: 0.1` for any gridlines, `<svg role="img">` with `<title>` + `<desc>` |
 
 ---
@@ -302,7 +306,7 @@ Before presenting any chart, verify:
 
 ## Additional resources
 
-**Library rules** (read ONE per task): `rules/recharts.md`, `rules/echarts.md`, `rules/chartjs.md`, `rules/matplotlib.md`, `rules/plotly.md`, `rules/svg-html.md` — complete code examples, helpers, and theme registrations.
+**Library rules** (read ONE per task): `rules/recharts.md`, `rules/echarts.md`, `rules/chartjs.md`, `rules/matplotlib.md`, `rules/plotly.md`, `rules/ggplot2-plotnine.md`, `rules/vega-lite-altair.md`, `rules/observable-plot.md`, `rules/svg-html.md` — complete code examples, helpers, and theme registrations. Each states the library version it was written for.
 
 **Cross-cutting** (read when specifically needed):
 - `rules/interactive-and-accessible.md` — progressive disclosure, WCAG, responsive, animation, dark mode
@@ -311,4 +315,4 @@ Before presenting any chart, verify:
 - `rules/small-multiples-sparklines.md` — layout patterns for small multiples, sparklines, slopegraphs
 - `rules/diagrams-flowcharts.md` — flowcharts, process maps, org charts and networks, from Tufte's writing on connectors and layering
 
-**Working examples** in `examples/` — one per library, plus an inline SVG sparkline.
+**Working examples** in `examples/` — for Recharts, ECharts, Chart.js, matplotlib and Plotly, plus an inline SVG sparkline. The other libraries' rule files contain complete examples.

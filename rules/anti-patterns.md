@@ -39,6 +39,7 @@ fill="url(#gradient...)"           → fill="#666" (solid gray)
 <YAxis yAxisId="right"...>          → Two separate <LineChart> in a flex column
 stroke="#..." (bright/loud color)   → stroke="#666" (gray) unless it's the highlight series
 <Area fillOpacity={0.3+}            → <Line> or <Area fillOpacity={0.05}>
+<div role="img"> around a chart      → <figure aria-label="…"> (keeps Recharts 3's keyboard layer)
 ```
 
 ### ECharts
@@ -85,6 +86,40 @@ fig.update_layout(showlegend=True)  → showlegend=False + add annotations at en
 xaxis=dict(showgrid=True)          → showgrid=False
 plot_bgcolor='white'               → plot_bgcolor='#fffff8'
 template='plotly'                   → Use custom Tufte template
+```
+
+### ggplot2 / plotnine
+
+```
+PATTERN                              FIX
+coord_polar() on a bar               → Horizontal geom_col(), sorted with reorder()
+theme_gray() / default theme         → theme_tufte_skill() (rules/ggplot2-plotnine.md)
+legend shown for colour/linetype     → legend.position = "none" + annotate("text") at line ends
+facet_wrap(..., scales = "free_y")   → Default fixed scales when panels are compared
+geom_col() with expand on the left   → expansion(mult = c(0, 0.1)) so bars start at zero
+```
+
+### Vega-Lite / Altair
+
+```
+PATTERN                              FIX
+mark: "arc" / mark_arc()             → Horizontal bar, sort: "-x"
+config.axis.grid unset (defaults on) → axis.grid: false
+legend shown for color               → legend.disable: true + text layer at the last point
+view stroke unset (box drawn)        → view.stroke: null
+line chart with default zero: true   → scale.zero: false for time series
+resolve_scale(y="independent")       → Shared scales across compared facets
+```
+
+### Observable Plot
+
+```
+PATTERN                              FIX
+color: { legend: true }              → Plot.text(…, Plot.selectLast(…)) direct labels
+grid: true                           → Remove
+Plot.frame() (all four sides)        → Plot.frame({ anchor: 'left' }) / ({ anchor: 'bottom' }) range frame
+y: { zero: true } on a line chart    → Leave zero off for time series
+one Plot.plot() per compared panel   → One plot with fx/fy so scales are shared
 ```
 
 ## The "Can I remove it?" test
