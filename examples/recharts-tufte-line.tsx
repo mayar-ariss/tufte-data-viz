@@ -79,7 +79,7 @@ export function RevenueChart() {
           margin: '0 0 4px 48px',
         }}
       >
-        Monthly Revenue vs. Target
+        Revenue Beat Target Every Month, Accelerating in Q2
       </h3>
       <p
         style={{
@@ -89,7 +89,7 @@ export function RevenueChart() {
           margin: '0 0 16px 48px',
         }}
       >
-        Revenue exceeded target every month, accelerating in Q2
+        Monthly revenue vs. target, Jan–Jun (USD)
       </p>
 
       <ResponsiveContainer width="100%" aspect={1.5}>

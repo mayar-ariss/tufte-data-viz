@@ -222,8 +222,8 @@ yAxis: {
 const option: echarts.EChartsOption = {
   ...tufteBaseOption,
   title: {
-    text: 'Monthly Revenue vs. Target',
-    subtext: 'Revenue exceeded target every month, accelerating in Q2',
+    text: 'Revenue Beat Target Every Month, Accelerating in Q2',
+    subtext: 'Monthly revenue vs. target, Jan–Jun (USD)',
     left: 'left',
   },
   xAxis: {
@@ -287,7 +287,7 @@ const option: echarts.EChartsOption = {
 ```typescript
 const barOption: echarts.EChartsOption = {
   ...tufteBaseOption,
-  title: { text: 'Revenue by Product', left: 'left' },
+  title: { text: 'Products A and B Bring In 58% of Revenue', subtext: 'Revenue by product, USD', left: 'left' },
   grid: { show: false, left: 100, right: 80, top: 50, bottom: 20 },
   xAxis: { type: 'value', show: false },
   yAxis: {

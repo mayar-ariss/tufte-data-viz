@@ -85,8 +85,8 @@ export const tufteTheme = {
  */
 export const exampleLineOption: EChartsOption = {
   title: {
-    text: 'Monthly Revenue vs. Target',
-    subtext: 'Revenue exceeded target every month, accelerating in Q2',
+    text: 'Revenue Beat Target Every Month, Accelerating in Q2',
+    subtext: 'Monthly revenue vs. target, Jan–Jun (USD)',
     left: 'left',
   },
   xAxis: {
@@ -153,7 +153,8 @@ export const exampleLineOption: EChartsOption = {
  */
 export const exampleBarOption: EChartsOption = {
   title: {
-    text: 'Revenue by Product',
+    text: 'Products A and B Bring In 58% of Revenue',
+    subtext: 'Revenue by product, USD',
     left: 'left',
   },
   grid: {

@@ -221,13 +221,13 @@ export function RevenueChart() {
         fontFamily: TUFTE.font, fontWeight: 400, fontSize: 18,
         color: TUFTE.text, margin: '0 0 4px 48px',
       }}>
-        Monthly Revenue vs. Target
+        Revenue Beat Target Every Month, Accelerating in Q2
       </h3>
       <p style={{
         fontFamily: TUFTE.font, fontSize: 13, color: TUFTE.textSecondary,
         margin: '0 0 16px 48px',
       }}>
-        Revenue exceeded target every month, accelerating in Q2
+        Monthly revenue vs. target, Jan–Jun (USD)
       </p>
       <ResponsiveContainer width="100%" height={400} aspect={1.5}>
         <LineChart data={data} margin={{ top: 8, right: 80, bottom: 8, left: 8 }}>
@@ -287,10 +287,13 @@ export function ProductChart() {
     <div style={{ background: TUFTE.bg, padding: '24px 16px 16px' }}>
       <h3 style={{
         fontFamily: TUFTE.font, fontWeight: 400, fontSize: 18,
-        color: TUFTE.text, margin: '0 0 16px 0',
+        color: TUFTE.text, margin: '0 0 4px 0',
       }}>
-        Revenue by Product
+        Products A and B Bring In 58% of Revenue
       </h3>
+      <p style={{ fontFamily: TUFTE.font, fontSize: 13, color: TUFTE.textSecondary, margin: '0 0 16px 0' }}>
+        Revenue by product, USD
+      </p>
       <ResponsiveContainer width="100%" height={data.length * 48 + 32}>
         <BarChart data={data} layout="vertical" margin={{ top: 0, right: 80, bottom: 0, left: 0 }}>
           <XAxis type="number" hide />

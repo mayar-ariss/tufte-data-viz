@@ -175,7 +175,7 @@ peak_idx = revenue.index(max(revenue))
 annotate_point(fig, months[peak_idx], revenue[peak_idx], f"Peak: ${revenue[peak_idx]:,}")
 
 fig.update_layout(
-    title=dict(text="Monthly Revenue vs. Target"),
+    title=dict(text="Revenue Beat Target Every Month, Accelerating in Q2", subtitle=dict(text="Monthly revenue vs. target, Jan–Jun (USD)")),  # subtitle needs plotly >= 5.23
     width=750, height=500,
 )
 
@@ -206,7 +206,7 @@ fig.update_traces(
 )
 
 fig.update_layout(
-    title=dict(text="Revenue by Product"),
+    title=dict(text="Products A and B Bring In 58% of Revenue", subtitle=dict(text="Revenue by product, USD")),
     xaxis=dict(visible=False),  # Values are on bars — axis is redundant
     yaxis=dict(showline=False, tickfont=dict(size=13, color=TUFTE["text"])),
     width=750, height=350,

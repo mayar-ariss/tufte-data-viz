@@ -42,11 +42,21 @@ export function ProductChart() {
           fontWeight: 400,
           fontSize: 18,
           color: TUFTE.text,
+          margin: '0 0 4px 0',
+        }}
+      >
+        Products A and B Bring In 58% of Revenue
+      </h3>
+      <p
+        style={{
+          fontFamily: TUFTE.font,
+          fontSize: 13,
+          color: TUFTE.textSecondary,
           margin: '0 0 16px 0',
         }}
       >
-        Revenue by Product
-      </h3>
+        Revenue by product, USD
+      </p>
 
       <ResponsiveContainer width="100%" height={data.length * 48 + 32}>
         <BarChart

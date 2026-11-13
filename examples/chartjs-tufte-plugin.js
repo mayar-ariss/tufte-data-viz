@@ -158,7 +158,7 @@ export function createTufteLineChart(ctx) {
         legend: { display: false },
         title: {
           display: true,
-          text: 'Monthly Revenue vs. Target',
+          text: 'Revenue Beat Target Every Month, Accelerating in Q2',
           align: 'start',
           font: {
             family: TUFTE.font,
@@ -166,6 +166,14 @@ export function createTufteLineChart(ctx) {
             weight: 'normal',
           },
           color: TUFTE.text,
+          padding: { bottom: 4 },
+        },
+        subtitle: {
+          display: true,
+          text: 'Monthly revenue vs. target, Jan–Jun (USD)',
+          align: 'start',
+          font: { family: TUFTE.font, size: 13 },
+          color: TUFTE.textSecondary,
           padding: { bottom: 16 },
         },
       },

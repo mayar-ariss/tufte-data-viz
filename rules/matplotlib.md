@@ -211,9 +211,9 @@ peak_idx = revenue.index(max(revenue))
 annotate_point(ax, months[peak_idx], revenue[peak_idx], f"Peak: ${revenue[peak_idx]}k")
 
 # Title (not ax.set_title — manual positioning for Tufte style)
-fig.text(0.12, 0.95, "Monthly Revenue vs. Target, 2025",
+fig.text(0.12, 0.95, "Revenue Exceeded Target Every Month, Accelerating in H2",
          fontsize=18, fontfamily="serif", color=TUFTE_COLORS["text"])
-fig.text(0.12, 0.91, "Revenue exceeded target every month, accelerating in H2",
+fig.text(0.12, 0.91, "Monthly revenue vs. target, 2025",
          fontsize=13, fontfamily="serif", color=TUFTE_COLORS["text_secondary"])
 
 # X-axis labels
@@ -243,6 +243,7 @@ values, categories = zip(*sorted_pairs)
 fig, ax = plt.subplots(figsize=(9, 5))
 
 bars = ax.barh(categories, values, color=TUFTE_COLORS["series_default"], height=0.6)
+ax.invert_yaxis()  # barh draws the first item at the bottom; put the largest on top
 
 # Direct value labels
 for bar, val in zip(bars, values):
@@ -257,11 +258,13 @@ for spine in ax.spines.values():
 ax.set_xticks([])  # Values are on the bars — x-axis is redundant
 ax.tick_params(left=False)  # Remove y tick marks, keep labels
 
-fig.text(0.04, 0.95, "Revenue by Product",
+fig.text(0.04, 0.95, "Products A and B Bring In 58% of Revenue",
          fontsize=18, fontfamily="serif", color=TUFTE_COLORS["text"])
+fig.text(0.04, 0.91, "Revenue by product, $k",
+         fontsize=13, fontfamily="serif", color=TUFTE_COLORS["text_secondary"])
 
 plt.tight_layout()
-plt.subplots_adjust(top=0.90)
+plt.subplots_adjust(top=0.86)
 plt.show()
 ```
 

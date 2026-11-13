@@ -111,7 +111,7 @@ fig.add_annotation(
 )
 
 fig.update_layout(
-    title="Monthly Revenue vs. Target",
+    title=dict(text="Revenue Beat Target Every Month, Accelerating in Q2", subtitle=dict(text="Monthly revenue vs. target, Jan–Jun (USD)")),  # subtitle needs plotly >= 5.23
     width=750, height=500,
 )
 
@@ -146,7 +146,7 @@ fig2.update_traces(
 )
 
 fig2.update_layout(
-    title="Revenue by Product",
+    title=dict(text="Products A and B Bring In 58% of Revenue", subtitle=dict(text="Revenue by product, USD")),
     xaxis=dict(visible=False),
     yaxis=dict(
         showline=False,
