@@ -19,6 +19,7 @@ Works with any agent the [skills CLI](https://skills.sh) supports, including Cla
 > - **Accessibility and motion in every library guide:** text alternatives and no load-in animation by default, so charts follow rules 16 and 18 out of the box.
 > - **Titles that state the finding** in every example (rule 20), plus a few accuracy corrections.
 > - **Showcase figures regenerated** with the new palette; three figure titles that contradicted their own data are corrected.
+> - **Faithful to Tufte:** every rule names its source (Tufte, convention or extension), his six graphical integrity principles are added, and misattributed rules and misquotations are corrected.
 
 ## Try it
 
@@ -45,7 +46,7 @@ This skill is **opinionated by design**. It will remove your gridlines, delete y
     <td><img src="_docs/small-multiples.png" alt="Four small panels of revenue by region on one shared scale"><br><b>Small multiples</b> — shared scale, minimal chrome</td>
   </tr>
   <tr>
-    <td><img src="_docs/tufte-sparklines.png" alt="Five word-sized sparklines with minimum and maximum marked"><br><b>Sparklines</b> — word-sized, min/max marked</td>
+    <td><img src="_docs/tufte-sparklines.png" alt="Five word-sized sparklines with minimum and maximum marked"><br><b>Sparklines</b> — word-sized, Tufte's red first/last and blue low/high marks</td>
     <td><img src="_docs/tufte-data-table.png" alt="Data table with thin rules, right-aligned numbers and the fastest-growing region highlighted"><br><b>Data table</b> — whitespace, thin rules, outlier highlighted</td>
   </tr>
   <tr>
@@ -73,16 +74,23 @@ Gridlines fade, legends become direct labels, chartjunk dissolves:
 
 ## What it does
 
-22 universal rules applied to every chart, organized in three tiers:
+Every rule names its source: **Tufte** (cited by book and chapter), **convention** (common Tufte-style practice he did not state), or **extension** (added by this skill's authors). Tufte's principles are never mixed with the skill's own choices.
 
-**Static principles (rules 1–14)** — the Tufte foundation:
+**Graphical integrity** — Tufte's six principles from *The Visual Display of Quantitative Information*, checked before anything else:
+
+- Proportional representation (the lie factor), clear labeling, data variation rather than design variation
+- Deflated units for money over time, no more dimensions than the data has, no data out of context
+
+Then 22 universal rules, in three tiers:
+
+**Static principles (rules 1–14)** — mostly Tufte's data-ink principles, with a few conventions labeled as such:
 
 - Maximize data-ink ratio — remove gridlines, borders, legends, and decoration that don't convey data
 - Direct labeling, range-frame axes, no 3D, no pie charts (unless forced), no dual y-axes
 - Serif typography, off-white backgrounds, gray as primary color with selective highlighting
 - Annotate notable features, show comparison context, minimal tooltips
 
-**Screen-first principles (rules 15–19)** — modern interactive contexts:
+**Screen-first principles (rules 15–19)** — extensions for modern interactive contexts:
 
 - Progressive disclosure (overview first, details on hover/tap/click)
 - WCAG accessibility (contrast ratios, dual encoding, keyboard nav, screen reader text alternatives)
@@ -90,11 +98,11 @@ Gridlines fade, legends become direct labels, chartjunk dissolves:
 - Purposeful animation (data transitions only, respect `prefers-reduced-motion`)
 - Intentional dark mode (semantic color tokens, never invert, reduce saturation)
 
-**Content & formatting (rules 20–22)** — what Tufte assumed but never codified:
+**Content & formatting (rules 20–22)** — extensions, except rule 22, which is Tufte's:
 
 - Titles assert findings ("Revenue Surged 23%"), not axis descriptions
 - Numbers formatted for humans ($1.2M, thousand separators, matched precision)
-- Don't chart what a sentence or table can say better
+- Don't chart what a sentence or table can say better (Tufte: a sentence is poor for more than two numbers; tables suit many small data sets)
 
 ## Supported libraries
 
