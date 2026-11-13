@@ -57,6 +57,12 @@ This skill is **opinionated by design**. It will remove your gridlines, delete y
 <img src="_docs/tufte-light-dark.png" alt="The same bar chart in light and dark mode side by side"><br>
 <b>Light & dark</b> — the same chart in both themes
 
+### Accessible palette
+
+Every text and data color meets the skill's own contrast rule: 4.5:1 for text, 3:1 for data marks. `scripts/check_contrast.py` checks the documented palette so it can't drift.
+
+<img src="_docs/tufte-palette-contrast.png" alt="Dot plot of each palette color's contrast ratio before and after the fix, in light and dark mode; every color now sits at or beyond its 3:1 or 4.5:1 line">
+
 ### See it in motion
 
 Gridlines fade, legends become direct labels, chartjunk dissolves:

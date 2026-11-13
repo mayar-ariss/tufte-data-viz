@@ -599,6 +599,96 @@ plt.close()
 
 
 # ==============================================================================
+# Chart 10b: Accessible palette — contrast before and after (Rule 16)
+# ==============================================================================
+
+
+def contrast_ratio(fg, bg):
+    """WCAG contrast ratio between two hex colors."""
+    def lum(h):
+        h = h.lstrip("#")
+        ch = [int(h[i:i + 2], 16) / 255 for i in (0, 2, 4)]
+        ch = [c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4 for c in ch]
+        return 0.2126 * ch[0] + 0.7152 * ch[1] + 0.0722 * ch[2]
+    hi, lo = sorted((lum(fg), lum(bg)), reverse=True)
+    return (hi + 0.05) / (lo + 0.05)
+
+
+# (label, before or None, after, kind) — kind "text" needs 4.5:1, "data" needs 3:1
+palette_rows = {
+    "light": ("#fffff8", C, [
+        ("Tick & source text", "#999999", "#767676", "text"),
+        ("Tangerine", "#f28e2b", "#db730d", "data"),
+        ("Sage", "#76b7b2", "#539e73", "data"),
+        ("Gray dots & reference lines", "#999999", "#8c8c8c", "data"),
+        ("Steel blue", None, "#4e79a7", "data"),
+        ("Coral", None, "#e15759", "data"),
+    ]),
+    "dark": ("#151515", CD, [
+        ("Tick & source text", "#666666", "#808080", "text"),
+        ("Steel blue", None, "#6a9fd8", "data"),
+        ("Tangerine", None, "#f2a860", "data"),
+        ("Coral", None, "#e87a7c", "data"),
+        ("Sage", None, "#8accc7", "data"),
+    ]),
+}
+
+plt.rcParams.update(TUFTE_RC)
+fig, axes = plt.subplots(1, 2, figsize=(14, 5.6))
+
+for ax, (mode, (bg, t, rows)) in zip(axes, palette_rows.items()):
+    ax.set_facecolor(bg)
+    n = len(rows)
+    # Threshold labels staggered vertically and centred on their lines, so they never collide
+    for thresh, name, dy in ((3.0, "data marks 3:1", -0.45), (4.5, "text 4.5:1", -0.05)):
+        ax.axvline(thresh, color=t["axis"], linewidth=0.8, linestyle=(0, (2, 3)), zorder=1)
+        ax.text(thresh, n + dy, name, ha="center", va="bottom", fontsize=9,
+                color=t["text2"], fontfamily="serif",
+                bbox=dict(facecolor=bg, edgecolor="none", pad=1.5))
+    for i, (label, before, after, kind) in enumerate(rows):
+        y = n - 1 - i
+        new = contrast_ratio(after, bg)
+        if before:
+            old = contrast_ratio(before, bg)
+            ax.plot([old, new], [y, y], color=t["axis"], linewidth=1, zorder=2)
+            ax.scatter([old], [y], s=55, facecolors="none", edgecolors=before,
+                       linewidths=1.5, zorder=3)
+            ax.text(old - 0.15, y, f"{old:.1f}", ha="right", va="center",
+                    fontsize=9, color=t["text3"], fontfamily="serif")
+        ax.scatter([new], [y], s=70, color=after, zorder=4)
+        ax.text(new + 0.2, y, f"{new:.1f}:1", ha="left", va="center",
+                fontsize=10, color=t["text"], fontfamily="serif")
+        ax.text(-0.1, y, label, ha="right", va="center", fontsize=11,
+                color=C["text"], fontfamily="serif", transform=ax.get_yaxis_transform())
+        hexes = f"{before} → {after}" if before else after
+        ax.text(-0.1, y - 0.3, hexes, ha="right", va="center", fontsize=8.5,
+                color=C["text3"], fontfamily="monospace", transform=ax.get_yaxis_transform())
+    ax.set_xlim(1, 12)
+    ax.set_ylim(-0.7, n + 0.2)
+    ax.set_yticks([])
+    for side in ("top", "right", "left"):
+        ax.spines[side].set_visible(False)
+    ax.spines["bottom"].set_color(t["axis"])
+    ax.spines["bottom"].set_linewidth(0.5)
+    ax.tick_params(axis="x", colors=C["text3"], labelsize=9, direction="in", length=3)
+    ax.set_xticks([1, 3, 4.5, 7, 9, 11])
+    ax.set_xticklabels(["1", "3", "4.5", "7", "9", "11:1"])
+    ax.set_title("Light mode, on #fffff8" if mode == "light" else "Dark mode, on #151515",
+                 loc="left", fontsize=13, fontfamily="serif", color=C["text"], pad=22)
+
+fig.patch.set_facecolor("#fffff8")
+fig.text(0.02, 0.97, "Every Text and Data Color Now Clears Its Contrast Minimum",
+         fontsize=16, fontfamily="serif", color=C["text"], va="top")
+fig.text(0.02, 0.91, "Contrast ratio against the background. Hollow circle = before, filled = after "
+         "(dark-mode categorical colors are newly documented).",
+         fontsize=11, fontfamily="serif", color=C["text2"], va="top")
+plt.tight_layout()
+plt.subplots_adjust(top=0.76, left=0.2, wspace=0.55)
+plt.savefig(OUT_DIR / "tufte-palette-contrast.png")
+plt.close()
+
+
+# ==============================================================================
 # Chart 11: Animated Before/After GIF
 # ==============================================================================
 
