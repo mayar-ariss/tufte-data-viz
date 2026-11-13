@@ -4,6 +4,8 @@ An agent skill that applies [Edward Tufte's](https://www.edwardtufte.com/) data 
 
 ![The same data twice: a default chart with gridlines, a legend and markers on every point, and the Tufte version with direct labels and no chartjunk](_docs/before-after.png)
 
+**[Try the live demo](https://mayar-ariss.github.io/tufte-data-viz/)**: toggle between default and Tufte styling across ECharts, Chart.js, Plotly and D3.js, in light and dark mode.
+
 ## Install
 
 ```bash
@@ -12,14 +14,7 @@ npx skills add mayar-ariss/tufte-data-viz
 
 Works with any agent the [skills CLI](https://skills.sh) supports, including Claude Code, Cursor, Codex, GitHub Copilot and Gemini CLI. The original version is available with `npx skills add caylent/tufte-data-viz`.
 
-> **About this fork.** This is an enhanced fork of [caylent/tufte-data-viz](https://github.com/caylent/tufte-data-viz), maintained by [@mayar-ariss](https://github.com/mayar-ariss). All credit for the original skill goes to its authors. The improvements are being offered back upstream ([PR #1](https://github.com/caylent/tufte-data-viz/pull/1), [issue #2](https://github.com/caylent/tufte-data-viz/issues/2)). What's different here:
->
-> - **Bug fixes:** Chart.js elements no longer render invisible, sparkline examples are no longer upside down, deprecated ECharts options are replaced, and broken seaborn and Recharts snippets are fixed.
-> - **Accessible palette:** every text and data color now meets the skill's own contrast rule (4.5:1 text, 3:1 data), with a dark-mode categorical palette and a checker script (`scripts/check_contrast.py`).
-> - **Accessibility and motion in every library guide:** text alternatives and no load-in animation by default, so charts follow rules 16 and 18 out of the box.
-> - **Titles that state the finding** in every example (rule 20), plus a few accuracy corrections.
-> - **Showcase figures regenerated** with the new palette; three figure titles that contradicted their own data are corrected.
-> - **Faithful to Tufte:** every rule names its source (Tufte, convention or extension), his six graphical integrity principles are added, and misattributed rules and misquotations are corrected.
+> **About this fork.** An enhanced fork of [caylent/tufte-data-viz](https://github.com/caylent/tufte-data-viz), maintained by [@mayar-ariss](https://github.com/mayar-ariss), with bug fixes, an accessible palette and closer fidelity to Tufte. All credit for the original skill goes to its authors. See [what's different in this fork](#whats-different-in-this-fork).
 
 ## Try it
 
@@ -71,7 +66,7 @@ Gridlines fade, legends become direct labels, chartjunk dissolves:
 
 <img src="_docs/before-after-animated.gif" width="640" alt="Animated transition from default chart styling to Tufte principles">
 
-**[Try the live demo](https://mayar-ariss.github.io/tufte-data-viz/)** — toggle between default and Tufte styling across ECharts, Chart.js, Plotly, and D3.js, in light and dark mode. ([Caylent's original demo](https://caylent.github.io/tufte-data-viz/) uses the earlier palette.)
+The [live demo](https://mayar-ariss.github.io/tufte-data-viz/) shows these transitions in each library. ([Caylent's original demo](https://caylent.github.io/tufte-data-viz/) uses the earlier palette.)
 
 ## What it does
 
@@ -86,7 +81,10 @@ Every rule names its source: **Tufte** (cited by book and chapter), **convention
 
 **Analytical design** — the six principles of *Beautiful Evidence* ch. 5, including documentation: every chart states its source and units.
 
-Then 22 universal rules, in three tiers:
+Then 22 universal rules in three tiers, plus guidance on chart types and diagrams:
+
+<details>
+<summary>Show the rules</summary>
 
 **Static principles (rules 1–14)** — mostly Tufte's data-ink principles, with a few conventions labeled as such:
 
@@ -112,6 +110,8 @@ Then 22 universal rules, in three tiers:
 **Chart types** — Tufte's own designs where he made one: sparklines with end values, normal-range band and banking to 45°, slopegraphs, the quartile plot and the dot-dash plot.
 
 **Flowcharts and diagrams** — guidance drawn only from Tufte: connectors that state their meaning (*Beautiful Evidence* ch. 3), type instead of boxes, layering and separation (*Envisioning Information* ch. 3), and the smallest effective difference (*Visual Explanations* ch. 4). Where Tufte gives no rule (shapes, swimlanes, layout direction), none is added. Includes Mermaid and Graphviz notes.
+
+</details>
 
 ## Supported libraries
 
@@ -141,6 +141,17 @@ Then 22 universal rules, in three tiers:
 | `examples/` | Runnable reference implementations for Recharts, ECharts, Chart.js, matplotlib, Plotly and SVG |
 | `scripts/check_contrast.py` | Checks the documented palette against the contrast minimums |
 | `_docs/` | Showcase figures and the script that generates them |
+
+## What's different in this fork
+
+The improvements are being offered back upstream ([PR #1](https://github.com/caylent/tufte-data-viz/pull/1), [issue #2](https://github.com/caylent/tufte-data-viz/issues/2)).
+
+- **Bug fixes:** Chart.js elements no longer render invisible, sparkline examples are no longer upside down, deprecated ECharts options are replaced, and broken seaborn and Recharts snippets are fixed.
+- **Accessible palette:** every text and data color now meets the skill's own contrast rule (4.5:1 text, 3:1 data), with a dark-mode categorical palette and a checker script (`scripts/check_contrast.py`).
+- **Accessibility and motion in every library guide:** text alternatives and no load-in animation by default, so charts follow rules 16 and 18 out of the box.
+- **Titles that state the finding** in every example (rule 20), plus a few accuracy corrections.
+- **Showcase figures regenerated** with the new palette; three figure titles that contradicted their own data are corrected.
+- **Faithful to Tufte:** every rule names its source (Tufte, convention or extension), his six graphical integrity principles are added, and misattributed rules and misquotations are corrected.
 
 ## Contributing
 
