@@ -44,7 +44,7 @@ Never rely on color alone:
 TAB → Focus chart    Arrows → Move between points    Enter → Detail    Escape → Dismiss
 ```
 
-Wrap charts in a focusable container: `<div role="img" aria-label={summary} tabIndex={0} onKeyDown={handler}>`.
+Wrap custom charts (SVG, D3) in a focusable container: `<div role="img" aria-label={summary} tabIndex={0} onKeyDown={handler}>`. Recharts 3 charts are already keyboard-navigable through `accessibilityLayer`; wrap them in `<figure aria-label={summary}>` instead, because `role="img"` hides their children from screen readers.
 
 ### Screen reader text alternatives
 
@@ -146,10 +146,10 @@ All snippets below. Read only what you need for your target library.
 // Responsive container (always use)
 <ResponsiveContainer width="100%" height={400}><LineChart data={data} /></ResponsiveContainer>
 
-// Accessible wrapper
-<div role="img" aria-label={summary} tabIndex={0} onKeyDown={handler}>
+// Accessible wrapper: accessibilityLayer (on by default in Recharts 3) supplies keyboard navigation
+<figure aria-label={summary} style={{ margin: 0 }}>
   <ResponsiveContainer>...</ResponsiveContainer>
-</div>
+</figure>
 
 // Dark mode via CSS vars
 <XAxis stroke="var(--tufte-axis)" tick={{ fill: 'var(--tufte-text-secondary)' }} />
@@ -186,19 +186,21 @@ Chart.defaults.backgroundColor = isDark ? '#999' : '#666'; // element fill, not 
 ### ECharts
 
 ```javascript
-// Responsive
-const chart = echarts.init(container);
-new ResizeObserver(() => chart.resize()).observe(container);
-
-// Animation + reduced motion
-option = { animation: !prefersReducedMotion, animationDuration: 400, animationEasing: 'cubicOut' };
-
-// Dark theme
+// Dark theme: register 'tufte' (rules/echarts.md) and 'tufte-dark' before init
 echarts.registerTheme('tufte-dark', {
   backgroundColor: '#151515', textStyle: { color: '#ddd' },
   categoryAxis: { axisLine: { lineStyle: { color: '#444' } } }
 });
-// echarts.init(container, 'tufte-dark')
+const dark = window.matchMedia('(prefers-color-scheme: dark)');
+const chart = echarts.init(container, dark.matches ? 'tufte-dark' : 'tufte');
+// Switch theme without re-creating the chart (ECharts 6+; in 5.x, dispose() and init() again)
+dark.addEventListener('change', (e) => chart.setTheme(e.matches ? 'tufte-dark' : 'tufte'));
+
+// Responsive
+new ResizeObserver(() => chart.resize()).observe(container);
+
+// Animation + reduced motion
+option = { animation: !prefersReducedMotion, animationDuration: 400, animationEasing: 'cubicOut' };
 
 // Linked views: echarts.connect([chart1, chart2])
 ```

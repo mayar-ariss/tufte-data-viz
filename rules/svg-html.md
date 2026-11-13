@@ -2,6 +2,8 @@
 
 Load this file when generating raw SVG charts, D3.js visualizations, or HTML data tables.
 
+**Written for D3 7.x.** The rules come from Tufte (see the citations in `SKILL.md`); the code below is implementation, not principle.
+
 ## SVG chart base template
 
 ```html

@@ -58,7 +58,7 @@ export function ProductChart() {
         Revenue by product, USD
       </p>
 
-      <div role="img" aria-label="Product A leads revenue at 42,000, followed by B at 38,000, C at 27,000, D at 19,000 and E at 12,000">
+      <figure aria-label="Product A leads revenue at 42,000, followed by B at 38,000, C at 27,000, D at 19,000 and E at 12,000" style={{ margin: 0 }}>
         <ResponsiveContainer width="100%" height={data.length * 48 + 32}>
           <BarChart
             data={data}
@@ -99,7 +99,7 @@ export function ProductChart() {
             </Bar>
           </BarChart>
         </ResponsiveContainer>
-      </div>
+      </figure>
     </div>
   );
 }

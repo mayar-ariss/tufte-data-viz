@@ -2,6 +2,8 @@
 
 Load this file when generating any Plotly chart code (Python or JavaScript).
 
+**Written for plotly.py 6.x and plotly.js 3.x.** The rules come from Tufte (see the citations in `SKILL.md`); the code below is implementation, not principle. plotly.js 3 removed string titles (`title: 'Revenue'`) and `titlefont`: always pass `title` as an object with `text`, as below.
+
 ## Tufte template
 
 Register once, use everywhere:
@@ -25,6 +27,7 @@ tufte_template = go.layout.Template(
             xanchor="left",
         ),
         showlegend=False,
+        colorway=["#666666"],  # default series gray, from rules/typography-and-color.md
         xaxis=dict(
             showgrid=False,
             zeroline=False,
@@ -66,7 +69,7 @@ A Plotly chart has no built-in text alternative. Put the finding next to it (rul
 
 - **Plotly.js:** `<div id="chart" role="img" aria-label="Revenue beat target every month, rising from 4,200 in January to 6,200 in June"></div>`
 - **Python in HTML** (`fig.to_html(full_html=False)`): wrap the output in a `<figure>` with a `<figcaption>` stating the finding.
-- **Static export** (`fig.write_image`): use descriptive alt text where the image is embedded.
+- **Static export** (`fig.write_image`): use descriptive alt text where the image is embedded. Kaleido 1.x, which plotly.py 6.1+ uses for export, needs Chrome; install it once with `plotly_get_chrome`.
 
 ## Color constants
 

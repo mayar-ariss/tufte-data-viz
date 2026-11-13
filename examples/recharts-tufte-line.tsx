@@ -92,7 +92,7 @@ export function RevenueChart() {
         Monthly revenue vs. target, Jan–Jun (USD)
       </p>
 
-      <div role="img" aria-label="Revenue beat target every month, rising from 4,200 in January to 6,200 in June">
+      <figure aria-label="Revenue beat target every month, rising from 4,200 in January to 6,200 in June" style={{ margin: 0 }}>
         <ResponsiveContainer width="100%" aspect={1.5}>
           <LineChart
             data={data}
@@ -192,7 +192,7 @@ export function RevenueChart() {
             />
           </LineChart>
         </ResponsiveContainer>
-      </div>
+      </figure>
     </div>
   );
 }

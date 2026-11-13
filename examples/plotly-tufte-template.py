@@ -25,6 +25,7 @@ tufte_template = go.layout.Template(
             xanchor="left",
         ),
         showlegend=False,
+        colorway=["#666666"],  # default series gray, from rules/typography-and-color.md
         xaxis=dict(
             showgrid=False,
             zeroline=False,

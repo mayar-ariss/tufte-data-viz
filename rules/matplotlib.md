@@ -2,6 +2,8 @@
 
 Load this file when generating any matplotlib or seaborn chart code.
 
+**Written for matplotlib 3.x and seaborn 0.13.** The rules come from Tufte (see the citations in `SKILL.md`); the code below is implementation, not principle.
+
 ## rcParams setup
 
 Apply these at the top of any script or notebook:

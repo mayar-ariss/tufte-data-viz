@@ -76,7 +76,6 @@ export const tufteTheme = {
     right: 80,
     top: 60,
     bottom: 40,
-    containLabel: false,
   },
 };
 

@@ -2,6 +2,8 @@
 
 Load this file when generating any ECharts chart code.
 
+**Written for ECharts 6.x.** The rules come from Tufte (see the citations in `SKILL.md`); the code below is implementation, not principle. ECharts 6 changed the default theme, moved the default legend to the bottom and prevents axis labels from overflowing the grid. The theme below sets colors, legend and grid margins explicitly, so it renders the same in 5.x and 6.x. If fixed margins shift in 6.x, add `outerBoundsMode: 'none'` to `grid`.
+
 ## Tufte theme registration
 
 Register once at app initialization:
@@ -79,7 +81,6 @@ const tufteTheme = {
     right: 80,
     top: 60,
     bottom: 40,
-    containLabel: false,
   },
 };
 

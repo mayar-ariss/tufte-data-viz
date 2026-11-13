@@ -2,6 +2,8 @@
 
 Load this file when generating any Recharts (React) chart code.
 
+**Written for Recharts 3.x.** The rules come from Tufte (see the citations in `SKILL.md`); the code below is implementation, not principle.
+
 ## Tufte constants
 
 ```tsx
@@ -31,13 +33,15 @@ const reduceMotion =
 <Line dataKey="value" isAnimationActive={!reduceMotion} animationDuration={300} />
 ```
 
-Give every chart a text alternative that states the finding (rule 16) by wrapping it:
+Give every chart a text alternative that states the finding (rule 16) by wrapping it in a labelled `<figure>`:
 
 ```tsx
-<div role="img" aria-label="Revenue beat target every month, rising from 4,200 in January to 6,200 in June">
+<figure aria-label="Revenue beat target every month, rising from 4,200 in January to 6,200 in June" style={{ margin: 0 }}>
   <ResponsiveContainer>...</ResponsiveContainer>
-</div>
+</figure>
 ```
+
+Recharts 3 turns on `accessibilityLayer` by default: the chart is keyboard-focusable and arrow keys move the tooltip between points. Do not wrap it in `role="img"`, which hides those children from assistive technology.
 
 ## Component-by-component configuration
 
@@ -113,6 +117,10 @@ const TufteTooltip = ({ active, payload, label }: any) => {
 // Usage:
 <Tooltip content={<TufteTooltip />} cursor={{ stroke: TUFTE.axis, strokeWidth: 0.5 }} />
 ```
+
+In strict TypeScript, Recharts 3 types custom tooltip props as `TooltipContentProps` (exported from `recharts`); the examples keep `any` for brevity.
+
+Recharts 3.3 and later also accept a `responsive` prop on the chart itself (`<LineChart responsive style={{ width: '100%', aspectRatio: 1.5 }}>`) as an alternative to `ResponsiveContainer`. The examples use `ResponsiveContainer`, which works in every 3.x release.
 
 ### Removing Legend — direct label pattern
 
@@ -251,7 +259,7 @@ export function RevenueChart() {
       }}>
         Monthly revenue vs. target, Jan–Jun (USD)
       </p>
-      <div role="img" aria-label="Revenue beat target every month, rising from 4,200 in January to 6,200 in June">
+      <figure aria-label="Revenue beat target every month, rising from 4,200 in January to 6,200 in June" style={{ margin: 0 }}>
         <ResponsiveContainer width="100%" height={400} aspect={1.5}>
           <LineChart data={data} margin={{ top: 8, right: 80, bottom: 8, left: 8 }}>
             <CartesianGrid stroke="none" />
@@ -287,7 +295,7 @@ export function RevenueChart() {
             }} />
           </LineChart>
         </ResponsiveContainer>
-      </div>
+      </figure>
     </div>
   );
 }
@@ -318,7 +326,7 @@ export function ProductChart() {
       <p style={{ fontFamily: TUFTE.font, fontSize: 13, color: TUFTE.textSecondary, margin: '0 0 16px 0' }}>
         Revenue by product, USD
       </p>
-      <div role="img" aria-label="Product A leads revenue at 42,000, followed by B at 38,000, C at 27,000, D at 19,000 and E at 12,000">
+      <figure aria-label="Product A leads revenue at 42,000, followed by B at 38,000, C at 27,000, D at 19,000 and E at 12,000" style={{ margin: 0 }}>
         <ResponsiveContainer width="100%" height={data.length * 48 + 32}>
           <BarChart data={data} layout="vertical" margin={{ top: 0, right: 80, bottom: 0, left: 0 }}>
             <XAxis type="number" hide />
@@ -336,7 +344,7 @@ export function ProductChart() {
             </Bar>
           </BarChart>
         </ResponsiveContainer>
-      </div>
+      </figure>
     </div>
   );
 }

@@ -2,6 +2,8 @@
 
 Load this file when generating any Chart.js chart code.
 
+**Written for Chart.js 4.x.** The rules come from Tufte (see the citations in `SKILL.md`); the code below is implementation, not principle.
+
 ## Global defaults
 
 Apply at app initialization to make every Chart.js chart Tufte-compliant by default:
