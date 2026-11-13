@@ -4,17 +4,17 @@
 
 | Anti-pattern | Why it fails | Fix |
 |-------------|-------------|-----|
-| **Pie chart** | Humans are poor at comparing angles and areas. Two slices of 28% and 32% look identical. | Horizontal bar chart, sorted by value descending. |
+| **Pie chart** | Low data density, and the numbers are not ordered along a visual dimension (Tufte, VDQI ch. 9). | Horizontal bar chart sorted by value descending, or a table. |
 | **3D effects** | Perspective distorts relative sizes. Back bars appear smaller than front bars of equal value. | Remove all 3D. Flat 2D only. |
 | **Dual y-axes** | Implies correlation between two series that may not exist. Scale manipulation can make any two lines appear correlated. | Two stacked charts sharing the same x-axis (small multiples). |
 | **Legend box** | Forces eyes to shuttle between the legend and the data, holding color-to-name mappings in memory. | Direct labels at the endpoint or on the data element itself. |
 | **Heavy gridlines** | Compete with data for visual attention. Create a "cage" that imprisons the data. | Remove entirely, or horizontal-only at opacity 0.08–0.12. |
 | **Rainbow palette** | No natural ordering. Creates false category boundaries. Inaccessible to 8% of males (colorblind). | Gray default + single accent, or 4-color muted palette. |
 | **Gauge/speedometer** | Uses enormous screen area for a single number. No trend, no context, no comparison. | Single large number + sparkline + comparison text. |
-| **Zebra-striped table** | Alternating row colors create moire vibration. The stripes become louder than the data. | Whitespace + thin horizontal rules every 3–5 rows. |
+| **Zebra-striped table** | Alternating row fills are non-data ink. | Whitespace + thin horizontal rules every 3–5 rows. |
 | **Gradient fills** | Add no information. Distract from data values. Make it harder to read precise heights. | Solid flat color (muted gray or accent). |
 | **Rotated axis labels** | 45° or 90° text is hard to read. Forces head-tilting. | Horizontal bar chart (flip axes), or abbreviate labels. |
-| **Truncated y-axis** | Starting y-axis above zero exaggerates differences. A 2% change looks like a 50% swing. | Include zero, or use a clear axis break indicator and note. |
+| **Truncated bar or area** | A bar's length or an area's size is proportional to its value only from zero; cutting it off raises the lie factor (Tufte, VDQI ch. 2). | Start bars and areas at zero. For lines in a time series, Tufte advises a baseline that shows the data rather than forcing zero. |
 | **Decorative borders** | Box around chart is pure chartjunk. Adds zero information. | Remove entirely. Let whitespace define the chart boundary. |
 | **Area chart with high opacity** | Filled areas at 50%+ opacity obscure overlapping series and add visual weight that distorts perception. | Use lines only, or area with opacity 0.03–0.08. |
 | **Exploded pie slices** | Pulling slices apart makes comparison even harder than standard pie. | Don't. Use a bar chart. |

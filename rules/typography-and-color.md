@@ -1,5 +1,7 @@
 # Typography and Color Reference
 
+The values in this file (fonts, sizes, hex colors) are this skill's defaults (convention), not Tufte's. Tufte is cited where a rule is his.
+
 ## Font hierarchy
 
 | Element | Font family | Size | Weight | Color (light) | Color (dark) |
@@ -119,7 +121,7 @@ Use only when the chart must distinguish multiple categories and direct labeling
 | Coral | `#e15759` | Muted red |
 | Sage | `#539e73` | Muted green |
 
-Each color reaches 3:1 against `#fffff8` (rule 16). Four colors that dark sit in a narrow lightness band, so they separate less for color-blind readers than lighter tints would. Always pair them with direct labels, shapes or dash patterns.
+Each color reaches 3:1 against `#fffff8` (rule 16). At that darkness the four colors sit in a narrow lightness band and separate less for color-blind readers; rule 16 already requires pairing color with labels, shapes or dash patterns.
 
 ### Categorical palette, dark mode
 
@@ -148,11 +150,11 @@ For deviation from a midpoint (e.g., profit/loss, above/below average):
 Negative: #e15759 → #f7c4c4 → #f0f0f0 (center) → #c0ddd6 → #76b7b2 :Positive
 ```
 
-The light steps of the sequential and diverging palettes are fills, not lines or text, so they fall below 3:1 against the background on purpose. Label heatmap cells with values, and check that label text reaches 4.5:1 against its cell.
+The light steps of the sequential and diverging palettes fall below 3:1 against the background. The contrast check below does not cover them.
 
 ### Checking contrast
 
-Rule 16 asks for 4.5:1 for text and 3:1 for data marks. Axis lines and gridlines are deliberately faint: they carry no data, because values come from direct labels. After changing any color in this file, run:
+Rule 16 (an extension, not Tufte) asks for 4.5:1 for text and 3:1 for data marks. The check covers the text, series, highlight and categorical colors in the tables above; axis, grid and palette-fill colors are not checked. After changing any color in this file, run:
 
 ```bash
 python3 scripts/check_contrast.py
@@ -162,10 +164,10 @@ It reads the tables above and exits non-zero if any text or data color misses it
 
 ## Color rules
 
-1. **Gray is your primary color.** Default all data to gray. Only add color when it carries meaning.
-2. **Maximum 4 categorical colors.** Human visual working memory cannot reliably track more without constant legend reference.
-3. **Ghosting**: De-emphasize secondary data by setting opacity to 0.2–0.3. The primary series stays at full opacity.
-4. **No rainbow/spectral palettes.** They have no natural ordering, create false boundaries, and are inaccessible to colorblind readers.
-5. **Smallest effective difference.** If you need to distinguish two things, make them barely distinguishable — not screaming. Dark gray vs. medium gray, not red vs. blue.
-6. **Grayscale test.** The chart should be fully readable when printed in grayscale. If two series become indistinguishable, add direct labels (which you should have anyway).
-7. **No loud colors over large areas.** A full bright-red bar chart assaults the eye. Use muted tones for area fills; save saturated color for single points of emphasis.
+1. **Gray is your primary color.** Default all data to gray. Only add color when it carries meaning. *(Tufte — muted fields, after Imhof, EI ch. 5)*
+2. **Maximum 4 categorical colors.** *(Convention)*
+3. **Ghosting**: De-emphasize secondary data by setting opacity to 0.2–0.3. The primary series stays at full opacity. *(Convention)*
+4. **No rainbow/spectral palettes.** They have no natural ordering, create false boundaries, and are inaccessible to colorblind readers. *(Convention)*
+5. **Smallest effective difference.** If you need to distinguish two things, make the difference as small as will still read clearly. Dark gray vs. medium gray, not red vs. blue. *(Tufte — VE ch. 3)*
+6. **Grayscale test.** The chart should be fully readable when printed in grayscale. If two series become indistinguishable, add direct labels (which you should have anyway). *(Convention)*
+7. **No loud colors over large areas.** Use muted tones for large areas; keep strong color for small areas of emphasis. *(Tufte — after Imhof, EI ch. 5)*

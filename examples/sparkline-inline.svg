@@ -2,7 +2,7 @@
      style="vertical-align: middle;">
   <!--
     Tufte sparkline: word-sized, no axes, no labels.
-    Min marked in coral, max in blue, endpoint in gray.
+    Tufte's convention (Beautiful Evidence, pp. 50–51): first and last values in red, low and high in blue.
     Data: [15, 12, 8, 14, 6, 10, 3, 9, 5]
     SVG y grows downward: y = 20 - 2 - (v - min) / (max - min) * 16,
     so high values sit near the top.
@@ -17,12 +17,11 @@
     stroke-linejoin="round"
   />
 
-  <!-- Max point (value=15, index=0) — blue -->
+  <!-- Low (value=3, index=6) and high (value=15, index=0) — blue -->
+  <circle cx="60" cy="18" r="1.5" fill="#4e79a7" />
   <circle cx="0" cy="2" r="1.5" fill="#4e79a7" />
 
-  <!-- Min point (value=3, index=6) — coral -->
-  <circle cx="60" cy="18" r="1.5" fill="#e15759" />
-
-  <!-- Endpoint (value=5, index=8) — gray -->
-  <circle cx="80" cy="15.3" r="1.5" fill="#666" />
+  <!-- First (value=15) and last (value=5, index=8) — red, drawn on top -->
+  <circle cx="0" cy="2" r="1.5" fill="#e41a1c" />
+  <circle cx="80" cy="15.3" r="1.5" fill="#e41a1c" />
 </svg>

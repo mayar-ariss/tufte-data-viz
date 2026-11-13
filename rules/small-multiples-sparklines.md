@@ -2,7 +2,7 @@
 
 ## Small multiples
 
-Small multiples are "postage-stamp-sized illustrations indexed by category or label, sequenced over time" (Tufte). They replace complex multi-series charts with repeated, consistently scaled panels.
+Tufte describes small multiples as illustrations "of postage-stamp size" that repeat one design, indexed by category or label, sequenced over time, or ordered by a variable not shown in each image (*Envisioning Information*, ch. 4). Because the design stays constant, the eye compares changes in the data rather than changes in the graphic. They replace complex multi-series charts with repeated, consistently scaled panels.
 
 ### When to use
 
@@ -136,15 +136,14 @@ const option = {
 
 ## Sparklines
 
-"Small, intense, simple, word-sized graphics with typographic resolution" — Tufte.
+Tufte calls sparklines "data-intense, design-simple, word-sized graphics" (*Beautiful Evidence*, ch. 2).
 
 ### Rules
 
 1. **No axes, no labels, no gridlines.** The sparkline shows shape only.
-2. **Mark min and max** with small colored dots (r=1.5). Min = coral (#e15759), max = blue (#4e79a7).
-3. **Optionally mark the endpoint** with a gray dot.
-4. **Same height as surrounding text.** Typically 16–24px tall.
-5. **Embed inline** in text, table cells, or dashboards.
+2. **Mark the reference values** with small dots (r=1.5), following Tufte's convention (*Beautiful Evidence*, pp. 50–51): the first and last values in red (`#e41a1c`), the low and high in blue (`#4e79a7`).
+3. **Same height as surrounding text.** Typically 16–24px tall.
+4. **Embed inline** in text, table cells, or dashboards.
 
 ### SVG sparkline (inline)
 
@@ -162,11 +161,13 @@ function sparklineSvg(data, { width = 80, height = 20, color = '#666' } = {}) {
   const minIdx = data.indexOf(min);
   const maxIdx = data.indexOf(max);
 
+  // Tufte's convention (Beautiful Evidence, pp. 50–51): first and last values in red, low and high in blue
   return `<svg viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" style="vertical-align:middle">
     <polyline points="${points}" fill="none" stroke="${color}" stroke-width="1"/>
-    <circle cx="${x(minIdx)}" cy="${y(min)}" r="1.5" fill="#e15759"/>
+    <circle cx="${x(minIdx)}" cy="${y(min)}" r="1.5" fill="#4e79a7"/>
     <circle cx="${x(maxIdx)}" cy="${y(max)}" r="1.5" fill="#4e79a7"/>
-    <circle cx="${x(n - 1)}" cy="${y(data[n - 1])}" r="1.5" fill="${color}"/>
+    <circle cx="${x(0)}" cy="${y(data[0])}" r="1.5" fill="#e41a1c"/>
+    <circle cx="${x(n - 1)}" cy="${y(data[n - 1])}" r="1.5" fill="#e41a1c"/>
   </svg>`;
 }
 ```
@@ -200,11 +201,10 @@ def sparkline(ax, data, color='#666'):
     ax.plot(data, color=color, linewidth=1)
     ax.set_xlim(0, len(data) - 1)
 
-    # Min/max markers
+    # Tufte's convention (Beautiful Evidence, pp. 50–51): first and last values in red, low and high in blue
     min_i, max_i = data.index(min(data)), data.index(max(data))
-    ax.plot(min_i, data[min_i], 'o', color='#e15759', markersize=2, zorder=5)
-    ax.plot(max_i, data[max_i], 'o', color='#4e79a7', markersize=2, zorder=5)
-    ax.plot(len(data)-1, data[-1], 'o', color=color, markersize=2, zorder=5)
+    ax.plot([min_i, max_i], [data[min_i], data[max_i]], 'o', color='#4e79a7', markersize=2, zorder=5)
+    ax.plot([0, len(data)-1], [data[0], data[-1]], 'o', color='#e41a1c', markersize=2, zorder=6)
 
     # Remove all chrome
     for spine in ax.spines.values():

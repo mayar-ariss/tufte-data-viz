@@ -143,13 +143,11 @@ def sparkline(ax, data, color="#666", highlight_endpoints=True):
     ax.set_xlim(0, len(data) - 1)
 
     if highlight_endpoints:
-        # Min and max dots
+        # Tufte's convention (Beautiful Evidence, pp. 50–51): first and last values in red, low and high in blue
         min_idx = data.index(min(data))
         max_idx = data.index(max(data))
-        ax.plot(min_idx, data[min_idx], "o", color="#e15759", markersize=2)
-        ax.plot(max_idx, data[max_idx], "o", color="#4e79a7", markersize=2)
-        # Endpoint dot
-        ax.plot(len(data) - 1, data[-1], "o", color=color, markersize=2)
+        ax.plot([min_idx, max_idx], [data[min_idx], data[max_idx]], "o", color="#4e79a7", markersize=2, zorder=5)
+        ax.plot([0, len(data) - 1], [data[0], data[-1]], "o", color="#e41a1c", markersize=2, zorder=6)
 
     # Remove all chrome
     ax.set_xticks([])

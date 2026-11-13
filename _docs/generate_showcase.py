@@ -490,10 +490,11 @@ for i, (name, data) in enumerate(metrics.items()):
     ax = axes[i]
     ax.plot(data, color=C["gray"], linewidth=1)
 
-    # Min/max dots
+    # Tufte's convention (Beautiful Evidence, pp. 50-51): low and high in blue,
+    # first and last values in red
     imin, imax = np.argmin(data), np.argmax(data)
-    ax.plot(imin, data[imin], "o", color=C["highlight"], markersize=5)
-    ax.plot(imax, data[imax], "o", color=C["cat"][0], markersize=5)
+    ax.plot([imin, imax], [data[imin], data[imax]], "o", color=C["cat"][0], markersize=5)
+    ax.plot([0, len(data) - 1], [data[0], data[-1]], "o", color=C["highlight"], markersize=5, zorder=5)
 
     # Endpoint value
     ax.text(len(data) + 0.5, data[-1], f"{data[-1]:.1f}",
@@ -517,7 +518,7 @@ for i, (name, data) in enumerate(metrics.items()):
 
 fig.text(0.5, 1.0, "Key Metrics, Last 24 Months",
          fontsize=16, fontfamily="serif", color=C["text"], ha="center", va="top")
-fig.text(0.5, 0.94, "Red dot = min, blue dot = max",
+fig.text(0.5, 0.94, "Red = first and last values, blue = low and high",
          fontsize=11, fontfamily="serif", color=C["text2"], ha="center", va="top")
 
 fig.patch.set_facecolor("#fffff8")

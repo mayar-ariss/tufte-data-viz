@@ -207,12 +207,13 @@ A minimal sparkline for embedding in text or table cells:
     stroke="#666"
     stroke-width="1"
   />
-  <!-- Min point (value=3, index=6) — coral -->
-  <circle cx="60" cy="18" r="1.5" fill="#e15759" />
-  <!-- Max point (value=15, index=0) — blue -->
+  <!-- Tufte's convention (Beautiful Evidence, pp. 50–51): first and last values in red, low and high in blue -->
+  <!-- Low (value=3, index=6) and high (value=15, index=0) — blue -->
+  <circle cx="60" cy="18" r="1.5" fill="#4e79a7" />
   <circle cx="0" cy="2" r="1.5" fill="#4e79a7" />
-  <!-- Endpoint (value=5) — gray -->
-  <circle cx="80" cy="15.3" r="1.5" fill="#666" />
+  <!-- First (value=15) and last (value=5) — red, drawn on top -->
+  <circle cx="0" cy="2" r="1.5" fill="#e41a1c" />
+  <circle cx="80" cy="15.3" r="1.5" fill="#e41a1c" />
 </svg>
 ```
 
@@ -236,14 +237,17 @@ function sparkline(data, width = 80, height = 20) {
   const minY = height - 2;
   const maxX = (maxIdx / (data.length - 1)) * width;
   const maxY = 2;
+  const firstY = height - ((data[0] - min) / range) * (height - 4) - 2;
   const endX = width;
   const endY = height - ((data[data.length - 1] - min) / range) * (height - 4) - 2;
 
+  // Tufte's convention (Beautiful Evidence, pp. 50–51): first and last values in red, low and high in blue
   return `<svg viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" style="vertical-align:middle">
     <polyline points="${points}" fill="none" stroke="#666" stroke-width="1"/>
-    <circle cx="${minX}" cy="${minY}" r="1.5" fill="#e15759"/>
+    <circle cx="${minX}" cy="${minY}" r="1.5" fill="#4e79a7"/>
     <circle cx="${maxX}" cy="${maxY}" r="1.5" fill="#4e79a7"/>
-    <circle cx="${endX}" cy="${endY}" r="1.5" fill="#666"/>
+    <circle cx="0" cy="${firstY}" r="1.5" fill="#e41a1c"/>
+    <circle cx="${endX}" cy="${endY}" r="1.5" fill="#e41a1c"/>
   </svg>`;
 }
 ```
@@ -332,7 +336,7 @@ function sparkline(data, width = 80, height = 20) {
 ```
 
 Key rules for tables:
-- **No zebra striping** — creates moire vibration
+- **No zebra striping** — alternating fills are non-data ink
 - **No cell borders** — use whitespace for structure
 - **Right-align all numbers** — decimal alignment
 - **Old-style figures** — `font-feature-settings: "onum" 1`

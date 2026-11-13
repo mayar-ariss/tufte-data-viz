@@ -1,6 +1,6 @@
 # Interactive & Accessible Visualization
 
-Screen-first principles extending Tufte's foundation. The Tufte-clean default is the starting point; interactivity layers on top.
+Screen-first rules 15–19. These are extensions added by this skill's authors, not principles from Tufte's books. The Tufte-clean default is the starting point; interactivity layers on top.
 
 ---
 
@@ -26,7 +26,7 @@ Overview first, zoom and filter, details on demand.
 
 - **Chart elements** vs. background: **3:1** minimum
 - **Text in charts**: **4.5:1** minimum
-- The Tufte palette meets both in light and dark modes. Axis lines and gridlines are deliberately faint and exempt, since they carry no data. `scripts/check_contrast.py` verifies the palette
+- The default palette's text and data colors meet both in light and dark modes; `scripts/check_contrast.py` checks them. Axis and grid colors are not checked
 
 ### Dual encoding
 
@@ -112,7 +112,7 @@ Always respect `prefers-reduced-motion` — disable all non-essential animation.
 
 ## E. Dark Mode
 
-The Tufte palette includes dark mode (#151515 bg, #999 series, #fc8d62 highlight). Rules:
+This skill's default palette includes dark mode (#151515 bg, #999 series, #fc8d62 highlight). Rules:
 
 - **Never invert** — design dark palette independently
 - **Reduce saturation** 10–20% (bright colors vibrate on dark backgrounds)
