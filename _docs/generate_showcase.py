@@ -25,8 +25,8 @@ TUFTE_RC = {
     "axes.spines.top": False,
     "axes.spines.right": False,
     "axes.grid": False,
-    "xtick.color": "#999999",
-    "ytick.color": "#999999",
+    "xtick.color": "#767676",
+    "ytick.color": "#767676",
     "xtick.labelsize": 11,
     "ytick.labelsize": 11,
     "xtick.direction": "in",
@@ -44,11 +44,11 @@ TUFTE_RC = {
 C = {
     "text": "#111111",
     "text2": "#666666",
-    "text3": "#999999",
+    "text3": "#767676",
     "gray": "#666666",
     "highlight": "#e41a1c",
     "axis": "#cccccc",
-    "cat": ["#4e79a7", "#f28e2b", "#e15759", "#76b7b2"],
+    "cat": ["#4e79a7", "#db730d", "#e15759", "#539e73"],
 }
 
 
@@ -126,7 +126,7 @@ ax.set_xticks([])
 ax.tick_params(left=False)
 ax.invert_yaxis()
 
-fig.text(0.04, 0.95, "Product A Leads With 31% of Total Revenue",
+fig.text(0.04, 0.95, "Product A Leads With 30% of Total Revenue",
          fontsize=18, fontfamily="serif", color=C["text"])
 fig.text(0.04, 0.90, "Revenue by product, sorted by value",
          fontsize=13, fontfamily="serif", color=C["text2"])
@@ -172,7 +172,7 @@ ax.spines["left"].set_color("black")
 for s in ax.spines.values():
     s.set_linewidth(1)
 ax.tick_params(direction="out", length=5, width=1)
-fig.text(0.26, 0.02, "BEFORE", fontsize=14, fontfamily="sans-serif",
+fig.text(0.26, 0.012, "BEFORE", fontsize=14, fontfamily="sans-serif",
          color="#cc0000", ha="center", fontweight="bold")
 
 # --- AFTER: Tufte style ---
@@ -201,12 +201,12 @@ ax.annotate("Series B", xy=(12, 43), xytext=(8, 0), textcoords="offset points",
 
 ax.set_title("Tufte Style", fontsize=16, fontweight="normal", fontfamily="serif",
              color=C["text"])
-fig.text(0.74, 0.02, "AFTER", fontsize=14, fontfamily="serif",
+fig.text(0.74, 0.012, "AFTER", fontsize=14, fontfamily="serif",
          color=C["highlight"], ha="center", fontweight="bold")
 
 fig.patch.set_facecolor("#fffff8")
 plt.tight_layout()
-plt.subplots_adjust(bottom=0.1, wspace=0.25)
+plt.subplots_adjust(bottom=0.17, wspace=0.25)
 plt.savefig(OUT_DIR / "before-after.png")
 plt.close()
 
@@ -221,9 +221,9 @@ data = {r: np.cumsum(np.random.randn(12) * 3 + 2) for r in regions}
 global_min = min(min(v) for v in data.values()) - 2
 global_max = max(max(v) for v in data.values()) + 2
 
-fig, axes = plt.subplots(1, 4, figsize=(16, 3.5), sharey=True)
+fig, axes = plt.subplots(2, 2, figsize=(10, 6.5), sharex=True, sharey=True)
 
-for ax, region in zip(axes, regions):
+for ax, region in zip(axes.flat, regions):
     ax.plot(x, data[region], color=C["gray"], linewidth=1.5)
     ax.set_title(region, fontsize=14, fontfamily="serif", fontweight="normal",
                  color=C["text"], loc="left")
@@ -238,16 +238,20 @@ for ax, region in zip(axes, regions):
     ax.set_xticks([1, 4, 7, 10])
     ax.set_xticklabels(["Jan", "Apr", "Jul", "Oct"], fontsize=9)
 
-# Only show y-axis label on leftmost
-for ax in axes[1:]:
+# Y labels on the left column only; x labels on the bottom row only (sharex)
+for ax in axes[:, 1]:
     ax.tick_params(labelleft=False)
     ax.spines["left"].set_visible(False)
 
 fig.patch.set_facecolor("#fffff8")
-fig.text(0.08, 0.98, "North and East Outpaced South and West in 2025",
+# Title states the finding, checked against the data (West +29.5, South +24.7,
+# North +16.8, East +0.9 over the year)
+fig.text(0.06, 0.98, "West and South Grew Most in 2025; East Stayed Flat",
          fontsize=16, fontfamily="serif", color=C["text"], va="top")
+fig.text(0.06, 0.925, "Monthly revenue index by region, same scale in every panel",
+         fontsize=12, fontfamily="serif", color=C["text2"], va="top")
 plt.tight_layout()
-plt.subplots_adjust(top=0.82, wspace=0.1)
+plt.subplots_adjust(top=0.82, wspace=0.08, hspace=0.35)
 plt.savefig(OUT_DIR / "small-multiples.png")
 plt.close()
 
@@ -261,15 +265,15 @@ TUFTE_DARK_RC = {
     "axes.facecolor": "#151515",
     "axes.edgecolor": "#444444",
     "axes.labelcolor": "#999999",
-    "xtick.color": "#666666",
-    "ytick.color": "#666666",
+    "xtick.color": "#808080",
+    "ytick.color": "#808080",
     "savefig.facecolor": "#151515",
 }
 
 CD = {
     "text": "#dddddd",
     "text2": "#999999",
-    "text3": "#666666",
+    "text3": "#808080",
     "gray": "#999999",
     "highlight": "#fc8d62",
     "axis": "#444444",
@@ -320,9 +324,9 @@ groups = {
     "Enterprise":  {"x": np.random.normal(70, 12, 15), "y": np.random.normal(85, 8, 15),
                     "marker": "o", "color": "#4e79a7"},
     "Mid-Market":  {"x": np.random.normal(45, 10, 20), "y": np.random.normal(60, 10, 20),
-                    "marker": "s", "color": "#f28e2b"},
+                    "marker": "s", "color": "#db730d"},
     "SMB":         {"x": np.random.normal(25, 8, 25),  "y": np.random.normal(35, 12, 25),
-                    "marker": "D", "color": "#76b7b2"},
+                    "marker": "D", "color": "#539e73"},
 }
 
 fig, ax = plt.subplots(figsize=(9, 6))
@@ -343,7 +347,7 @@ tufte_axes(ax, all_x, all_y)
 ax.set_xlabel("Deal Cycle (days)", fontsize=12, color=C["text2"])
 ax.set_ylabel("Win Rate (%)", fontsize=12, color=C["text2"])
 
-fig.text(0.125, 0.95, "Enterprise Wins Faster and More Often",
+fig.text(0.125, 0.95, "Enterprise Wins Most Often, Despite the Longest Deal Cycles",
          fontsize=18, fontfamily="serif", color=C["text"])
 fig.text(0.125, 0.91, "Each shape = segment (accessible without color)",
          fontsize=13, fontfamily="serif", color=C["text2"])
@@ -361,9 +365,9 @@ plt.close()
 fig, axes = plt.subplots(1, 2, figsize=(16, 5.5))
 
 themes = [
-    {"bg": "#fffff8", "text": "#111111", "text2": "#666666", "text3": "#999999",
+    {"bg": "#fffff8", "text": "#111111", "text2": "#666666", "text3": "#767676",
      "gray": "#666666", "highlight": "#e41a1c", "axis": "#cccccc", "label": "Light Mode"},
-    {"bg": "#151515", "text": "#dddddd", "text2": "#999999", "text3": "#666666",
+    {"bg": "#151515", "text": "#dddddd", "text2": "#999999", "text3": "#808080",
      "gray": "#999999", "highlight": "#fc8d62", "axis": "#444444", "label": "Dark Mode"},
 ]
 
@@ -426,23 +430,28 @@ fig, ax = plt.subplots(figsize=(6, 7))
 for name, (before, after) in slope_data.items():
     change = after - before
     color = C["highlight"] if abs(change) == max(abs(b - a) for a, b in slope_data.values()) else C["gray"]
-    lw = 2 if color == C["highlight"] else 1.2
-    alpha = 1.0 if color == C["highlight"] else 0.5
+    highlighted = color == C["highlight"]
+    lw = 2 if highlighted else 1.2
+    # Solid colors instead of 50% opacity, so gray lines keep 3:1 and labels 4.5:1
+    line_color = color if highlighted else "#8c8c8c"
+    label_color = color if highlighted else C["text3"]
 
-    ax.plot([0, 1], [before, after], color=color, linewidth=lw, alpha=alpha)
+    ax.plot([0, 1], [before, after], color=line_color, linewidth=lw)
 
     # Left labels (before)
     ax.text(-0.08, before, f"{name}  {before}%", ha="right", va="center",
-            fontsize=11, color=color, fontfamily="serif", alpha=alpha)
+            fontsize=11, color=label_color, fontfamily="serif")
     # Right labels (after)
     ax.text(1.08, after, f"{after}%  {name}", ha="left", va="center",
-            fontsize=11, color=color, fontfamily="serif", alpha=alpha)
+            fontsize=11, color=label_color, fontfamily="serif")
 
-# Column headers
-ax.text(0, max(v[0] for v in slope_data.values()) + 3, "2024", ha="center",
+# Column headers, aligned on one row above the highest point
+header_y = max(max(v) for v in slope_data.values()) + 4
+ax.text(0, header_y, "2024", ha="center",
         fontsize=13, color=C["text2"], fontfamily="serif", fontweight="bold")
-ax.text(1, max(v[1] for v in slope_data.values()) + 3, "2025", ha="center",
+ax.text(1, header_y, "2025", ha="center",
         fontsize=13, color=C["text2"], fontfamily="serif", fontweight="bold")
+ax.set_ylim(min(min(v) for v in slope_data.values()) - 2, header_y + 2)
 
 # Clean axes
 for spine in ax.spines.values():
@@ -451,13 +460,13 @@ ax.set_xticks([])
 ax.set_yticks([])
 ax.set_xlim(-0.4, 1.4)
 
-fig.text(0.12, 0.96, "Engineering Headcount Grew Most, Marketing Shrank",
+fig.text(0.12, 0.96, "Engineering's Share Grew Most; Marketing's Shrank",
          fontsize=16, fontfamily="serif", color=C["text"])
 fig.text(0.12, 0.92, "Team size as % of company, 2024 vs. 2025",
          fontsize=12, fontfamily="serif", color=C["text2"])
 
 plt.tight_layout()
-plt.subplots_adjust(top=0.89)
+plt.subplots_adjust(top=0.86)
 plt.savefig(OUT_DIR / "tufte-slopegraph.png")
 plt.close()
 
