@@ -19,7 +19,7 @@ const TUFTE = {
   bg: '#fffff8',
   text: '#111',
   textSecondary: '#666',
-  textTertiary: '#999',
+  textTertiary: '#767676',
   seriesDefault: '#7a7a7a',
   highlight: '#e41a1c',
   font: '"ET Book", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif',

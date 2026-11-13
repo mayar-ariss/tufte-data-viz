@@ -26,7 +26,7 @@ Overview first, zoom and filter, details on demand.
 
 - **Chart elements** vs. background: **3:1** minimum
 - **Text in charts**: **4.5:1** minimum
-- The Tufte palette meets both in light and dark modes
+- The Tufte palette meets both in light and dark modes. Axis lines and gridlines are deliberately faint and exempt, since they carry no data. `scripts/check_contrast.py` verifies the palette
 
 ### Dual encoding
 

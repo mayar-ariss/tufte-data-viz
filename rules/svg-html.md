@@ -44,7 +44,7 @@ Load this file when generating raw SVG charts, D3.js visualizations, or HTML dat
 .tufte-chart .tick text {
   font-family: system-ui, -apple-system, sans-serif;
   font-size: 11px;
-  fill: #999;
+  fill: #767676;
 }
 
 .tufte-chart .data-line {
@@ -147,7 +147,7 @@ svg.append('g')
   .call(xAxis)
   .call(g => g.selectAll('.domain').remove())
   .call(g => g.selectAll('.tick text')
-    .attr('fill', '#999')
+    .attr('fill', '#767676')
     .attr('font-size', '11px')
     .attr('font-family', 'system-ui, sans-serif'));
 ```

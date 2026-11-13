@@ -31,7 +31,7 @@ tufte_template = go.layout.Template(
             showline=True,
             linewidth=0.5,
             linecolor="#ccc",
-            tickfont=dict(family="system-ui, sans-serif", size=11, color="#999"),
+            tickfont=dict(family="system-ui, sans-serif", size=11, color="#767676"),
             ticks="inside",
             ticklen=3,
             tickwidth=0.5,
@@ -40,7 +40,7 @@ tufte_template = go.layout.Template(
             showgrid=False,
             zeroline=False,
             showline=False,
-            tickfont=dict(family="system-ui, sans-serif", size=11, color="#999"),
+            tickfont=dict(family="system-ui, sans-serif", size=11, color="#767676"),
             ticks="inside",
             ticklen=3,
             tickwidth=0.5,
@@ -75,11 +75,11 @@ TUFTE = {
     "bg": "#fffff8",
     "text": "#111",
     "text_secondary": "#666",
-    "text_tertiary": "#999",
+    "text_tertiary": "#767676",
     "axis": "#ccc",
     "series_default": "#666",
     "highlight": "#e41a1c",
-    "categorical": ["#4e79a7", "#f28e2b", "#e15759", "#76b7b2"],
+    "categorical": ["#4e79a7", "#db730d", "#e15759", "#539e73"],
 }
 ```
 
@@ -233,8 +233,8 @@ const tufteLayout = {
   plot_bgcolor: '#fffff8',
   font: { family: '"Palatino Linotype", Palatino, Georgia, serif', size: 13, color: '#111' },
   showlegend: false,
-  xaxis: { showgrid: false, zeroline: false, linewidth: 0.5, linecolor: '#ccc', tickfont: { size: 11, color: '#999' } },
-  yaxis: { showgrid: false, zeroline: false, showline: false, tickfont: { size: 11, color: '#999' } },
+  xaxis: { showgrid: false, zeroline: false, linewidth: 0.5, linecolor: '#ccc', tickfont: { size: 11, color: '#767676' } },
+  yaxis: { showgrid: false, zeroline: false, showline: false, tickfont: { size: 11, color: '#767676' } },
   hoverlabel: { bgcolor: 'rgba(255,255,248,0.9)', bordercolor: 'transparent', font: { size: 12, color: '#333' } },
   margin: { l: 60, r: 80, t: 60, b: 50 },
 };

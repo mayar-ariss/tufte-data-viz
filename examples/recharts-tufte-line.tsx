@@ -22,7 +22,7 @@ const TUFTE = {
   bg: '#fffff8',
   text: '#111',
   textSecondary: '#666',
-  textTertiary: '#999',
+  textTertiary: '#767676',
   axis: '#ccc',
   seriesDefault: '#666',
   highlight: '#e41a1c',

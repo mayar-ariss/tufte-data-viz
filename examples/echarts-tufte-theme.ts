@@ -8,7 +8,7 @@
 import type { EChartsOption } from 'echarts';
 
 export const tufteTheme = {
-  color: ['#666666', '#4e79a7', '#f28e2b', '#e15759', '#76b7b2'],
+  color: ['#666666', '#4e79a7', '#db730d', '#e15759', '#539e73'],
   backgroundColor: '#fffff8',
   textStyle: {
     fontFamily:
@@ -43,7 +43,7 @@ export const tufteTheme = {
     axisLine: { show: true, lineStyle: { color: '#ccc', width: 0.5 } },
     axisTick: { show: false },
     axisLabel: {
-      color: '#999',
+      color: '#767676',
       fontSize: 11,
       fontFamily: 'system-ui, -apple-system, sans-serif',
     },
@@ -53,7 +53,7 @@ export const tufteTheme = {
     axisLine: { show: false },
     axisTick: { show: false },
     axisLabel: {
-      color: '#999',
+      color: '#767676',
       fontSize: 11,
       fontFamily: 'system-ui, -apple-system, sans-serif',
     },
@@ -105,13 +105,13 @@ export const exampleLineOption: EChartsOption = {
       name: 'Target',
       type: 'line',
       data: [4000, 4200, 4400, 4600, 4800, 5000],
-      lineStyle: { color: '#999', width: 1, type: 'dashed' },
-      itemStyle: { color: '#999' },
+      lineStyle: { color: '#8c8c8c', width: 1, type: 'dashed' },
+      itemStyle: { color: '#8c8c8c' },
       showSymbol: false,
       endLabel: {
         show: true,
         formatter: 'Target: {c}',
-        color: '#999',
+        color: '#767676',
         fontSize: 13,
         fontFamily:
           '"ET Book", "Palatino Linotype", Palatino, Georgia, serif',

@@ -6,11 +6,11 @@
 |---------|------------|------|--------|---------------|--------------|
 | Chart title | ET Book, Palatino, Georgia, serif | 18–22px | 400 | #111 | #ddd |
 | Subtitle / caption | ET Book, Palatino, Georgia, serif | 14–16px | 400 | #666 | #999 |
-| Axis tick label | system-ui, -apple-system, sans-serif | 11–12px | 400 | #999 | #666 |
+| Axis tick label | system-ui, -apple-system, sans-serif | 11–12px | 400 | #767676 | #808080 |
 | Data label (on chart) | ET Book, Palatino, Georgia, serif | 12–14px | 400 | #333 | #bbb |
 | Annotation | ET Book, Palatino, Georgia, serif | 12–13px | 400 italic | #333 | #bbb |
 | Tooltip text | system-ui, sans-serif | 12–13px | 400 | #333 | #ccc |
-| Source citation | system-ui, sans-serif | 10–11px | 400 | #aaa | #555 |
+| Source citation | system-ui, sans-serif | 10–11px | 400 | #767676 | #808080 |
 
 **Key rule**: Data marks and labels should always be visually equal to or larger than axis tick labels. If axis ticks are 12px, data labels must be >= 12px. The data is the priority.
 
@@ -89,7 +89,7 @@ In matplotlib: OpenType features such as `onum` can't be switched on. Georgia dr
 | Page/chart background | `#fffff8` | `--bg` |
 | Text primary (titles, data labels) | `#111111` | `--text-1` |
 | Text secondary (subtitles, annotations) | `#666666` | `--text-2` |
-| Text tertiary (axis ticks, source) | `#999999` | `--text-3` |
+| Text tertiary (axis ticks, source) | `#767676` | `--text-3` |
 | Axis line (bottom/left only) | `#cccccc` | `--axis` |
 | Grid line (if absolutely needed) | `#eeeeee` | `--grid` |
 | Default data series | `#666666` | `--series-default` |
@@ -102,7 +102,7 @@ In matplotlib: OpenType features such as `onum` can't be switched on. Georgia dr
 | Page/chart background | `#151515` | `--bg` |
 | Text primary | `#dddddd` | `--text-1` |
 | Text secondary | `#999999` | `--text-2` |
-| Text tertiary | `#666666` | `--text-3` |
+| Text tertiary | `#808080` | `--text-3` |
 | Axis line | `#444444` | `--axis` |
 | Grid line | `#333333` | `--grid` |
 | Default data series | `#999999` | `--series-default` |
@@ -115,9 +115,22 @@ Use only when the chart must distinguish multiple categories and direct labeling
 | Name | Hex | Swatch |
 |------|-----|--------|
 | Steel blue | `#4e79a7` | Muted blue |
-| Tangerine | `#f28e2b` | Warm orange |
+| Tangerine | `#db730d` | Warm orange |
 | Coral | `#e15759` | Muted red |
-| Sage | `#76b7b2` | Teal-green |
+| Sage | `#539e73` | Muted green |
+
+Each color reaches 3:1 against `#fffff8` (rule 16). Four colors that dark sit in a narrow lightness band, so they separate less for color-blind readers than lighter tints would. Always pair them with direct labels, shapes or dash patterns.
+
+### Categorical palette, dark mode
+
+Lighter, slightly desaturated counterparts for `#151515` (rule 19):
+
+| Name | Hex |
+|------|-----|
+| Steel blue | `#6a9fd8` |
+| Tangerine | `#f2a860` |
+| Coral | `#e87a7c` |
+| Sage | `#8accc7` |
 
 If more than 4 categories exist, use small multiples or group lesser categories into "Other."
 
@@ -134,6 +147,18 @@ For deviation from a midpoint (e.g., profit/loss, above/below average):
 ```
 Negative: #e15759 → #f7c4c4 → #f0f0f0 (center) → #c0ddd6 → #76b7b2 :Positive
 ```
+
+The light steps of the sequential and diverging palettes are fills, not lines or text, so they fall below 3:1 against the background on purpose. Label heatmap cells with values, and check that label text reaches 4.5:1 against its cell.
+
+### Checking contrast
+
+Rule 16 asks for 4.5:1 for text and 3:1 for data marks. Axis lines and gridlines are deliberately faint: they carry no data, because values come from direct labels. After changing any color in this file, run:
+
+```bash
+python3 scripts/check_contrast.py
+```
+
+It reads the tables above and exits non-zero if any text or data color misses its minimum.
 
 ## Color rules
 

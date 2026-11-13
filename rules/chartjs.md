@@ -14,7 +14,7 @@ import { Chart } from 'chart.js';
 // and areas, not the canvas background. Keep it gray so uncolored elements
 // stay visible; the canvas is painted off-white by the Tufte plugin below.
 Chart.defaults.backgroundColor = '#666';
-Chart.defaults.color = '#999';
+Chart.defaults.color = '#767676';
 Chart.defaults.font.family = '"ET Book", "Palatino Linotype", Palatino, Georgia, serif';
 Chart.defaults.font.size = 12;
 
@@ -93,11 +93,11 @@ const TUFTE = {
   bg: '#fffff8',
   text: '#111',
   textSecondary: '#666',
-  textTertiary: '#999',
+  textTertiary: '#767676',
   axis: '#ccc',
   seriesDefault: '#666',
   highlight: '#e41a1c',
-  categorical: ['#4e79a7', '#f28e2b', '#e15759', '#76b7b2'],
+  categorical: ['#4e79a7', '#db730d', '#e15759', '#539e73'],
 };
 ```
 
@@ -220,7 +220,7 @@ plugins: {
           content: 'Avg',
           position: 'end',
           font: { size: 11 },
-          color: '#999',
+          color: '#767676',
           backgroundColor: 'transparent',
         },
       },

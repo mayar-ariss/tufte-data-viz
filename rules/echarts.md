@@ -10,7 +10,7 @@ Register once at app initialization:
 import * as echarts from 'echarts';
 
 const tufteTheme = {
-  color: ['#666666', '#4e79a7', '#f28e2b', '#e15759', '#76b7b2'],
+  color: ['#666666', '#4e79a7', '#db730d', '#e15759', '#539e73'],
   backgroundColor: '#fffff8',
   textStyle: {
     fontFamily: '"ET Book", "Palatino Linotype", Palatino, Georgia, serif',
@@ -46,7 +46,7 @@ const tufteTheme = {
     axisLine: { show: true, lineStyle: { color: '#ccc', width: 0.5 } },
     axisTick: { show: false },
     axisLabel: {
-      color: '#999',
+      color: '#767676',
       fontSize: 11,
       fontFamily: 'system-ui, -apple-system, sans-serif',
     },
@@ -56,7 +56,7 @@ const tufteTheme = {
     axisLine: { show: false },
     axisTick: { show: false },
     axisLabel: {
-      color: '#999',
+      color: '#767676',
       fontSize: 11,
       fontFamily: 'system-ui, -apple-system, sans-serif',
     },
@@ -114,14 +114,14 @@ const tufteBaseOption: echarts.EChartsOption = {
     type: 'category',
     axisLine: { lineStyle: { color: '#ccc', width: 0.5 } },
     axisTick: { show: false },
-    axisLabel: { color: '#999', fontSize: 11, fontFamily: 'system-ui, sans-serif' },
+    axisLabel: { color: '#767676', fontSize: 11, fontFamily: 'system-ui, sans-serif' },
     splitLine: { show: false },
   },
   yAxis: {
     type: 'value',
     axisLine: { show: false },
     axisTick: { show: false },
-    axisLabel: { color: '#999', fontSize: 11, fontFamily: 'system-ui, sans-serif' },
+    axisLabel: { color: '#767676', fontSize: 11, fontFamily: 'system-ui, sans-serif' },
     splitLine: { show: false },
   },
 };
@@ -172,15 +172,15 @@ series: [
     name: 'Target',
     type: 'line',
     data: targetData,
-    lineStyle: { color: '#999', width: 1, type: 'dashed' },
-    itemStyle: { color: '#999' },
+    lineStyle: { color: '#8c8c8c', width: 1, type: 'dashed' },
+    itemStyle: { color: '#8c8c8c' },
     showSymbol: false,
     endLabel: {
       show: true,
       formatter: '{a}: {c}',
       fontSize: 13,
       fontFamily: '"ET Book", Palatino, Georgia, serif',
-      color: '#999',
+      color: '#767676',
     },
   },
 ]
@@ -217,7 +217,7 @@ series: [{
       position: 'end',
       formatter: 'Avg: {c}',
       fontSize: 11,
-      color: '#999',
+      color: '#767676',
     },
   },
 }]
@@ -263,12 +263,12 @@ const option: echarts.EChartsOption = {
       name: 'Target',
       type: 'line',
       data: [4000, 4200, 4400, 4600, 4800, 5000],
-      lineStyle: { color: '#999', width: 1, type: 'dashed' },
+      lineStyle: { color: '#8c8c8c', width: 1, type: 'dashed' },
       showSymbol: false,
       endLabel: {
         show: true,
         formatter: 'Target: {c}',
-        color: '#999',
+        color: '#767676',
         fontSize: 13,
         fontFamily: '"ET Book", Palatino, Georgia, serif',
       },

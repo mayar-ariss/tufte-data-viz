@@ -35,8 +35,8 @@ TUFTE_RC = {
     "axes.grid": False,
 
     # Ticks
-    "xtick.color": "#999999",
-    "ytick.color": "#999999",
+    "xtick.color": "#767676",
+    "ytick.color": "#767676",
     "xtick.labelsize": 11,
     "ytick.labelsize": 11,
     "xtick.direction": "in",
@@ -176,12 +176,12 @@ TUFTE_COLORS = {
     "bg": "#fffff8",
     "text": "#111111",
     "text_secondary": "#666666",
-    "text_tertiary": "#999999",
+    "text_tertiary": "#767676",
     "axis": "#cccccc",
     "grid": "#eeeeee",
     "series_default": "#666666",
     "highlight": "#e41a1c",
-    "categorical": ["#4e79a7", "#f28e2b", "#e15759", "#76b7b2"],
+    "categorical": ["#4e79a7", "#db730d", "#e15759", "#539e73"],
 }
 ```
 
@@ -203,7 +203,7 @@ target = [40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62]
 fig, ax = plt.subplots()
 
 # Plot data
-ax.plot(months, target, color="#999999", linewidth=1, linestyle="--", label="_nolegend_")
+ax.plot(months, target, color="#8c8c8c", linewidth=1, linestyle="--", label="_nolegend_")
 ax.plot(months, revenue, color=TUFTE_COLORS["highlight"], linewidth=2)
 
 # Range-frame
@@ -211,7 +211,7 @@ tufte_axes(ax, months, revenue + target)
 
 # Direct labels (not legend)
 direct_label(ax, months, revenue, "Revenue", color=TUFTE_COLORS["highlight"])
-direct_label(ax, months, target, "Target", color="#999999")
+direct_label(ax, months, target, "Target", color="#767676")
 
 # Annotate the peak
 peak_idx = revenue.index(max(revenue))

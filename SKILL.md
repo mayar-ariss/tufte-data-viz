@@ -153,7 +153,7 @@ The universal rules above are sufficient for most charts. For complete code exam
 |---|---|
 | **Line** | 1.5–2px stroke, `dot={false}` unless <7 points (then r=2), direct label at rightmost point |
 | **Bar** | Prefer horizontal for categories, sort by value descending, direct value labels, `#7a7a7a` default fill |
-| **Scatter** | Gray dots `#999` r=3, highlight key cluster/outlier with accent, regression line if meaningful (dashed, thin) |
+| **Scatter** | Gray dots `#8c8c8c` r=3, highlight key cluster/outlier with accent, regression line if meaningful (dashed, thin) |
 | **Time series** | Label events on chart ("Recession", "Launch"), range-frame x-axis, YoY via opacity (current solid, prior 30%) |
 | **Small multiples** | Same scale ALL panels, shared axis labels (x on bottom row, y on left column), no panel borders |
 | **Sparklines** | ~80x20px, no axes/labels/gridlines, min/max dots r=1.5, embed inline in text or table cells |
@@ -174,12 +174,15 @@ For small multiples, sparklines, and slopegraph implementation patterns, see `ru
 | Background | `#fffff8` | `#151515` |
 | Text | `#111` | `#ddd` |
 | Text secondary | `#666` | `#999` |
+| Text tertiary (ticks, source) | `#767676` | `#808080` |
 | Axis/rule | `#ccc` | `#444` |
 | Grid (if used) | `#eee` (8-12% opacity) | `#333` |
 | Default series | `#666` | `#999` |
 | Highlight | `#e41a1c` | `#fc8d62` |
 
-**Categorical (max 4):** `#4e79a7` steel blue · `#f28e2b` tangerine · `#e15759` coral · `#76b7b2` sage
+**Categorical (max 4):** `#4e79a7` steel blue · `#db730d` tangerine · `#e15759` coral · `#539e73` sage
+
+**Categorical, dark mode:** `#6a9fd8` · `#f2a860` · `#e87a7c` · `#8accc7`
 
 Font stacks in rule 10. For full palettes (sequential, diverging), font loading, and old-style figures, see `rules/typography-and-color.md`.
 

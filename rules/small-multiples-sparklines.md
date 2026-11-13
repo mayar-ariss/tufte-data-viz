@@ -46,13 +46,13 @@ const sharedDomain = [globalMin, globalMax]; // Compute from all data
             dataKey="x"
             tickLine={false}
             axisLine={i >= categories.length - 2 ? { stroke: '#ccc', strokeWidth: 0.5 } : false}
-            tick={i >= categories.length - 2 ? { fontSize: 10, fill: '#999' } : false}
+            tick={i >= categories.length - 2 ? { fontSize: 10, fill: '#767676' } : false}
           />
           <YAxis
             domain={sharedDomain}
             tickLine={false}
             axisLine={false}
-            tick={i % 2 === 0 ? { fontSize: 10, fill: '#999' } : false}
+            tick={i % 2 === 0 ? { fontSize: 10, fill: '#767676' } : false}
             width={i % 2 === 0 ? 35 : 5}
           />
           <Line dataKey="value" stroke="#666" strokeWidth={1.5} dot={false} />
@@ -110,7 +110,7 @@ const option = {
     data: xLabels,
     axisLine: { lineStyle: { color: '#ccc', width: 0.5 } },
     axisTick: { show: false },
-    axisLabel: { show: Math.floor(i / 2) === 1, fontSize: 10, color: '#999' },
+    axisLabel: { show: Math.floor(i / 2) === 1, fontSize: 10, color: '#767676' },
     splitLine: { show: false },
   })),
   yAxis: categories.map((_, i) => ({
@@ -120,7 +120,7 @@ const option = {
     max: globalMax,
     axisLine: { show: false },
     axisTick: { show: false },
-    axisLabel: { show: i % 2 === 0, fontSize: 10, color: '#999' },
+    axisLabel: { show: i % 2 === 0, fontSize: 10, color: '#767676' },
     splitLine: { show: false },
   })),
   series: categories.map((cat, i) => ({
@@ -248,7 +248,7 @@ function slopegraph(data, { width = 400, height = 500, margin = 40 } = {}) {
     .text('2025').attr('text-anchor', 'start').attr('fill', '#666').attr('font-size', 12);
 
   data.forEach(d => {
-    const color = d.highlight ? '#e41a1c' : '#999';
+    const color = d.highlight ? '#e41a1c' : '#767676';
 
     // Slope line
     svg.append('line')

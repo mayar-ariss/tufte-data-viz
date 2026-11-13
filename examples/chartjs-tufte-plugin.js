@@ -11,11 +11,11 @@ export const TUFTE = {
   bg: '#fffff8',
   text: '#111',
   textSecondary: '#666',
-  textTertiary: '#999',
+  textTertiary: '#767676',
   axis: '#ccc',
   seriesDefault: '#666',
   highlight: '#e41a1c',
-  categorical: ['#4e79a7', '#f28e2b', '#e15759', '#76b7b2'],
+  categorical: ['#4e79a7', '#db730d', '#e15759', '#539e73'],
   font: '"ET Book", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif',
   fontSans: 'system-ui, -apple-system, sans-serif',
 };
