@@ -1,19 +1,8 @@
 # tufte-data-viz
 
-An agent skill that applies [Edward Tufte's](https://www.edwardtufte.com/) data visualization principles when generating charts, plots, and graphs. Produces clean, honest, high-data-ink-ratio visualizations across multiple charting libraries — extended with modern screen-first standards for accessibility, responsiveness, and interactivity.
+An agent skill that applies [Edward Tufte's](https://www.edwardtufte.com/) data visualization principles when generating charts, plots, and graphs. Produces clean, honest, high-data-ink-ratio visualizations across six charting libraries — extended with modern screen-first standards for accessibility, responsiveness, and interactivity.
 
-> **About this fork.** This is an enhanced fork of [caylent/tufte-data-viz](https://github.com/caylent/tufte-data-viz), maintained by [@mayar-ariss](https://github.com/mayar-ariss). All credit for the original skill goes to its authors. The improvements are being offered back upstream ([PR #1](https://github.com/caylent/tufte-data-viz/pull/1), [issue #2](https://github.com/caylent/tufte-data-viz/issues/2)). What's different here:
->
-> - **Bug fixes:** Chart.js elements no longer render invisible, sparkline examples are no longer upside down, deprecated ECharts options are replaced, and broken seaborn and Recharts snippets are fixed.
-> - **Accessible palette:** every text and data color now meets the skill's own contrast rule (4.5:1 text, 3:1 data), with a dark-mode categorical palette and a checker script (`scripts/check_contrast.py`).
-> - **Accessibility and motion in every library guide:** text alternatives and no load-in animation by default, so charts follow rules 16 and 18 out of the box.
-> - **Titles that state the finding** in every example (rule 20), plus a few accuracy corrections.
->
-> The before/after images and the live demo below still show the original palette.
-
-## Fair warning
-
-This skill is **opinionated by design**. It will remove your gridlines, delete your legends, reject your pie charts, and insist on serif fonts. It enforces a specific visual philosophy — Tufte's — not a neutral one. If you want total creative freedom over your chart styling, this is not the skill for you. If you want every chart to come out clean, honest, and readable without thinking about it, read on.
+![The same data twice: a default chart with gridlines, a legend and markers on every point, and the Tufte version with direct labels and no chartjunk](_docs/before-after.png)
 
 ## Install
 
@@ -21,71 +10,74 @@ This skill is **opinionated by design**. It will remove your gridlines, delete y
 npx skills add mayar-ariss/tufte-data-viz
 ```
 
-This installs the enhanced version from this fork. The original is still available with `npx skills add caylent/tufte-data-viz`.
+Works with any agent the [skills CLI](https://skills.sh) supports, including Claude Code, Cursor, Codex, GitHub Copilot and Gemini CLI. The original version is available with `npx skills add caylent/tufte-data-viz`.
 
-## Before & After
+> **About this fork.** This is an enhanced fork of [caylent/tufte-data-viz](https://github.com/caylent/tufte-data-viz), maintained by [@mayar-ariss](https://github.com/mayar-ariss). All credit for the original skill goes to its authors. The improvements are being offered back upstream ([PR #1](https://github.com/caylent/tufte-data-viz/pull/1), [issue #2](https://github.com/caylent/tufte-data-viz/issues/2)). What's different here:
+>
+> - **Bug fixes:** Chart.js elements no longer render invisible, sparkline examples are no longer upside down, deprecated ECharts options are replaced, and broken seaborn and Recharts snippets are fixed.
+> - **Accessible palette:** every text and data color now meets the skill's own contrast rule (4.5:1 text, 3:1 data), with a dark-mode categorical palette and a checker script (`scripts/check_contrast.py`).
+> - **Accessibility and motion in every library guide:** text alternatives and no load-in animation by default, so charts follow rules 16 and 18 out of the box.
+> - **Titles that state the finding** in every example (rule 20), plus a few accuracy corrections.
+> - **Showcase figures regenerated** with the new palette; three figure titles that contradicted their own data are corrected.
 
-The same data, default styling vs. Tufte principles applied:
+## Try it
 
-![Before and after comparison — default chart style vs. Tufte style](https://raw.githubusercontent.com/caylent/tufte-data-viz/main/_docs/before-after.png)
+Once installed, ask your agent for a chart the way you normally would. The skill applies itself:
 
-See it happen live — gridlines fade, legends become direct labels, chartjunk dissolves:
+- *"Plot monthly revenue against target from sales.csv with matplotlib."*
+- *"Build a Recharts bar chart of signups by channel, sorted."*
+- *"Review this ECharts config and remove the chartjunk."*
+- *"Make a dark-mode version of this Plotly dashboard."*
 
-![Animated transition from default chart styling to Tufte principles](https://raw.githubusercontent.com/caylent/tufte-data-viz/main/_docs/before-after-animated.gif)
+## Fair warning
 
-## Interactive Demo
-
-**[Try the live demo](https://caylent.github.io/tufte-data-viz/)** — toggle between default and Tufte styling across ECharts, Chart.js, Plotly, and D3.js. Includes dark mode.
+This skill is **opinionated by design**. It will remove your gridlines, delete your legends, reject your pie charts, and insist on serif fonts. It enforces a specific visual philosophy — Tufte's — not a neutral one. If you want total creative freedom over your chart styling, this is not the skill for you. If you want every chart to come out clean, honest, and readable without thinking about it, read on.
 
 ## Examples
 
-### Line chart — direct labels, range-frame axes, annotation
+<table>
+  <tr>
+    <td width="50%"><img src="_docs/tufte-line-chart.png" alt="Line chart: revenue beat target every month, with direct labels and a range-frame axis"><br><b>Line chart</b> — direct labels, range-frame axes, annotation</td>
+    <td width="50%"><img src="_docs/tufte-bar-chart.png" alt="Horizontal bar chart sorted by value, with the leading product highlighted in red"><br><b>Bar chart</b> — sorted by value, leader highlighted</td>
+  </tr>
+  <tr>
+    <td><img src="_docs/tufte-slopegraph.png" alt="Slopegraph of team share from 2024 to 2025, with Engineering's growth highlighted"><br><b>Slopegraph</b> — before/after comparison</td>
+    <td><img src="_docs/small-multiples.png" alt="Four small panels of revenue by region on one shared scale"><br><b>Small multiples</b> — shared scale, minimal chrome</td>
+  </tr>
+  <tr>
+    <td><img src="_docs/tufte-sparklines.png" alt="Five word-sized sparklines with minimum and maximum marked"><br><b>Sparklines</b> — word-sized, min/max marked</td>
+    <td><img src="_docs/tufte-data-table.png" alt="Data table with thin rules, right-aligned numbers and the fastest-growing region highlighted"><br><b>Data table</b> — whitespace, thin rules, outlier highlighted</td>
+  </tr>
+  <tr>
+    <td><img src="_docs/tufte-dark-mode.png" alt="Dark-mode line chart with a desaturated orange highlight"><br><b>Dark mode</b> — designed palette, not inverted</td>
+    <td><img src="_docs/tufte-accessible-scatter.png" alt="Scatter plot where each segment has its own shape as well as its own color"><br><b>Accessible scatter</b> — shape + color, readable without color</td>
+  </tr>
+</table>
 
-![Tufte-styled line chart showing revenue vs. target with direct labels and peak annotation](https://raw.githubusercontent.com/caylent/tufte-data-viz/main/_docs/tufte-line-chart.png)
+<img src="_docs/tufte-light-dark.png" alt="The same bar chart in light and dark mode side by side"><br>
+<b>Light & dark</b> — the same chart in both themes
 
-### Horizontal bar chart — sorted by value, highlighted leader
+### See it in motion
 
-![Tufte-styled horizontal bar chart with direct value labels and highlighted top product](https://raw.githubusercontent.com/caylent/tufte-data-viz/main/_docs/tufte-bar-chart.png)
+Gridlines fade, legends become direct labels, chartjunk dissolves:
 
-### Slopegraph — before/after comparison
+<img src="_docs/before-after-animated.gif" width="640" alt="Animated transition from default chart styling to Tufte principles">
 
-![Slopegraph showing team size changes from 2024 to 2025, highlighting Engineering growth](https://raw.githubusercontent.com/caylent/tufte-data-viz/main/_docs/tufte-slopegraph.png)
-
-### Small multiples — shared scale, minimal chrome
-
-![Small multiples showing revenue trend by region with shared y-axis](https://raw.githubusercontent.com/caylent/tufte-data-viz/main/_docs/small-multiples.png)
-
-### Sparklines — word-sized charts with min/max markers
-
-![Five sparklines showing key metrics over 24 months with min and max markers](https://raw.githubusercontent.com/caylent/tufte-data-viz/main/_docs/tufte-sparklines.png)
-
-### Data table — whitespace, thin rules, highlighted outlier
-
-![Tufte-styled data table with thin rules, right-aligned numbers, and highlighted growth leader](https://raw.githubusercontent.com/caylent/tufte-data-viz/main/_docs/tufte-data-table.png)
-
-### Dark mode — intentional palette, not inverted
-
-![Dark mode line chart with desaturated highlight color on dark background](https://raw.githubusercontent.com/caylent/tufte-data-viz/main/_docs/tufte-dark-mode.png)
-
-### Accessible scatter — dual-encoded with shape + color
-
-![Scatter plot using different shapes per segment so data is distinguishable without color](https://raw.githubusercontent.com/caylent/tufte-data-viz/main/_docs/tufte-accessible-scatter.png)
-
-### Light & dark — same chart, both themes
-
-![Side-by-side bar chart in light and dark mode showing intentional palette design](https://raw.githubusercontent.com/caylent/tufte-data-viz/main/_docs/tufte-light-dark.png)
+**[Try the live demo](https://caylent.github.io/tufte-data-viz/)** — toggle between default and Tufte styling across ECharts, Chart.js, Plotly, and D3.js, in light and dark mode. (Hosted by Caylent; it shows the original palette.)
 
 ## What it does
 
 22 universal rules applied to every chart, organized in three tiers:
 
 **Static principles (rules 1–14)** — the Tufte foundation:
+
 - Maximize data-ink ratio — remove gridlines, borders, legends, and decoration that don't convey data
 - Direct labeling, range-frame axes, no 3D, no pie charts (unless forced), no dual y-axes
 - Serif typography, off-white backgrounds, gray as primary color with selective highlighting
 - Annotate notable features, show comparison context, minimal tooltips
 
 **Screen-first principles (rules 15–19)** — modern interactive contexts:
+
 - Progressive disclosure (overview first, details on hover/tap/click)
 - WCAG accessibility (contrast ratios, dual encoding, keyboard nav, screen reader text alternatives)
 - Responsive design (fluid/adaptive strategies, touch targets, mobile-adapted chart types)
@@ -93,6 +85,7 @@ See it happen live — gridlines fade, legends become direct labels, chartjunk d
 - Intentional dark mode (semantic color tokens, never invert, reduce saturation)
 
 **Content & formatting (rules 20–22)** — what Tufte assumed but never codified:
+
 - Titles assert findings ("Revenue Surged 23%"), not axis descriptions
 - Numbers formatted for humans ($1.2M, thousand separators, matched precision)
 - Don't chart what a sentence or table can say better
@@ -104,17 +97,31 @@ See it happen live — gridlines fade, legends become direct labels, chartjunk d
 | [Recharts](https://recharts.org/) | `rules/recharts.md` | React/JSX |
 | [ECharts](https://echarts.apache.org/) | `rules/echarts.md` | JavaScript |
 | [Chart.js](https://www.chartjs.org/) | `rules/chartjs.md` | JavaScript |
-| [matplotlib](https://matplotlib.org/) | `rules/matplotlib.md` | Python |
+| [matplotlib](https://matplotlib.org/) (and seaborn) | `rules/matplotlib.md` | Python |
 | [Plotly](https://plotly.com/) | `rules/plotly.md` | Python/JS |
 | D3.js / SVG / HTML | `rules/svg-html.md` | Web |
 
-## Additional references
+## How it's organized
 
-- `rules/interactive-and-accessible.md` — progressive disclosure, accessibility, responsive, animation, dark mode
-- `rules/typography-and-color.md` — font stacks, palettes, hex values
-- `rules/anti-patterns.md` — common violations and one-liner fixes
-- `rules/small-multiples-sparklines.md` — small multiples, sparklines, slopegraphs
-- `scripts/check_contrast.py` — checks the documented palette against the contrast minimums (run `python3 scripts/check_contrast.py`)
+| Path | What it holds |
+|------|---------------|
+| `SKILL.md` | The 22 rules, chart-type guidance, color tokens and a validation checklist. The agent always reads this. |
+| `rules/<library>.md` | Full configuration and complete examples for one library. The agent reads only the one it needs. |
+| `rules/interactive-and-accessible.md` | Progressive disclosure, accessibility, responsive layout, animation, dark mode |
+| `rules/typography-and-color.md` | Font stacks, palettes and hex values; the source of truth for colors |
+| `rules/anti-patterns.md` | Common violations, per-library detection patterns and one-line fixes |
+| `rules/small-multiples-sparklines.md` | Small multiples, sparklines, slopegraphs, rug plots |
+| `examples/` | Runnable reference implementations, one per library |
+| `scripts/check_contrast.py` | Checks the documented palette against the contrast minimums |
+| `_docs/` | Showcase figures and the script that generates them |
+
+## Contributing
+
+Issues and pull requests are welcome. Before opening a PR:
+
+- **Changed a color?** Update `rules/typography-and-color.md`, then run `python3 scripts/check_contrast.py`. It exits non-zero if any text or data color misses its minimum.
+- **Changed the showcase figures?** Run `python3 _docs/generate_showcase.py` to regenerate every image in `_docs/`.
+- **Changed a chart title?** Check it against the data. Rule 20 asks titles to state the finding, so a title that misstates the data is a bug.
 
 ## Based on
 
