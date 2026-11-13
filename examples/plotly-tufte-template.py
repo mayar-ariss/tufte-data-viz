@@ -32,7 +32,7 @@ tufte_template = go.layout.Template(
             showline=True,
             linewidth=0.5,
             linecolor="#ccc",
-            tickfont=dict(family="system-ui, sans-serif", size=11, color="#767676"),
+            tickfont=dict(family='"Palatino Linotype", Palatino, Georgia, serif', size=11, color="#767676"),
             ticks="inside",
             ticklen=3,
             tickwidth=0.5,
@@ -41,7 +41,7 @@ tufte_template = go.layout.Template(
             showgrid=False,
             zeroline=False,
             showline=False,
-            tickfont=dict(family="system-ui, sans-serif", size=11, color="#767676"),
+            tickfont=dict(family='"Palatino Linotype", Palatino, Georgia, serif', size=11, color="#767676"),
             ticks="inside",
             ticklen=3,
             tickwidth=0.5,
@@ -50,7 +50,7 @@ tufte_template = go.layout.Template(
         hoverlabel=dict(
             bgcolor="rgba(255,255,248,0.9)",
             bordercolor="rgba(0,0,0,0)",
-            font=dict(family="system-ui, sans-serif", size=12, color="#333"),
+            font=dict(family='"Palatino Linotype", Palatino, Georgia, serif', size=12, color="#333"),
         ),
     )
 )

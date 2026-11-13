@@ -47,7 +47,7 @@ This skill is **opinionated by design**. It will remove your gridlines, delete y
     <td><img src="_docs/small-multiples.png" alt="Four small panels of revenue by region on one shared scale"><br><b>Small multiples</b> — shared scale, minimal chrome</td>
   </tr>
   <tr>
-    <td><img src="_docs/tufte-sparklines.png" alt="Five word-sized sparklines with minimum and maximum marked"><br><b>Sparklines</b> — word-sized, Tufte's red first/last and blue low/high marks</td>
+    <td><img src="_docs/tufte-sparklines.png" alt="Five sparklines with their beginning and ending values beside them; first and last points in red, low and high in blue"><br><b>Sparklines</b> — with beginning and ending values, Tufte's red first/last and blue low/high marks</td>
     <td><img src="_docs/tufte-data-table.png" alt="Data table with thin rules, right-aligned numbers and the fastest-growing region highlighted"><br><b>Data table</b> — whitespace, thin rules, outlier highlighted</td>
   </tr>
   <tr>
@@ -82,16 +82,20 @@ Every rule names its source: **Tufte** (cited by book and chapter), **convention
 - Proportional representation (the lie factor), clear labeling, data variation rather than design variation
 - Deflated units for money over time, no more dimensions than the data has, no data out of context
 
+**Data-ink** — Tufte's five data-ink principles ("within reason"), his three forms of chartjunk (moiré vibration, dark grids, the duck), and what he asks for beyond erasing: data density, multifunctioning elements, micro/macro readings.
+
+**Analytical design** — the six principles of *Beautiful Evidence* ch. 5, including documentation: every chart states its source and units.
+
 Then 22 universal rules, in three tiers:
 
 **Static principles (rules 1–14)** — mostly Tufte's data-ink principles, with a few conventions labeled as such:
 
 - Maximize data-ink ratio — remove gridlines, borders, legends, and decoration that don't convey data
 - Direct labeling, range-frame axes, no 3D, no pie charts (unless forced), no dual y-axes
-- Serif typography, off-white backgrounds, gray as primary color with selective highlighting
+- Serif type in upper-and-lower case with words spelled out (Tufte's friendly data graphic), gray as primary color with selective highlighting, off-white backgrounds (a convention)
 - Annotate notable features, show comparison context, minimal tooltips
 
-**Screen-first principles (rules 15–19)** — extensions for modern interactive contexts:
+**Screen-first principles (rules 15–19)** — extensions for modern interactive contexts. Where one pulls against Tufte (progressive disclosure vs. his data density), the rule says so:
 
 - Progressive disclosure (overview first, details on hover/tap/click)
 - WCAG accessibility (contrast ratios, dual encoding, keyboard nav, screen reader text alternatives)
@@ -104,6 +108,8 @@ Then 22 universal rules, in three tiers:
 - Titles assert findings ("Revenue Surged 23%"), not axis descriptions
 - Numbers formatted for humans ($1.2M, thousand separators, matched precision)
 - Don't chart what a sentence or table can say better (Tufte: a sentence is poor for more than two numbers; tables suit many small data sets)
+
+**Chart types** — Tufte's own designs where he made one: sparklines with end values, normal-range band and banking to 45°, slopegraphs, the quartile plot and the dot-dash plot.
 
 **Flowcharts and diagrams** — guidance drawn only from Tufte: connectors that state their meaning (*Beautiful Evidence* ch. 3), type instead of boxes, layering and separation (*Envisioning Information* ch. 3), and the smallest effective difference (*Visual Explanations* ch. 4). Where Tufte gives no rule (shapes, swimlanes, layout direction), none is added. Includes Mermaid and Graphviz notes.
 

@@ -27,7 +27,6 @@ const TUFTE = {
   seriesDefault: '#666',
   highlight: '#e41a1c',
   font: '"ET Book", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif',
-  fontSans: 'system-ui, -apple-system, sans-serif',
 };
 
 const data = [
@@ -107,7 +106,7 @@ export function RevenueChart() {
               tick={{
                 fontSize: 12,
                 fill: TUFTE.textTertiary,
-                fontFamily: TUFTE.fontSans,
+                fontFamily: TUFTE.font,
               }}
             />
 
@@ -117,7 +116,7 @@ export function RevenueChart() {
               tick={{
                 fontSize: 12,
                 fill: TUFTE.textTertiary,
-                fontFamily: TUFTE.fontSans,
+                fontFamily: TUFTE.font,
               }}
               domain={['dataMin - 200', 'dataMax + 400']}
             />

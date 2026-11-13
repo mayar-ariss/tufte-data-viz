@@ -2,29 +2,33 @@
 
 ## Quick reference
 
-| Anti-pattern | Why it fails | Fix |
-|-------------|-------------|-----|
-| **Pie chart** | Low data density, and the numbers are not ordered along a visual dimension (Tufte, VDQI ch. 9). | Horizontal bar chart sorted by value descending, or a table. |
-| **3D effects** | Perspective distorts relative sizes. Back bars appear smaller than front bars of equal value. | Remove all 3D. Flat 2D only. |
-| **Dual y-axes** | Implies correlation between two series that may not exist. Scale manipulation can make any two lines appear correlated. | Two stacked charts sharing the same x-axis (small multiples). |
-| **Legend box** | Forces eyes to shuttle between the legend and the data, holding color-to-name mappings in memory. | Direct labels at the endpoint or on the data element itself. |
-| **Heavy gridlines** | Compete with data for visual attention. Create a "cage" that imprisons the data. | Remove entirely, or horizontal-only at opacity 0.08–0.12. |
-| **Rainbow palette** | No natural ordering. Creates false category boundaries. Inaccessible to 8% of males (colorblind). | Gray default + single accent, or 4-color muted palette. |
-| **Gauge/speedometer** | Uses enormous screen area for a single number. No trend, no context, no comparison. | Single large number + sparkline + comparison text. |
-| **Zebra-striped table** | Alternating row fills are non-data ink. | Whitespace + thin horizontal rules every 3–5 rows. |
-| **Gradient fills** | Add no information. Distract from data values. Make it harder to read precise heights. | Solid flat color (muted gray or accent). |
-| **Rotated axis labels** | 45° or 90° text is hard to read. Forces head-tilting. | Horizontal bar chart (flip axes), or abbreviate labels. |
-| **Truncated bar or area** | A bar's length or an area's size is proportional to its value only from zero; cutting it off raises the lie factor (Tufte, VDQI ch. 2). | Start bars and areas at zero. For lines in a time series, Tufte advises a baseline that shows the data rather than forcing zero. |
-| **Decorative borders** | Box around chart is pure chartjunk. Adds zero information. | Remove entirely. Let whitespace define the chart boundary. |
-| **Area chart with high opacity** | Filled areas at 50%+ opacity obscure overlapping series and add visual weight that distorts perception. | Use lines only, or area with opacity 0.03–0.08. |
-| **Exploded pie slices** | Pulling slices apart makes comparison even harder than standard pie. | Don't. Use a bar chart. |
-| **Data point markers on every point** | Large circles on 50+ data points create a confetti effect that obscures the trend. | `dot={false}` or markers only at notable points (min, max, endpoint). |
-| **Thick axis lines** | Heavy 2-3px axis lines draw attention away from the data. The 1+1=3 effect creates phantom visual weight. | 0.5–1px axis lines, or remove entirely if ticks provide orientation. |
-| **Hover-only information** | Touch and keyboard users can never access it. Violates WCAG. | Tap/click/focus fallback for all hover content. |
-| **Missing text alternative** | Screen readers announce nothing. The chart is invisible to blind users. | Add `aria-label` with key finding + data summary, or companion data table. |
-| **Color as sole differentiator** | 8% of males have color vision deficiency. Series become indistinguishable. | Add shape, dash pattern, or direct label as second channel. |
-| **Gratuitous entrance animation** | Chart "building" on load delays comprehension and is chartjunk in motion. | Remove, or gate behind `prefers-reduced-motion` check. |
-| **Fixed pixel width** | Chart overflows or becomes unreadable on mobile. | Use percentage/viewBox width or breakpoint-based layout. |
+| Anti-pattern | Why it fails | Fix | Source |
+|---|---|---|---|
+| **Pie chart** | Low data density, and the numbers are not ordered along a visual dimension (Tufte, VDQI ch. 9). | Horizontal bar chart sorted by value descending, or a table. | Tufte, VDQI ch. 9 |
+| **3D effects** | Perspective distorts relative sizes. Back bars appear smaller than front bars of equal value. | Remove all 3D. Flat 2D only. | Tufte, integrity principle 5, VDQI ch. 2 |
+| **Dual y-axes** | Implies correlation between two series that may not exist. Scale manipulation can make any two lines appear correlated. | Two stacked charts sharing the same x-axis (small multiples). | Convention |
+| **Legend box** | Forces eyes to shuttle between the legend and the data, holding color-to-name mappings in memory. | Direct labels at the endpoint or on the data element itself. | Tufte, VDQI ch. 9 (p. 183) |
+| **Heavy gridlines** | Compete with data for visual attention. Create a "cage" that imprisons the data. | Remove entirely, or horizontal-only at opacity 0.08–0.12. | Tufte, VDQI ch. 5 |
+| **Rainbow palette** | No natural ordering. Creates false category boundaries. Inaccessible to 8% of males (colorblind). | Gray default + single accent, or 4-color muted palette. | Convention |
+| **Gauge/speedometer** | Uses enormous screen area for a single number. No trend, no context, no comparison. | Single large number + sparkline + comparison text. | Convention |
+| **Zebra-striped table** | Alternating row fills are non-data ink. | Whitespace + thin horizontal rules every 3–5 rows. | Convention |
+| **Gradient fills** | Add no information. Distract from data values. Make it harder to read precise heights. | Solid flat color (muted gray or accent). | Convention |
+| **Rotated axis labels** | 45° or 90° text is hard to read. Forces head-tilting. | Horizontal bar chart (flip axes) so words run left to right and stay spelled out. | Tufte, VDQI ch. 9 (p. 183) |
+| **Truncated bar or area** | A bar's length or an area's size is proportional to its value only from zero; cutting it off raises the lie factor (Tufte, VDQI ch. 2). | Start bars and areas at zero. For lines in a time series, Tufte advises a baseline that shows the data rather than forcing zero. | Convention, from integrity principle 1 |
+| **Decorative borders** | A box around the chart is non-data-ink. Adds zero information. | Remove entirely. Let whitespace define the chart boundary. | Tufte, non-data-ink, VDQI ch. 4 |
+| **Area chart with high opacity** | Filled areas at 50%+ opacity obscure overlapping series and add visual weight that distorts perception. | Use lines only, or area with opacity 0.03–0.08. | Convention |
+| **Exploded pie slices** | Pulling slices apart makes comparison even harder than standard pie. | Don't. Use a bar chart. | Tufte, VDQI ch. 9 |
+| **Data point markers on every point** | Large circles on 50+ data points create a confetti effect that obscures the trend. | `dot={false}` or markers only at notable points (min, max, endpoint). | Convention |
+| **Thick axis lines** | Heavy 2-3px axis lines draw attention away from the data. The 1+1=3 effect creates phantom visual weight. | 0.5–1px axis lines, or remove entirely if ticks provide orientation. | Tufte, 1+1=3, EI ch. 3 |
+| **Hover-only information** | Touch and keyboard users can never access it. Violates WCAG. | Tap/click/focus fallback for all hover content. | Extension |
+| **Missing text alternative** | Screen readers announce nothing. The chart is invisible to blind users. | Add `aria-label` with key finding + data summary, or companion data table. | Extension |
+| **Color as sole differentiator** | 8% of males have color vision deficiency. Series become indistinguishable. | Add shape, dash pattern, or direct label as second channel. | Extension; Tufte on color-deficient readers, VDQI p. 183 |
+| **Gratuitous entrance animation** | Chart "building" on load delays comprehension and is chartjunk in motion. | Remove, or gate behind `prefers-reduced-motion` check. | Extension |
+| **Fixed pixel width** | Chart overflows or becomes unreadable on mobile. | Use percentage/viewBox width or breakpoint-based layout. | Extension |
+| **Hatching or pattern fills** | Dense patterns vibrate (moiré) and force readers back and forth to a legend. | Direct labels or value labels; gray steps if a fill must vary. | Tufte, chartjunk, VDQI ch. 5 |
+| **All-caps labels** | Tufte lists all-capitals, sans-serif type among the marks of an unfriendly graphic. | Upper-and-lower case serif type. | Tufte, VDQI ch. 9 (p. 183) |
+| **Alphabetical order** | Hides the ranking the reader came for. | Order by data value or by content. | Tufte, VDQI ch. 9 (p. 178) |
+| **No source line** | Readers can't check the evidence. | State source, units and author under the chart. | Tufte, documentation, BE ch. 5 |
 
 ## Per-library detection patterns
 
@@ -73,7 +77,7 @@ plt.pie(...)                        → plt.barh(...) sorted by value
 ax.legend()                         → ax.annotate() at each line endpoint
 ax.grid(True)                       → ax.grid(False) or ax.grid(axis='y', alpha=0.1)
 fig.patch.set_facecolor('white')    → fig.patch.set_facecolor('#fffff8')
-plt.xticks(rotation=45)            → Use plt.barh() or abbreviate tick labels
+plt.xticks(rotation=45)            → Use plt.barh() so labels stay horizontal and spelled out
 ax.set_frame_on(True)              → Remove top/right spines + range-frame
 ```
 

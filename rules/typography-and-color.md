@@ -8,11 +8,11 @@ The values in this file (fonts, sizes, hex colors) are this skill's defaults (co
 |---------|------------|------|--------|---------------|--------------|
 | Chart title | ET Book, Palatino, Georgia, serif | 18–22px | 400 | #111 | #ddd |
 | Subtitle / caption | ET Book, Palatino, Georgia, serif | 14–16px | 400 | #666 | #999 |
-| Axis tick label | system-ui, -apple-system, sans-serif | 11–12px | 400 | #767676 | #808080 |
+| Axis tick label | ET Book, Palatino, Georgia, serif | 11–12px | 400 | #767676 | #808080 |
 | Data label (on chart) | ET Book, Palatino, Georgia, serif | 12–14px | 400 | #333 | #bbb |
 | Annotation | ET Book, Palatino, Georgia, serif | 12–13px | 400 italic | #333 | #bbb |
-| Tooltip text | system-ui, sans-serif | 12–13px | 400 | #333 | #ccc |
-| Source citation | system-ui, sans-serif | 10–11px | 400 | #767676 | #808080 |
+| Tooltip text | ET Book, Palatino, Georgia, serif | 12–13px | 400 | #333 | #ccc |
+| Source citation | ET Book, Palatino, Georgia, serif | 10–11px | 400 | #767676 | #808080 |
 
 **Key rule**: Data marks and labels should always be visually equal to or larger than axis tick labels. If axis ticks are 12px, data labels must be >= 12px. The data is the priority.
 
@@ -66,7 +66,6 @@ plt.rcParams["font.size"] = 12
 
 ```typescript
 const TUFTE_FONT = '"ET Book", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif';
-const TUFTE_FONT_SANS = 'system-ui, -apple-system, sans-serif';
 ```
 
 ## Old-style (hanging) figures
@@ -164,10 +163,13 @@ It reads the tables above and exits non-zero if any text or data color misses it
 
 ## Color rules
 
+Tufte names four uses of color in information design: to label (color as noun), to measure (color as quantity), to represent or imitate reality, and to enliven or decorate. His first principle for bringing color to information is "Above all, do no harm" (EI ch. 5). Give every color one of these jobs, and name which.
+
 1. **Gray is your primary color.** Default all data to gray. Only add color when it carries meaning. *(Tufte — muted fields, after Imhof, EI ch. 5)*
 2. **Maximum 4 categorical colors.** *(Convention)*
 3. **Ghosting**: De-emphasize secondary data by setting opacity to 0.2–0.3. The primary series stays at full opacity. *(Convention)*
-4. **No rainbow/spectral palettes.** They have no natural ordering, create false boundaries, and are inaccessible to colorblind readers. *(Convention)*
+4. **No rainbow/spectral palettes for quantities.** Hues have no natural order, so a spectrum creates false boundaries; use steps of one hue's lightness, which read in order. *(Convention; Tufte discusses color as quantity in EI ch. 5)*
 5. **Smallest effective difference.** If you need to distinguish two things, make the difference as small as will still read clearly. Dark gray vs. medium gray, not red vs. blue. *(Tufte — VE ch. 4)*
-6. **Grayscale test.** The chart should be fully readable when printed in grayscale. If two series become indistinguishable, add direct labels (which you should have anyway). *(Convention)*
+6. **Grayscale test.** The chart should be fully readable when printed in grayscale. If two series become indistinguishable, add direct labels (which you should have anyway), not hatching. *(Convention; hatching is chartjunk, Tufte, VDQI ch. 5)*
 7. **No loud colors over large areas.** Use muted tones for large areas; keep strong color for small areas of emphasis. *(Tufte — after Imhof, EI ch. 5)*
+8. **Readable by color-deficient viewers.** Choose colors that the 5–10% of viewers with color-vision deficiency can still tell apart; Tufte notes that most can distinguish blue from other colors. *(Tufte — friendly data graphic, VDQI ch. 9, p. 183)*

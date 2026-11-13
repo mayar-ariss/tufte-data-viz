@@ -295,18 +295,21 @@ tufte_axes(ax, x_data, y_data)
 
 ## Small multiples
 
+One metric, one design, one scale: `sharey=True` keeps every panel on the same y-axis so the panels can be compared (see `rules/small-multiples-sparklines.md`). Plot different metrics as separate charts, not as panels of one set.
+
 ```python
-fig, axes = plt.subplots(1, 3, figsize=(15, 4), sharey=False)
+fig, axes = plt.subplots(1, 3, figsize=(15, 4), sharey=True)
 
-metrics = {"Revenue": revenue_data, "Users": user_data, "Conversion": conv_data}
+regions = {"North": north_revenue, "South": south_revenue, "West": west_revenue}
 
-for ax, (name, data) in zip(axes, metrics.items()):
+for ax, (name, data) in zip(axes, regions.items()):
     ax.plot(data, color=TUFTE_COLORS["series_default"], linewidth=1.5)
-    ax.set_title(name, fontsize=14, fontfamily="serif", fontweight="normal")
+    ax.set_title(name, fontsize=14, fontfamily="serif", fontweight="normal", loc="left")
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     ax.tick_params(labelsize=10)
 
+axes[0].set_ylabel("Revenue ($k)")
 plt.tight_layout()
 plt.show()
 ```

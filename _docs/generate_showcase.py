@@ -488,6 +488,7 @@ fig, axes = plt.subplots(len(metrics), 1, figsize=(8, 4.5))
 
 for i, (name, data) in enumerate(metrics.items()):
     ax = axes[i]
+    ax.set_facecolor("#fffff8")
     ax.plot(data, color=C["gray"], linewidth=1)
 
     # Tufte's convention (Beautiful Evidence, pp. 50-51): low and high in blue,
@@ -500,8 +501,12 @@ for i, (name, data) in enumerate(metrics.items()):
     ax.text(len(data) + 0.5, data[-1], f"{data[-1]:.1f}",
             fontsize=10, color=C["text2"], va="center", fontfamily="serif")
 
+    # Beginning value (Tufte pairs a sparkline with its beginning and ending numbers)
+    ax.text(-0.8, data[0], f"{data[0]:.1f}",
+            fontsize=10, color=C["text2"], va="center", ha="right", fontfamily="serif")
+
     # Metric name
-    ax.text(-1, data[len(data)//2], name, ha="right", va="center",
+    ax.text(-5.5, data[len(data)//2], name, ha="right", va="center",
             fontsize=12, color=C["text"], fontfamily="serif")
 
     # Strip everything
@@ -518,12 +523,12 @@ for i, (name, data) in enumerate(metrics.items()):
 
 fig.text(0.5, 1.0, "Key Metrics, Last 24 Months",
          fontsize=16, fontfamily="serif", color=C["text"], ha="center", va="top")
-fig.text(0.5, 0.94, "Red = first and last values, blue = low and high",
+fig.text(0.5, 0.94, "Beginning and ending values beside each line; red = first and last, blue = low and high",
          fontsize=11, fontfamily="serif", color=C["text2"], ha="center", va="top")
 
 fig.patch.set_facecolor("#fffff8")
 plt.tight_layout()
-plt.subplots_adjust(top=0.85, left=0.18, right=0.92, hspace=0.4)
+plt.subplots_adjust(top=0.85, left=0.26, right=0.92, hspace=0.4)
 plt.savefig(OUT_DIR / "tufte-sparklines.png")
 plt.close()
 

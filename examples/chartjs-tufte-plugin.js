@@ -17,7 +17,6 @@ export const TUFTE = {
   highlight: '#e41a1c',
   categorical: ['#4e79a7', '#db730d', '#e15759', '#539e73'],
   font: '"ET Book", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif',
-  fontSans: 'system-ui, -apple-system, sans-serif',
 };
 
 /**
@@ -64,7 +63,7 @@ export function applyTufteDefaults(Chart) {
   Chart.defaults.plugins.tooltip.boxPadding = 0;
   Chart.defaults.plugins.tooltip.displayColors = false;
   Chart.defaults.plugins.tooltip.titleFont = {
-    family: TUFTE.fontSans,
+    family: TUFTE.font,
     size: 11,
   };
   Chart.defaults.plugins.tooltip.bodyFont = {
@@ -146,7 +145,7 @@ export function createTufteLineChart(ctx) {
           border: { display: true, color: TUFTE.axis, width: 0.5 },
           ticks: {
             color: TUFTE.textTertiary,
-            font: { family: TUFTE.fontSans, size: 11 },
+            font: { family: TUFTE.font, size: 11 },
           },
         },
         y: {
@@ -154,7 +153,7 @@ export function createTufteLineChart(ctx) {
           border: { display: false },
           ticks: {
             color: TUFTE.textTertiary,
-            font: { family: TUFTE.fontSans, size: 11 },
+            font: { family: TUFTE.font, size: 11 },
           },
         },
       },

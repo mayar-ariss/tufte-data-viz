@@ -50,7 +50,7 @@ const tufteTheme = {
     axisLabel: {
       color: '#767676',
       fontSize: 11,
-      fontFamily: 'system-ui, -apple-system, sans-serif',
+      fontFamily: '"Palatino Linotype", Palatino, Georgia, serif',
     },
     splitLine: { show: false },
   },
@@ -60,7 +60,7 @@ const tufteTheme = {
     axisLabel: {
       color: '#767676',
       fontSize: 11,
-      fontFamily: 'system-ui, -apple-system, sans-serif',
+      fontFamily: '"Palatino Linotype", Palatino, Georgia, serif',
     },
     splitLine: { show: false },
   },
@@ -71,7 +71,7 @@ const tufteTheme = {
     textStyle: {
       fontSize: 12,
       color: '#333',
-      fontFamily: 'system-ui, sans-serif',
+      fontFamily: '"Palatino Linotype", Palatino, Georgia, serif',
     },
     extraCssText: 'box-shadow: none;',
   },
@@ -115,14 +115,14 @@ const tufteBaseOption: echarts.EChartsOption = {
     type: 'category',
     axisLine: { lineStyle: { color: '#ccc', width: 0.5 } },
     axisTick: { show: false },
-    axisLabel: { color: '#767676', fontSize: 11, fontFamily: 'system-ui, sans-serif' },
+    axisLabel: { color: '#767676', fontSize: 11, fontFamily: '"Palatino Linotype", Palatino, Georgia, serif' },
     splitLine: { show: false },
   },
   yAxis: {
     type: 'value',
     axisLine: { show: false },
     axisTick: { show: false },
-    axisLabel: { color: '#767676', fontSize: 11, fontFamily: 'system-ui, sans-serif' },
+    axisLabel: { color: '#767676', fontSize: 11, fontFamily: '"Palatino Linotype", Palatino, Georgia, serif' },
     splitLine: { show: false },
   },
 };

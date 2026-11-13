@@ -12,7 +12,7 @@ Tufte describes small multiples as illustrations "of postage-stamp size" that re
 
 ### Rules
 
-1. **Same scale across ALL panels.** Never let each panel auto-scale. This is the most common mistake — it makes visual comparison impossible.
+1. **Same scale across ALL panels.** Never let each panel auto-scale; this follows from Tufte's constancy of design (EI ch. 4). This is the most common mistake — it makes visual comparison impossible.
 2. **Label each panel title, not each data element.** One title per panel is sufficient.
 3. **Shared axis labels.** X-axis labels only on the bottom row. Y-axis labels only on the leftmost column.
 4. **No panel borders.** Use whitespace to separate panels. If borders are needed, use 1px #eee.
@@ -140,15 +140,29 @@ Tufte calls sparklines "data-intense, design-simple, word-sized graphics" (*Beau
 
 ### Rules
 
-1. **No axes, no labels, no gridlines.** The sparkline shows shape only.
-2. **Mark the reference values** with small dots (r=1.5), following Tufte's convention (*Beautiful Evidence*, pp. 50–51): the first and last values in red (`#e41a1c`), the low and high in blue (`#4e79a7`).
-3. **Same height as surrounding text.** Typically 16–24px tall.
-4. **Embed inline** in text, table cells, or dashboards.
+From Tufte (*Beautiful Evidence*, ch. 2, pp. 46–63, and his "Sparkline theory and practice" notes on edwardtufte.com):
+
+1. **No axes and no gridlines**, but **numbers beside the line**: the beginning and ending values, with the latest value at the right.
+2. **Mark the reference values** with small dots: the first and last values in red (`#e41a1c`), the low and high in blue (`#4e79a7`) (*Beautiful Evidence*, pp. 50–51). Keep color modest.
+3. **Show the normal range** as a light gray band when the data has one, so departures read at a glance.
+4. **Bank to 45°.** Use the tallest height the line of text allows, then set the width so the slopes average about 45° (Tufte, after Cleveland): "lumpy", neither spiky nor flat.
+5. **Word-sized, with the resolution of typography**, embedded in text, table cells, headlines or dashboards.
+
+The dot radius (1.5) and the 16–24px height are this skill's defaults (convention).
 
 ### SVG sparkline (inline)
 
 ```javascript
-function sparklineSvg(data, { width = 80, height = 20, color = '#666' } = {}) {
+// Width for banking to 45°: the median absolute slope becomes 1 (Cleveland's method)
+function bankedWidth(data, height = 20) {
+  const range = Math.max(...data) - Math.min(...data) || 1;
+  const steps = data.slice(1).map((v, i) => Math.abs(v - data[i])).sort((a, b) => a - b);
+  const median = steps[Math.floor(steps.length / 2)] || range;
+  return Math.round((height * (data.length - 1) * median) / range);
+}
+
+// band: optional [low, high] normal range, drawn as a gray band
+function sparklineSvg(data, { width = 80, height = 20, color = '#666', band = null } = {}) {
   const min = Math.min(...data);
   const max = Math.max(...data);
   const range = max - min || 1;
@@ -162,7 +176,11 @@ function sparklineSvg(data, { width = 80, height = 20, color = '#666' } = {}) {
   const maxIdx = data.indexOf(max);
 
   // Tufte's convention (Beautiful Evidence, pp. 50–51): first and last values in red, low and high in blue
-  return `<svg viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" style="vertical-align:middle">
+  const bandRect = band
+    ? `<rect x="0" width="${width}" y="${y(band[1])}" height="${y(band[0]) - y(band[1])}" fill="#e5e5e5"/>`
+    : '';
+  return `<svg viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" style="vertical-align:middle" aria-hidden="true">
+    ${bandRect}
     <polyline points="${points}" fill="none" stroke="${color}" stroke-width="1"/>
     <circle cx="${x(minIdx)}" cy="${y(min)}" r="1.5" fill="#4e79a7"/>
     <circle cx="${x(maxIdx)}" cy="${y(max)}" r="1.5" fill="#4e79a7"/>
@@ -170,7 +188,12 @@ function sparklineSvg(data, { width = 80, height = 20, color = '#666' } = {}) {
     <circle cx="${x(n - 1)}" cy="${y(data[n - 1])}" r="1.5" fill="#e41a1c"/>
   </svg>`;
 }
+
+// In text: the first value, the sparkline, then the latest value
+// `${data[0]} ${sparklineSvg(data, { width: bankedWidth(data) })} ${data[data.length - 1]}`
 ```
+
+The band is clipped by the scale: if the normal range lies outside the data's range, compute the scale from both.
 
 ### Recharts sparkline component
 
@@ -214,6 +237,8 @@ def sparkline(ax, data, color='#666'):
 ```
 
 ## Slopegraphs
+
+*Source: Tufte, VDQI pp. 158–159, where he introduced the design as a "table-graphic"; he later named it the slopegraph.*
 
 Show change between two time points across multiple categories. Good for before/after or year-over-year comparisons.
 
@@ -271,7 +296,30 @@ function slopegraph(data, { width = 400, height = 500, margin = 40 } = {}) {
 }
 ```
 
+## Quartile plots
+
+*Source: Tufte, VDQI ch. 6 — his redesign of the box plot by erasing non-data-ink.*
+
+Drop the box. Draw lines from the minimum to the lower quartile and from the upper quartile to the maximum, leave the middle half as a gap, and mark the median with a dot.
+
+```python
+import numpy as np
+
+def quartile_plot(ax, groups, labels, color="#666666"):
+    """Tufte's quartile plot: no box; a gap for the middle half, a dot at the median."""
+    for i, values in enumerate(groups):
+        lo, q1, med, q3, hi = np.percentile(values, [0, 25, 50, 75, 100])
+        ax.vlines(i, lo, q1, color=color, linewidth=1)
+        ax.vlines(i, q3, hi, color=color, linewidth=1)
+        ax.plot(i, med, "o", color=color, markersize=3)
+    ax.set_xticks(range(len(groups)), labels)
+```
+
+Tufte's plot shows the five-number summary (minimum, quartiles, median, maximum), not Tukey's whiskers and outliers. Say which in the caption if readers expect Tukey's.
+
 ## Dot-dash plots (rug marks)
+
+*Source: Tufte, the dot-dash-plot, VDQI ch. 6.*
 
 Show marginal distributions along axes of a scatter plot.
 

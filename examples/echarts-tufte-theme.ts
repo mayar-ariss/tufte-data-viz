@@ -45,7 +45,7 @@ export const tufteTheme = {
     axisLabel: {
       color: '#767676',
       fontSize: 11,
-      fontFamily: 'system-ui, -apple-system, sans-serif',
+      fontFamily: '"Palatino Linotype", Palatino, Georgia, serif',
     },
     splitLine: { show: false },
   },
@@ -55,7 +55,7 @@ export const tufteTheme = {
     axisLabel: {
       color: '#767676',
       fontSize: 11,
-      fontFamily: 'system-ui, -apple-system, sans-serif',
+      fontFamily: '"Palatino Linotype", Palatino, Georgia, serif',
     },
     splitLine: { show: false },
   },
@@ -66,7 +66,7 @@ export const tufteTheme = {
     textStyle: {
       fontSize: 12,
       color: '#333',
-      fontFamily: 'system-ui, sans-serif',
+      fontFamily: '"Palatino Linotype", Palatino, Georgia, serif',
     },
     extraCssText: 'box-shadow: none;',
   },

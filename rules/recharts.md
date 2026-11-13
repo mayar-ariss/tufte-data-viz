@@ -18,7 +18,6 @@ const TUFTE = {
   highlight: '#e41a1c',
   categorical: ['#4e79a7', '#db730d', '#e15759', '#539e73'],
   font: '"ET Book", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif',
-  fontSans: 'system-ui, -apple-system, sans-serif',
 };
 ```
 
@@ -71,7 +70,7 @@ If gridlines are truly needed for reading precision:
   dataKey="name"
   tickLine={false}
   axisLine={{ stroke: TUFTE.axis, strokeWidth: 0.5 }}
-  tick={{ fontSize: 12, fill: TUFTE.textTertiary, fontFamily: TUFTE.fontSans }}
+  tick={{ fontSize: 12, fill: TUFTE.textTertiary, fontFamily: TUFTE.font }}
   dy={8}
 />
 ```
@@ -82,7 +81,7 @@ If gridlines are truly needed for reading precision:
 <YAxis
   tickLine={false}
   axisLine={false}
-  tick={{ fontSize: 12, fill: TUFTE.textTertiary, fontFamily: TUFTE.fontSans }}
+  tick={{ fontSize: 12, fill: TUFTE.textTertiary, fontFamily: TUFTE.font }}
   width={45}
   dx={-4}
 />
@@ -219,7 +218,7 @@ const RangeFrameTick = ({
       textAnchor={orientation === 'left' ? 'end' : 'middle'}
       fill={TUFTE.textTertiary}
       fontSize={12}
-      fontFamily={TUFTE.fontSans}
+      fontFamily={TUFTE.font}
     >
       {payload.value}
     </text>
@@ -267,12 +266,12 @@ export function RevenueChart() {
               dataKey="month"
               tickLine={false}
               axisLine={{ stroke: TUFTE.axis, strokeWidth: 0.5 }}
-              tick={{ fontSize: 12, fill: TUFTE.textTertiary, fontFamily: TUFTE.fontSans }}
+              tick={{ fontSize: 12, fill: TUFTE.textTertiary, fontFamily: TUFTE.font }}
             />
             <YAxis
               tickLine={false}
               axisLine={false}
-              tick={{ fontSize: 12, fill: TUFTE.textTertiary, fontFamily: TUFTE.fontSans }}
+              tick={{ fontSize: 12, fill: TUFTE.textTertiary, fontFamily: TUFTE.font }}
               domain={['dataMin - 200', 'dataMax + 200']}
             />
             <Tooltip content={<TufteTooltip />} />
@@ -352,27 +351,32 @@ export function ProductChart() {
 
 ## Small multiples pattern
 
+One metric across groups, on one shared scale (see `rules/small-multiples-sparklines.md`):
+
 ```tsx
-const metrics = ['revenue', 'users', 'conversion'];
+const regions = ['North', 'South', 'West'];   // data rows: { month, North, South, West }
+const values = data.flatMap((d) => regions.map((r) => d[r]));
+const sharedDomain = [Math.min(...values), Math.max(...values)];
 
 <div style={{
   display: 'grid',
-  gridTemplateColumns: `repeat(${metrics.length}, 1fr)`,
+  gridTemplateColumns: `repeat(${regions.length}, 1fr)`,
   gap: 16,
   background: TUFTE.bg,
   padding: 16,
 }}>
-  {metrics.map((metric) => (
-    <div key={metric}>
+  {regions.map((region, i) => (
+    <div key={region}>
       <h4 style={{ fontFamily: TUFTE.font, fontWeight: 400, fontSize: 14, color: TUFTE.text }}>
-        {metric}
+        {region}
       </h4>
       <ResponsiveContainer width="100%" height={200}>
-        <LineChart data={data}>
+        <LineChart data={data} syncId="regions">
           <CartesianGrid stroke="none" />
-          <XAxis dataKey="month" tickLine={false} axisLine={false} tick={{ fontSize: 10 }} />
-          <YAxis tickLine={false} axisLine={false} tick={{ fontSize: 10 }} width={35} />
-          <Line dataKey={metric} stroke={TUFTE.seriesDefault} strokeWidth={1.5} dot={false} isAnimationActive={false} />
+          <XAxis dataKey="month" tickLine={false} axisLine={false} tick={{ fontSize: 10, fontFamily: TUFTE.font }} />
+          <YAxis domain={sharedDomain} hide={i > 0} tickLine={false} axisLine={false}
+                 tick={{ fontSize: 10, fontFamily: TUFTE.font }} width={35} />
+          <Line dataKey={region} stroke={TUFTE.seriesDefault} strokeWidth={1.5} dot={false} isAnimationActive={false} />
         </LineChart>
       </ResponsiveContainer>
     </div>

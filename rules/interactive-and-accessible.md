@@ -35,7 +35,7 @@ Never rely on color alone:
 | Primary channel | Pair with |
 |---|---|
 | Line color | Dash pattern, stroke width, or direct label |
-| Bar fill | Pattern fill (hatching) or value label |
+| Bar fill | Value label or direct label (not hatching, which Tufte counts as chartjunk, VDQI ch. 5) |
 | Dot color | Shape (`circle`, `square`, `triangle`, `diamond`) |
 
 ### Keyboard navigation
@@ -78,7 +78,7 @@ For matplotlib/static output: use descriptive alt text on `<img>` or `![alt](pat
 
 - Horizontal bars replace columns (labels read naturally)
 - Reduce tick density (every 2nd/3rd, or first/last/midpoint only)
-- Abbreviate labels ("January" → "Jan", "$1,200,000" → "$1.2M")
+- Shorten number formats ("$1,200,000" → "$1.2M"); keep words spelled out (Tufte, VDQI ch. 9) and show fewer ticks or wrap labels instead of abbreviating them
 - Stack small multiples vertically with selector/swipe
 
 ### Touch targets

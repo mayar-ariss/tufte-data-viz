@@ -845,7 +845,7 @@ function renderECharts(tufte) {
         borderWidth: 0,
         padding: [4, 8],
         textStyle: {
-          fontFamily: FONT_SANS,
+          fontFamily: FONT_SERIF,
           fontSize: 12,
           color: cl.text2
         },
@@ -867,7 +867,7 @@ function renderECharts(tufte) {
         data: MONTHS,
         axisLine: { lineStyle: { color: cl.axis }, onZero: false },
         axisTick: { show: false },
-        axisLabel: { fontFamily: FONT_SANS, fontSize: 11, color: cl.text3, margin: 10 },
+        axisLabel: { fontFamily: FONT_SERIF, fontSize: 11, color: cl.text3, margin: 10 },
         splitLine: { show: false },
         boundaryGap: false
       },
@@ -878,7 +878,7 @@ function renderECharts(tufte) {
         axisLine: { show: true, lineStyle: { color: cl.axis } },
         axisTick: { show: false },
         axisLabel: {
-          fontFamily: FONT_SANS,
+          fontFamily: FONT_SERIF,
           fontSize: 11,
           color: cl.text3,
           formatter: '${value}K'
@@ -1027,8 +1027,8 @@ function renderChartJS(tufte) {
             titleColor: cl.text2,
             bodyColor: cl.text2,
             borderWidth: 0,
-            titleFont: { family: FONT_SANS, size: 12, weight: 'normal' },
-            bodyFont: { family: FONT_SANS, size: 12 },
+            titleFont: { family: FONT_SERIF, size: 12, weight: 'normal' },
+            bodyFont: { family: FONT_SERIF, size: 12 },
             displayColors: false,
             callbacks: {
               title: function(items) { return items[0].label; },
@@ -1174,21 +1174,21 @@ function renderPlotly(tufte) {
         { x: sc.x, y: sc.y + 30, text: 'SMB', showarrow: false, font: { size: 13, color: cl.text3, family: FONT_SERIF } }
       ],
       xaxis: {
-        title: { text: 'Deal Size ($K)', font: { size: 12, color: cl.text3, family: FONT_SANS } },
+        title: { text: 'Deal Size ($K)', font: { size: 12, color: cl.text3, family: FONT_SERIF } },
         showgrid: false,
         zeroline: false,
         linecolor: cl.axis,
         linewidth: 1,
-        tickfont: { size: 11, color: cl.text3, family: FONT_SANS },
+        tickfont: { size: 11, color: cl.text3, family: FONT_SERIF },
         range: [5, 130]
       },
       yaxis: {
-        title: { text: 'Annual Revenue ($K)', font: { size: 12, color: cl.text3, family: FONT_SANS } },
+        title: { text: 'Annual Revenue ($K)', font: { size: 12, color: cl.text3, family: FONT_SERIF } },
         showgrid: false,
         zeroline: false,
         linecolor: cl.axis,
         linewidth: 1,
-        tickfont: { size: 11, color: cl.text3, family: FONT_SANS },
+        tickfont: { size: 11, color: cl.text3, family: FONT_SERIF },
         range: [0, 950]
       },
       margin: { l: 65, r: 20, t: 20, b: 50 }
@@ -1374,7 +1374,7 @@ function renderD3(tufte) {
         .attr('text-anchor', 'end')
         .attr('dominant-baseline', 'middle')
         .attr('font-size', '9px')
-        .attr('font-family', FONT_SANS)
+        .attr('font-family', FONT_SERIF)
         .attr('fill', cl.text3)
         .text('$' + regionMin + 'K');
 
@@ -1383,7 +1383,7 @@ function renderD3(tufte) {
         .attr('text-anchor', 'end')
         .attr('dominant-baseline', 'middle')
         .attr('font-size', '9px')
-        .attr('font-family', FONT_SANS)
+        .attr('font-family', FONT_SERIF)
         .attr('fill', cl.text3)
         .text('$' + regionMax + 'K');
 
@@ -1392,7 +1392,7 @@ function renderD3(tufte) {
         .attr('x', xScale(0)).attr('y', h + 14)
         .attr('text-anchor', 'start')
         .attr('font-size', '9px')
-        .attr('font-family', FONT_SANS)
+        .attr('font-family', FONT_SERIF)
         .attr('fill', cl.text3)
         .text('Jan');
 
@@ -1400,7 +1400,7 @@ function renderD3(tufte) {
         .attr('x', xScale(11)).attr('y', h + 14)
         .attr('text-anchor', 'end')
         .attr('font-size', '9px')
-        .attr('font-family', FONT_SANS)
+        .attr('font-family', FONT_SERIF)
         .attr('fill', cl.text3)
         .text('Dec');
 

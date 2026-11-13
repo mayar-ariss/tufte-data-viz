@@ -29,7 +29,7 @@ Before writing code, determine:
 
 ### Step 2: Apply graphical integrity, then the universal rules
 
-Check the chart against Tufte's graphical integrity principles below, then apply the universal rules. Every universal rule is a default — deviate only when the user explicitly requests otherwise.
+Check the chart against Tufte's graphical integrity principles below, then his data-ink principles, then apply the universal rules. Every universal rule is a default — deviate only when the user explicitly requests otherwise.
 
 ### Step 3: Apply library-specific config
 
@@ -45,7 +45,7 @@ Run through the validation checklist at the bottom of this file before presentin
 
 Every rule below names its source, so Tufte's principles are never confused with this skill's own choices:
 
-- **Tufte** — stated in Tufte's books, cited by book and chapter: *VDQI* = *The Visual Display of Quantitative Information* (1983; 2nd ed. 2001), *EI* = *Envisioning Information* (1990), *VE* = *Visual Explanations* (1997), *BE* = *Beautiful Evidence* (2006).
+- **Tufte** — stated in Tufte's books, cited by book and chapter: *VDQI* = *The Visual Display of Quantitative Information* (1983; 2nd ed. 2001), *EI* = *Envisioning Information* (1990), *VE* = *Visual Explanations* (1997), *BE* = *Beautiful Evidence* (2006). Tufte's fifth book, *Seeing with Fresh Eyes* (2020), is not yet drawn on here.
 - **Convention** — common practice in Tufte-style work, but not stated by Tufte. Specific values (hex colors, sizes, opacities, counts) are always this skill's defaults.
 - **Extension** — added by this skill's authors for screens and content. Not from Tufte.
 
@@ -62,7 +62,45 @@ Every rule below names its source, so Tufte's principles are never confused with
 5. **Dimensions.** The number of information-carrying dimensions depicted should not exceed the number of dimensions in the data.
 6. **Context.** Graphics must not quote data out of context.
 
-Applying principle 1: a bar's length, or an area's size, is proportional to its value only when it starts at zero. Lines and dots encode by position, and for time series Tufte advises a baseline that shows the data rather than one that reaches for zero (Tufte, edwardtufte.com forum, "baseline for amount scale").
+**Baselines.** Tufte prescribes no zero baseline: *VDQI* "never recommends showing zero-points" (Tufte, edwardtufte.com forum, 2003, citing VDQI pp. 74–75, where context comes from showing more data rather than reaching down to zero). For time series he advises a baseline that shows the data (Tufte, edwardtufte.com forum, "baseline for amount scale"). *This skill's application of principle 1 (convention):* a bar's length, or an area's size, is proportional to its value only when it starts at zero, so bars and areas start at zero; lines and dots encode by position and take a baseline that shows the data.
+
+---
+
+## Data-ink
+
+*Source: Tufte, VDQI ch. 4 (data-ink), ch. 5 (chartjunk), ch. 1 (graphical excellence).*
+
+Tufte's five principles, in his order:
+
+1. **Above all else show the data.**
+2. **Maximize the data-ink ratio, within reason.** Data-ink is the non-erasable core of a graphic; the ratio is the share of a graphic's ink devoted to the non-redundant display of data.
+3. **Erase non-data-ink, within reason.**
+4. **Erase redundant data-ink.**
+5. **Revise and edit.**
+
+"Within reason" is his qualifier: the principles guide editing; they are not a quota. Rules 1–4 below apply them.
+
+**Chartjunk** (VDQI ch. 5) has three forms: unintentional optical art (moiré vibration from hatching and dense patterns), the dark grid, and the "duck" (a graphic whose decoration takes over the data). None belongs in a chart.
+
+**Beyond erasing**, Tufte asks for more data, not less:
+- **Data density** (VDQI ch. 8): maximize data density and the size of the data matrix, within reason. Many graphics can be shrunk well below their usual size (his shrink principle).
+- **Multifunctioning graphical elements** (VDQI ch. 7): let one element carry data and structure at once, such as labels that also mark the ends of the data range.
+- **Micro/macro readings** (EI ch. 2): a good display reads as an overall pattern and, on close inspection, as detail. "To clarify, add detail."
+
+Graphical excellence, in his words, gives the viewer the greatest number of ideas in the shortest time with the least ink in the smallest space (VDQI ch. 1).
+
+---
+
+## Analytical design
+
+*Source: Tufte, BE ch. 5, "The Fundamental Principles of Analytical Design".*
+
+1. **Show comparisons**, contrasts, differences (rule 13).
+2. **Show causality**, mechanism, explanation, systematic structure (annotations, rule 12; diagrams, `rules/diagrams-flowcharts.md`).
+3. **Show multivariate data** — more than one or two variables (small multiples, layering).
+4. **Integrate evidence** — words, numbers and images together (rule 2).
+5. **Document the evidence** — a detailed title, the authors and sponsors, the data sources, complete measurement scales, and the relevant issues. Give every chart a source line and state its units.
+6. **Content counts most of all** — no design rescues weak, irrelevant or untrustworthy data.
 
 ---
 
@@ -74,7 +112,7 @@ Rules 1–14 cover static principles; 15–19 extend them for screens; 20–22 a
 
 *Source: Tufte — erasing the frame around the data, VDQI ch. 6.*
 
-No chart should have top or right axis lines, borders, or spines. The bottom and left axes are sufficient. Top and right lines are pure chartjunk.
+No chart should have top or right axis lines, borders, or spines. The bottom and left axes are sufficient. Top and right lines are non-data-ink.
 
 ### 2. Direct labels, not legends
 
@@ -84,9 +122,9 @@ Label each data series directly — at the endpoint of a line, on or beside a ba
 
 ### 3. No gridlines by default
 
-*Source: Tufte — the grid as chartjunk, VDQI ch. 5. Tufte's own alternative is white grid lines drawn through the bars (VDQI ch. 6). The opacity values below are this skill's defaults (convention).*
+*Source: Tufte — dark grids are chartjunk; a grid should be muted or suppressed, VDQI ch. 5. His alternative for bars is white grid lines drawn through them (VDQI ch. 6). The opacity values and the horizontal-only default are this skill's (convention).*
 
-The default is zero gridlines. For static charts where users need to read precise values, add horizontal-only gridlines at very low opacity (0.08–0.12). For interactive charts, prefer a contextual crosshair on hover instead (see rule 15). Never add vertical gridlines.
+The default is zero gridlines. Where readers need to read values precisely, add a muted grid: horizontal-only at very low opacity (0.08–0.12) by default. A muted vertical grid is fine when it eases reading along x, as in the timetables Tufte shows approvingly. For interactive charts, a contextual crosshair on hover can stand in for a grid (see rule 15).
 
 ### 4. Range-frame axes
 
@@ -126,9 +164,9 @@ Light mode: `#fffff8`. Dark mode: `#151515`. Never use pure white (`#ffffff`) or
 
 ### 10. Serif fonts for data
 
-*Source: convention — after the typography of Tufte's books, set in Monotype Bembo (ET Book is its digital revival).*
+*Source: Tufte — the friendly data graphic sets type "upper-and-lower case, with serifs", with words spelled out and running left to right, VDQI ch. 9 (p. 183). The font stack is this skill's (convention), after Tufte's books, set in Monotype Bembo (ET Book is its digital revival).*
 
-Use serif fonts for data labels, annotations, and chart titles: `"ET Book", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif`. Sans-serif (system-ui, sans-serif) is acceptable only for small axis tick labels (11-12px).
+Use serif type for every label, annotation, tick and title: `"ET Book", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif`. Set it upper-and-lower case (no all-caps labels or headers), spell words out, and keep it horizontal.
 
 ### 11. No dual y-axes
 
@@ -156,21 +194,21 @@ Tooltips should be plain text with the data value and label. No colored backgrou
 
 ### 15. Progressive disclosure over static density
 
-*Source: extension.*
+*Source: extension. This rule pulls against Tufte, who asks for high data density (VDQI ch. 8) and for evidence shown adjacent in space, where it can be compared at a glance (Tufte, 2010 lecture, reported in *Eye* magazine). Apply it only on top of a static view that already carries the data and its comparisons.*
 
-Default to the Tufte-clean overview — high data-ink, minimal chrome. Layer details through hover, tap, and click (values, annotations, comparisons). Don't frontload everything onto a single static view. A contextual crosshair on hover replaces permanent gridlines.
+Default to the Tufte-clean overview — high data-ink, minimal chrome. Layer details through hover, tap, and click (values, annotations, comparisons). Disclosure adds detail; it never hides the comparison the chart exists to show. A contextual crosshair on hover replaces permanent gridlines.
 
 ### 16. Accessible by default
 
-*Source: extension (WCAG).*
+*Source: extension (WCAG), except that choosing colors color-deficient viewers can tell apart is Tufte's (friendly data graphic, VDQI ch. 9, p. 183).*
 
-3:1 contrast ratio minimum for chart elements against their background; 4.5:1 for text in charts. Never use color as the sole differentiator — pair with shape, pattern, or direct label. Provide a text alternative for every chart (`aria-label` with key finding, or companion data table). Interactive charts must be keyboard-navigable.
+3:1 contrast ratio minimum for chart elements against their background; 4.5:1 for text in charts. Never use color as the sole differentiator — pair it with shape, dash, or a direct label. Not hatching or pattern fills: Tufte counts them as chartjunk (moiré vibration, VDQI ch. 5). Provide a text alternative for every chart (`aria-label` with key finding, or companion data table). Interactive charts must be keyboard-navigable.
 
 ### 17. Responsive, not just resized
 
 *Source: extension.*
 
-Charts must have a responsive strategy — fluid (percentage width + viewBox), adaptive (breakpoint-based layout changes), or hybrid. At narrow viewports, change chart type or layout (horizontal bars for categories, reduced tick density, abbreviated labels), don't just shrink.
+Charts must have a responsive strategy — fluid (percentage width + viewBox), adaptive (breakpoint-based layout changes), or hybrid. At narrow viewports, change chart type or layout (horizontal bars for categories, fewer ticks, wrapped labels), don't just shrink. Keep words spelled out (VDQI ch. 9).
 
 ### 18. Animate to explain, not to decorate
 
@@ -229,13 +267,14 @@ These settings are this skill's defaults (convention), except where a cell names
 | Type | Key settings |
 |---|---|
 | **Line** | 1.5–2px stroke, `dot={false}` unless <7 points (then r=2), direct label at rightmost point |
-| **Bar** | Zero baseline (graphical integrity 1), prefer horizontal for categories, sort by value descending, direct value labels, `#7a7a7a` default fill |
+| **Bar** | Zero baseline (this skill's application of integrity principle 1), prefer horizontal for categories, sort by value, not alphabetically (Tufte, VDQI ch. 9, p. 178), direct value labels, `#7a7a7a` default fill |
 | **Scatter** | Gray dots `#8c8c8c` r=3, highlight key cluster/outlier with accent, regression line if meaningful (dashed, thin) |
 | **Time series** | Label events on chart ("Recession", "Launch"), range-frame x-axis, YoY via opacity (current solid, prior 30%) |
 | **Small multiples** | Same scale ALL panels, shared axis labels (x on bottom row, y on left column), no panel borders |
-| **Sparklines** | ~80x20px, no axes/labels/gridlines, embed inline in text or table cells. Tufte's marks: first and last values in red, low and high in blue (BE pp. 50–51); dots r=1.5 |
+| **Sparklines** | Word-sized, no axes or gridlines, embedded in text or table cells. Tufte (BE ch. 2): the beginning and ending values as numbers beside the line; red marks for first and last values, blue for low and high (BE pp. 50–51); a gray band for the normal range where one exists; aspect ratio chosen so slopes average about 45° (after Cleveland). Dots r=1.5 (convention) |
 | **Data tables** | No zebra striping, whitespace + thin rules every 3–5 rows, right-align numbers, `font-feature-settings: 'onum' 1` |
-| **Slopegraph** | Before/after categories, label both endpoints (value + name), gray default + highlight key slopes |
+| **Slopegraph** | Tufte's design (VDQI pp. 158–159, where he calls it a table-graphic). Before/after categories, label both endpoints (value + name), gray default + highlight key slopes |
+| **Box plot** | Tufte's quartile plot (VDQI ch. 6): drop the box; a dot for the median, a gap or offset for the middle half, lines out to the extremes |
 | **Area** | Prefer lines. If area: fillOpacity 0.03–0.08, no gradient, direct labels at endpoints |
 | **Stacked bar** | Avoid — use small multiples instead. If forced: sort by total, direct labels per segment, max 4 segments |
 | **Heatmap** | Sequential or diverging palette only, value labels in cells, companion data table for accessibility |
@@ -267,7 +306,7 @@ Font stacks in rule 10. For full palettes (sequential, diverging), font loading,
 
 ## Anti-pattern detection
 
-When reviewing existing chart code, check for: legends (→ direct labels), pie charts (→ horizontal bars), 3D effects (→ flat 2D), dual y-axes (→ small multiples), heavy gridlines (→ remove or 0.1 opacity), rainbow palettes (→ gray + accent), gauge widgets (→ number + sparkline), gradient fills (→ solid color), rotated labels (→ flip axes or abbreviate), pure white/black backgrounds (→ `#fffff8`/`#151515`), hover-only information (→ tap/focus fallback), missing text alternatives (→ `aria-label`), color-only encoding (→ add shape/pattern).
+When reviewing existing chart code, check for: legends (→ direct labels), pie charts (→ horizontal bars), 3D effects (→ flat 2D), dual y-axes (→ small multiples), heavy gridlines (→ remove or 0.1 opacity), rainbow palettes (→ gray + accent), gauge widgets (→ number + sparkline), gradient fills (→ solid color), rotated labels (→ horizontal text; flip axes), pure white/black backgrounds (→ `#fffff8`/`#151515`), hover-only information (→ tap/focus fallback), missing text alternatives (→ `aria-label`), color-only encoding (→ add shape, dash or direct label), hatching or pattern fills (→ direct labels), all-caps labels (→ upper-and-lower case), missing source line (→ add one).
 
 For the full table with per-library detection patterns and one-liner fixes, see `rules/anti-patterns.md`.
 
@@ -281,12 +320,14 @@ Before presenting any chart, verify:
 - [ ] Money over time is shown in deflated, standardized units, or the nominal units are stated
 - [ ] Information-carrying dimensions do not exceed the data's dimensions
 - [ ] The data is shown in context, not quoted out of it
+- [ ] Every remaining element shows data or is needed to read it (data-ink); no hatching, heavy grid or decoration (chartjunk)
+- [ ] Source and units are stated on or under the chart (documentation)
 - [ ] No top or right borders/spines
 - [ ] No Legend component — series labeled directly on the chart
-- [ ] Gridlines removed or horizontal-only at opacity <= 0.12
+- [ ] Gridlines removed, or muted (opacity <= 0.12)
 - [ ] Aspect ratio approximately 1.5:1
 - [ ] Background is `#fffff8` (light) or `#151515` (dark), not pure white/black
-- [ ] Serif font for data labels and titles
+- [ ] Serif type, upper-and-lower case, words spelled out and horizontal
 - [ ] Default series color is gray (`#666`); color used only for emphasis
 - [ ] No 3D effects, no pie chart (unless explicitly requested)
 - [ ] Axis lines span only the data range (range-frame)

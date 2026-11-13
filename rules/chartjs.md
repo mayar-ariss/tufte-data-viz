@@ -37,7 +37,7 @@ Chart.defaults.plugins.tooltip.cornerRadius = 2;
 Chart.defaults.plugins.tooltip.padding = 8;
 Chart.defaults.plugins.tooltip.boxPadding = 0;
 Chart.defaults.plugins.tooltip.displayColors = false;
-Chart.defaults.plugins.tooltip.titleFont = { family: 'system-ui, sans-serif', size: 11 };
+Chart.defaults.plugins.tooltip.titleFont = { family: '"Palatino Linotype", Palatino, Georgia, serif', size: 11 };
 Chart.defaults.plugins.tooltip.bodyFont = { family: '"Palatino Linotype", Georgia, serif', size: 13 };
 
 // Line defaults
@@ -114,7 +114,7 @@ scales: {
     border: { display: true, color: TUFTE.axis, width: 0.5 },
     ticks: {
       color: TUFTE.textTertiary,
-      font: { family: 'system-ui, sans-serif', size: 11 },
+      font: { family: '"Palatino Linotype", Palatino, Georgia, serif', size: 11 },
       padding: 8,
     },
   },
@@ -130,7 +130,7 @@ scales: {
     border: { display: false },
     ticks: {
       color: TUFTE.textTertiary,
-      font: { family: 'system-ui, sans-serif', size: 11 },
+      font: { family: '"Palatino Linotype", Palatino, Georgia, serif', size: 11 },
       padding: 8,
     },
   },

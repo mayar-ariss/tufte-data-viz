@@ -44,7 +44,7 @@ Load this file when generating raw SVG charts, D3.js visualizations, or HTML dat
 }
 
 .tufte-chart .tick text {
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: "Palatino Linotype", Palatino, Georgia, serif;
   font-size: 11px;
   fill: #767676;
 }
@@ -151,7 +151,7 @@ svg.append('g')
   .call(g => g.selectAll('.tick text')
     .attr('fill', '#767676')
     .attr('font-size', '11px')
-    .attr('font-family', 'system-ui, sans-serif'));
+    .attr('font-family', '"Palatino Linotype", Palatino, Georgia, serif'));
 ```
 
 ### Direct labeling (replace legend)
@@ -271,9 +271,7 @@ function sparkline(data, width = 80, height = 20) {
 .tufte-table th {
   font-weight: normal;
   color: #666;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-size: 12px;            /* upper-and-lower case, not all-caps (Tufte, VDQI ch. 9, p. 183) */
   padding: 8px 12px;
   border-bottom: 1px solid #999;
   text-align: left;
