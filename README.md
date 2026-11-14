@@ -54,6 +54,9 @@ This skill is **opinionated by design**. It will remove your gridlines, delete y
 <img src="_docs/tufte-light-dark.png" alt="The same bar chart in light and dark mode side by side"><br>
 <b>Light & dark</b> — the same chart in both themes
 
+<img src="_docs/tufte-cholera-map.png" width="640" alt="John Snow's 1854 cholera map redrawn: one dot per death on a pale street plan, with the 13 water pumps marked by crosses and the Broad Street pump in red at the center of the cluster"><br>
+<b>Data map</b> — John Snow's 1854 cholera data drawn by `rules/maps.md`: one dot per death, a quiet base map, the only strong color on the Broad Street pump, and the source and limits on the map
+
 ### Accessible palette
 
 Every text and data color meets the skill's own contrast rule: 4.5:1 for text, 3:1 for data marks. `scripts/check_contrast.py` checks the documented palette so it can't drift.
@@ -154,6 +157,7 @@ The improvements are being offered back upstream ([PR #1](https://github.com/cay
 - **Accessibility and motion in every library guide:** text alternatives and no load-in animation by default, so charts follow rules 16 and 18 out of the box.
 - **Titles that state the finding** in every example (rule 20), plus a few accuracy corrections.
 - **Showcase figures regenerated** with the new palette; three figure titles that contradicted their own data are corrected.
+- **Showcase figures audited against the skill:** every figure now carries a source line and its units, range-frame axes drop ticks outside the data, the slopegraph's shares sum to 100%, the small multiples share a January = 100 reference line, and a data map (John Snow's cholera deaths) shows `rules/maps.md` at work.
 - **Faithful to Tufte:** every rule names its source (Tufte, convention or extension), his six graphical integrity principles are added, and misattributed rules and misquotations are corrected.
 
 ## Contributing
