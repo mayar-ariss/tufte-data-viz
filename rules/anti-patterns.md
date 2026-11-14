@@ -7,7 +7,7 @@
 | **Pie chart** | Low data density, and the numbers are not ordered along a visual dimension (Tufte, VDQI ch. 9). | Horizontal bar chart sorted by value descending, or a table. | Tufte, VDQI ch. 9 |
 | **3D effects** | Perspective distorts relative sizes. Back bars appear smaller than front bars of equal value. | Remove all 3D. Flat 2D only. | Tufte, integrity principle 5, VDQI ch. 2 |
 | **Dual y-axes** | Implies correlation between two series that may not exist. Scale manipulation can make any two lines appear correlated. | Two stacked charts sharing the same x-axis (small multiples). | Convention |
-| **Legend box** | Forces eyes to shuttle between the legend and the data, holding color-to-name mappings in memory. | Direct labels at the endpoint or on the data element itself. | Tufte, VDQI ch. 9 (p. 183) |
+| **Legend box** | "Obscure codings require going back and forth between legend and graphic" (Tufte's unfriendly graphic). | Direct labels at the endpoint or on the data element itself. Keep a key only for an encoding that cannot be labeled in place (a color scale for quantity), beside the data and without a frame. | Tufte, VDQI ch. 9 (p. 183); his own keyed cancer maps, VDQI pp. 16–20 |
 | **Heavy gridlines** | Compete with data for visual attention. Create a "cage" that imprisons the data. | Remove entirely, or horizontal-only at opacity 0.08–0.12. | Tufte, VDQI ch. 5 |
 | **Rainbow palette** | No natural ordering. Creates false category boundaries. Inaccessible to 8% of males (colorblind). | Gray default + single accent, or 4-color muted palette. | Convention |
 | **Gauge/speedometer** | Uses enormous screen area for a single number. No trend, no context, no comparison. | Single large number + sparkline + comparison text. | Convention |
@@ -26,7 +26,7 @@
 | **Gratuitous entrance animation** | Chart "building" on load delays comprehension and is chartjunk in motion. | Remove, or gate behind `prefers-reduced-motion` check. | Extension |
 | **Fixed pixel width** | Chart overflows or becomes unreadable on mobile. | Use percentage/viewBox width or breakpoint-based layout. | Extension |
 | **Hatching or pattern fills** | Dense patterns vibrate (moiré) and force readers back and forth to a legend. | Direct labels or value labels; gray steps if a fill must vary. | Tufte, chartjunk, VDQI ch. 5 |
-| **All-caps labels** | Tufte lists all-capitals, sans-serif type among the marks of an unfriendly graphic. | Upper-and-lower case serif type. | Tufte, VDQI ch. 9 (p. 183) |
+| **All-caps labels** | Tufte lists all-capitals type among the marks of an unfriendly graphic. | Upper-and-lower case type, serif by default (rule 10). | Tufte, VDQI ch. 9 (p. 183) |
 | **Alphabetical order** | Hides the ranking the reader came for. | Order by data value or by content. | Tufte, VDQI ch. 9 (p. 178) |
 | **No source line** | Readers can't check the evidence. | State source, units and author under the chart. | Tufte, documentation, BE ch. 5 |
 
@@ -131,7 +131,7 @@ one Plot.plot() per compared panel   → One plot with fx/fy so scales are share
 For each non-data element, ask: "If I delete this, does the chart lose information?"
 
 - **Gridlines**: Usually no. The data points themselves show position.
-- **Legend**: No, if you label directly.
+- **Legend**: No, if you label directly. A scale for a color or shading that stands for a quantity stays, unframed, beside the data (rule 2).
 - **Axis title**: Sometimes no — if the chart title already specifies the axis ("Monthly Revenue in USD").
 - **Top/right borders**: Always no.
 - **Background color other than off-white**: Always no (decoration).
