@@ -111,6 +111,8 @@ Then 22 universal rules in three tiers, plus guidance on chart types and diagram
 
 **Flowcharts and diagrams** — guidance drawn only from Tufte: connectors that state their meaning (*Beautiful Evidence* ch. 3), type instead of boxes, layering and separation (*Envisioning Information* ch. 3), and the smallest effective difference (*Visual Explanations* ch. 4). Where Tufte gives no rule (shapes, swimlanes, layout direction), none is added. Includes Mermaid and Graphviz notes.
 
+**Maps** — guidance drawn only from Tufte's writing on data maps: area must not stand for importance, rate maps beside dot maps, testing the effect of aggregation, light-to-dark value scales instead of rainbows, Imhof's muted fields, layered base maps, map small multiples, and documentation on the map (*VDQI* ch. 1, *EI* ch. 2–6, *VE* ch. 2, *BE* ch. 5). Where Tufte gives no rule (projection, class breaks, cartograms), none is added.
+
 </details>
 
 ## Supported libraries
@@ -138,6 +140,7 @@ Then 22 universal rules in three tiers, plus guidance on chart types and diagram
 | `rules/anti-patterns.md` | Common violations, per-library detection patterns and one-line fixes |
 | `rules/small-multiples-sparklines.md` | Small multiples, sparklines, slopegraphs, rug plots |
 | `rules/diagrams-flowcharts.md` | Flowcharts, process maps, org charts and networks, drawn only from Tufte's writing on connectors, layering and explanation |
+| `rules/maps.md` | Choropleth, dot, flow and small-multiple maps, drawn only from Tufte's writing on data maps |
 | `examples/` | Runnable reference implementations for Recharts, ECharts, Chart.js, matplotlib, Plotly and SVG |
 | `scripts/check_contrast.py` | Checks the documented palette against the contrast minimums |
 | `_docs/` | Showcase figures and the script that generates them |
