@@ -123,7 +123,7 @@ Recharts 3.3 and later also accept a `responsive` prop on the chart itself (`<Li
 
 ### Removing Legend — direct label pattern
 
-Never use `<Legend />`. Instead, label each line at its last data point with an invisible `<ReferenceLine>` (leave enough right margin for the label):
+Leave `<Legend />` out by default (rule 2) and label each line at its last data point with an invisible `<ReferenceLine>` (leave enough right margin for the label). The exception in rule 2, a scale for color that stands for a quantity, is not a Recharts `<Legend />`; draw it as a small labeled gradient or class strip beside the chart.
 
 ```tsx
 <ReferenceLine
