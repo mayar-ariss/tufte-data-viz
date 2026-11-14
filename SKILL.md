@@ -2,7 +2,7 @@
 name: tufte-data-viz
 description: >-
   Use when creating, reviewing, or styling charts, graphs, dashboards,
-  sparklines, flowcharts, diagrams, or any data visualization. Applies to Recharts, ECharts,
+  sparklines, maps, flowcharts, diagrams, or any data visualization. Applies to Recharts, ECharts,
   Chart.js, matplotlib, seaborn, Plotly, ggplot2, plotnine, Vega-Lite, Altair,
   Observable Plot, D3.js, and SVG. Enforces Tufte
   principles (data-ink ratio, direct labeling, range-frame axes) plus
@@ -15,6 +15,8 @@ allowed-tools: Read, Glob, Grep
 Apply Edward Tufte's principles whenever generating or reviewing code that renders data visually. This skill covers charts of data, and flowcharts and other box-and-arrow diagrams; it does not cover slide/presentation design.
 
 **Flowcharts and diagrams:** read `rules/diagrams-flowcharts.md` instead of applying the chart rules below. Rules about axes, baselines, range frames, aspect ratio and the lie factor concern quantities on scales and do not apply to diagrams.
+
+**Maps:** for any display on geographic space (choropleth, dot, symbol, flow or small-multiple maps), also read `rules/maps.md`. Its rules are drawn only from Tufte's writing on data maps.
 
 ## Workflow
 
@@ -355,5 +357,6 @@ Before presenting any chart, verify:
 - `rules/anti-patterns.md` — per-library detection heuristics and fixes
 - `rules/small-multiples-sparklines.md` — layout patterns for small multiples, sparklines, slopegraphs
 - `rules/diagrams-flowcharts.md` — flowcharts, process maps, org charts and networks, from Tufte's writing on connectors and layering
+- `rules/maps.md` — choropleth, dot, flow and small-multiple maps, from Tufte's writing on data maps (Snow, Minard, the Tokyo mesh maps, Imhof's color rules)
 
 **Working examples** in `examples/` — for Recharts, ECharts, Chart.js, matplotlib and Plotly, plus an inline SVG sparkline. The other libraries' rule files contain complete examples.
