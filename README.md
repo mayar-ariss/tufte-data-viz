@@ -158,7 +158,7 @@ The improvements are being offered back upstream ([PR #1](https://github.com/cay
 - **Titles that state the finding** in every example (rule 20), plus a few accuracy corrections.
 - **Showcase figures regenerated** with the new palette; three figure titles that contradicted their own data are corrected.
 - **Showcase figures audited against the skill:** every figure now carries a source line and its units, range-frame axes drop ticks outside the data, the slopegraph's shares sum to 100%, the small multiples share a January = 100 reference line, and a data map (John Snow's cholera deaths) shows `rules/maps.md` at work.
-- **Faithful to Tufte:** every rule names its source (Tufte, convention or extension), his six graphical integrity principles are added, and misattributed rules and misquotations are corrected.
+- **Faithful to Tufte:** every rule names its source (Tufte, convention or extension), his six graphical integrity principles are added, and misattributed rules and misquotations are corrected. Two rules that were stricter than Tufte are brought back to his text and practice: a key stays for an encoding that cannot be labeled in place (his own redrawn cancer maps carry one), and serif type is the default rather than a ban on sans serif (he set tables in Gill Sans).
 
 ## Contributing
 
