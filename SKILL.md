@@ -118,9 +118,11 @@ No chart should have top or right axis lines, borders, or spines. The bottom and
 
 ### 2. Direct labels, not legends
 
-*Source: Tufte — words, numbers and drawings used together on the graphic, VDQI ch. 2 and ch. 9.*
+*Source: Tufte — in the friendly data graphic "labels are placed on the graphic itself; no legend is required", while the unfriendly one has "obscure codings [that] require going back and forth between legend and graphic", VDQI ch. 9 (p. 183); words and pictures belong together, VDQI ch. 9 (pp. 180–181). Tufte does not ban keys: the six cancer maps he redrew with Lawrence Fahey carry a five-class key for their shading (VDQI pp. 16–20), the GEBCO ocean chart he praises carries its depth scale (EI ch. 5, p. 91), and "complete measurement scales" are part of documenting a graphic (BE ch. 5).*
 
-Label each data series directly — at the endpoint of a line, on or beside a bar, next to a cluster. Remove the `<Legend>` component entirely. If there is only one series, the chart title provides that context; no label is needed.
+Label each data series directly — at the endpoint of a line, on or beside a bar, next to a cluster — and turn the library's legend off; the library guides do this by default. If there is only one series, the chart title provides that context; no label is needed.
+
+A key stays only for an encoding that cannot carry its own label: a color or shading scale that stands for a quantity (choropleth classes, a heat map, a continuous colorbar), or categories too many or too crowded to label in place. Then show the scale beside the data it decodes, with no frame or background of its own (a box around a key is non-data-ink, VDQI ch. 4). Tufte's objection is the shuttle between legend and graphic, not the presence of a scale.
 
 ### 3. No gridlines by default
 
@@ -164,11 +166,11 @@ The default data series color is medium gray (`#666`). Use a single accent color
 
 Light mode: `#fffff8`. Dark mode: `#151515`. Never use pure white (`#ffffff`) or pure black (`#000000`).
 
-### 10. Serif fonts for data
+### 10. Serif type, upper-and-lower case, words spelled out
 
-*Source: Tufte — the friendly data graphic sets type "upper-and-lower case, with serifs", with words spelled out and running left to right, VDQI ch. 9 (p. 183). The font stack is this skill's (convention), after Tufte's books, set in Monotype Bembo (ET Book is its digital revival).*
+*Source: Tufte — the friendly data graphic sets type "upper-and-lower case, with serifs", clear, precise and modest, with words spelled out and running left to right, VDQI ch. 9 (p. 183). Tufte's own practice admits a clear sans serif for tables and dense numeric displays: his books set some tables in Gill Sans (the redesigned timetables, EI p. 105; the mutual-fund table in the sparklines chapter of BE), and he wrote that he uses "Gill Sans and ETBembo for everything in print" and finds Gill Sans "very good for tables" (edwardtufte.com: "Tufte book fonts", 2003; "Typefaces for official correspondence", 2005; "What's your font?", 2006). The font stack is this skill's (convention), after Tufte's books, set in Monotype Bembo (ET Book is its digital revival).*
 
-Use serif type for every label, annotation, tick and title: `"ET Book", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif`. Set it upper-and-lower case (no all-caps labels or headers), spell words out, and keep it horizontal.
+Default to serif type for labels, annotations, ticks and titles: `"ET Book", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif`. A clear humanist sans serif (Gill Sans or a close equivalent) is within Tufte's practice for tables and dense numeric displays. The firm parts of the rule are the rest of p. 183: upper-and-lower case (no all-caps labels or headers), words spelled out, type running horizontally, and type that is clear, precise and modest.
 
 ### 11. No dual y-axes
 
@@ -325,11 +327,11 @@ Before presenting any chart, verify:
 - [ ] Every remaining element shows data or is needed to read it (data-ink); no hatching, heavy grid or decoration (chartjunk)
 - [ ] Source and units are stated on or under the chart (documentation)
 - [ ] No top or right borders/spines
-- [ ] No Legend component — series labeled directly on the chart
+- [ ] Series labeled directly on the chart; a key only for an encoding that cannot be labeled in place (a color scale for quantity), unframed
 - [ ] Gridlines removed, or muted (opacity <= 0.12)
 - [ ] Aspect ratio approximately 1.5:1
 - [ ] Background is `#fffff8` (light) or `#151515` (dark), not pure white/black
-- [ ] Serif type, upper-and-lower case, words spelled out and horizontal
+- [ ] Upper-and-lower case type, words spelled out and horizontal; serif by default
 - [ ] Default series color is gray (`#666`); color used only for emphasis
 - [ ] No 3D effects, no pie chart (unless explicitly requested)
 - [ ] Axis lines span only the data range (range-frame)
