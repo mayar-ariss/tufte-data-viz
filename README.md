@@ -54,6 +54,9 @@ This skill is **opinionated by design**. It will remove your gridlines, delete y
 <img src="_docs/tufte-light-dark.png" alt="The same bar chart in light and dark mode side by side"><br>
 <b>Light & dark</b> — the same chart in both themes
 
+<img src="_docs/tufte-cholera-map.png" width="640" alt="John Snow's 1854 cholera map redrawn: one dot per death on a pale street plan, with the 13 water pumps marked by crosses and the Broad Street pump in red at the center of the cluster"><br>
+<b>Data map</b> — John Snow's 1854 cholera data drawn by `rules/maps.md`: one dot per death, a quiet base map, the only strong color on the Broad Street pump, and the source and limits on the map
+
 ### Accessible palette
 
 Every text and data color meets the skill's own contrast rule: 4.5:1 for text, 3:1 for data marks. `scripts/check_contrast.py` checks the documented palette so it can't drift.
@@ -111,6 +114,8 @@ Then 22 universal rules in three tiers, plus guidance on chart types and diagram
 
 **Flowcharts and diagrams** — guidance drawn only from Tufte: connectors that state their meaning (*Beautiful Evidence* ch. 3), type instead of boxes, layering and separation (*Envisioning Information* ch. 3), and the smallest effective difference (*Visual Explanations* ch. 4). Where Tufte gives no rule (shapes, swimlanes, layout direction), none is added. Includes Mermaid and Graphviz notes.
 
+**Maps** — guidance drawn only from Tufte's writing on data maps: area must not stand for importance, rate maps beside dot maps, testing the effect of aggregation, light-to-dark value scales instead of rainbows, Imhof's muted fields, layered base maps, map small multiples, and documentation on the map (*VDQI* ch. 1, *EI* ch. 2–6, *VE* ch. 2, *BE* ch. 5). Where Tufte gives no rule (projection, class breaks, cartograms), none is added.
+
 </details>
 
 ## Supported libraries
@@ -138,6 +143,7 @@ Then 22 universal rules in three tiers, plus guidance on chart types and diagram
 | `rules/anti-patterns.md` | Common violations, per-library detection patterns and one-line fixes |
 | `rules/small-multiples-sparklines.md` | Small multiples, sparklines, slopegraphs, rug plots |
 | `rules/diagrams-flowcharts.md` | Flowcharts, process maps, org charts and networks, drawn only from Tufte's writing on connectors, layering and explanation |
+| `rules/maps.md` | Choropleth, dot, flow and small-multiple maps, drawn only from Tufte's writing on data maps |
 | `examples/` | Runnable reference implementations for Recharts, ECharts, Chart.js, matplotlib, Plotly and SVG |
 | `scripts/check_contrast.py` | Checks the documented palette against the contrast minimums |
 | `_docs/` | Showcase figures and the script that generates them |
@@ -151,6 +157,7 @@ The improvements are being offered back upstream ([PR #1](https://github.com/cay
 - **Accessibility and motion in every library guide:** text alternatives and no load-in animation by default, so charts follow rules 16 and 18 out of the box.
 - **Titles that state the finding** in every example (rule 20), plus a few accuracy corrections.
 - **Showcase figures regenerated** with the new palette; three figure titles that contradicted their own data are corrected.
+- **Showcase figures audited against the skill:** every figure now carries a source line and its units, range-frame axes drop ticks outside the data, the slopegraph's shares sum to 100%, the small multiples share a January = 100 reference line, and a data map (John Snow's cholera deaths) shows `rules/maps.md` at work.
 - **Faithful to Tufte:** every rule names its source (Tufte, convention or extension), his six graphical integrity principles are added, and misattributed rules and misquotations are corrected.
 
 ## Contributing
